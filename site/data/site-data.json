@@ -1,0 +1,488 @@
+{
+  "schema_version": 1,
+  "settings": {
+    "company": {
+      "ko": "Y2C HOLDINGS",
+      "en": "Y2C HOLDINGS"
+    },
+    "eyebrow": {
+      "ko": "GLOBAL BUSINESS DEVELOPMENT",
+      "en": "GLOBAL BUSINESS DEVELOPMENT"
+    },
+    "hero_title": {
+      "ko": "시장을 잇고,<br>성장을 만들다.",
+      "en": "Connecting markets.<br>Creating momentum."
+    },
+    "hero_description": {
+      "ko": "해외 파트너 발굴부터 공급망 구축까지.",
+      "en": "From partner sourcing to supply chain execution."
+    },
+    "hero_primary": {
+      "ko": "파트너 제휴하기",
+      "en": "Become a Partner"
+    },
+    "hero_secondary": {
+      "ko": "사업영역 보기",
+      "en": "Explore Business"
+    },
+    "nav_services": {
+      "ko": "사업영역",
+      "en": "Business"
+    },
+    "nav_products": {
+      "ko": "제품 소싱",
+      "en": "Sourcing"
+    },
+    "nav_partners": {
+      "ko": "파트너",
+      "en": "Partners"
+    },
+    "nav_programs": {
+      "ko": "지원사업",
+      "en": "Resources"
+    },
+    "nav_faq": {
+      "ko": "자주 묻는 질문",
+      "en": "FAQ"
+    },
+    "nav_contact": {
+      "ko": "문의하기",
+      "en": "Contact"
+    },
+    "section_services_label": {
+      "ko": "WHAT WE DO",
+      "en": "WHAT WE DO"
+    },
+    "section_services_title": {
+      "ko": "사업을 움직이는 실행력",
+      "en": "Built for execution"
+    },
+    "section_services_intro": {
+      "ko": "검증하고, 연결하고, 실행합니다.",
+      "en": "Discover. Verify. Deliver."
+    },
+    "section_products_label": {
+      "ko": "AUTOMOTIVE SOURCING",
+      "en": "AUTOMOTIVE SOURCING"
+    },
+    "section_products_title": {
+      "ko": "북미 시장을 위한 소싱",
+      "en": "Sourcing for North America"
+    },
+    "section_products_intro": {
+      "ko": "검토 중인 한국 제조 상품.",
+      "en": "Curated Korean product candidates."
+    },
+    "section_partners_label": {
+      "ko": "PARTNER NETWORK",
+      "en": "PARTNER NETWORK"
+    },
+    "section_partners_title": {
+      "ko": "함께할 기업을 찾습니다.",
+      "en": "Grow with the right partners."
+    },
+    "section_partners_intro": {
+      "ko": "제조사, 바이어, 브랜드, 물류사.",
+      "en": "Manufacturers. Buyers. Brands. Logistics."
+    },
+    "section_programs_label": {
+      "ko": "PUBLIC PROGRAMS",
+      "en": "PUBLIC PROGRAMS"
+    },
+    "section_programs_title": {
+      "ko": "시장 진출을 위한 정보",
+      "en": "Resources for expansion"
+    },
+    "section_programs_intro": {
+      "ko": "공식 지원 프로그램과 시장 정보를 확인하세요.",
+      "en": "Explore official trade resources."
+    },
+    "section_faq_label": {
+      "ko": "CLARITY FIRST",
+      "en": "CLARITY FIRST"
+    },
+    "section_faq_title": {
+      "ko": "자주 묻는 질문",
+      "en": "Frequently asked questions"
+    },
+    "section_contact_label": {
+      "ko": "LET'S BUILD",
+      "en": "LET'S BUILD"
+    },
+    "section_contact_title": {
+      "ko": "함께 만들어갈<br>기회를 찾습니다.",
+      "en": "Let’s build<br>what’s next."
+    },
+    "section_contact_intro": {
+      "ko": "프로젝트와 협업 분야를 알려주세요.",
+      "en": "Tell us about your project."
+    },
+    "footer_tagline": {
+      "ko": "Global Business Development",
+      "en": "Global Business Development"
+    },
+    "footer_region": {
+      "ko": "부산, 대한민국 · 북미 사업개발",
+      "en": "Busan, South Korea · North America"
+    },
+    "privacy_note": {
+      "ko": "등록 정보는 상담 및 제휴 가능성 검토 목적으로만 사용됩니다.",
+      "en": "Your inquiry details are used for evaluating business partnership opportunities."
+    },
+    "form_ready_note": {
+      "ko": "현재 공식 문의 채널이 연결되지 않아 내용 복사 기능만 제공합니다.",
+      "en": "The official receiving channel is not connected yet; you can copy your inquiry."
+    },
+    "contact_email": {
+      "ko": "",
+      "en": ""
+    },
+    "form_endpoint": {
+      "ko": "",
+      "en": ""
+    },
+    "site_domain": {
+      "ko": "",
+      "en": ""
+    },
+    "updated_date": {
+      "ko": "2026-11-01",
+      "en": "2026-11-01"
+    }
+  },
+  "services": [
+    {
+      "id": "auto-sourcing",
+      "sector": "automotive",
+      "icon": "layers",
+      "title_ko": "자동차용품 제조사 소싱",
+      "title_en": "Automotive product sourcing",
+      "description_ko": "제품·공급 적합성 검토",
+      "description_en": "Product and supplier assessment",
+      "sort": 10
+    },
+    {
+      "id": "dealership-development",
+      "sector": "automotive",
+      "icon": "car",
+      "title_ko": "북미 딜러십 개발",
+      "title_en": "Dealership development",
+      "description_ko": "구매자 발굴 및 샘플 협의",
+      "description_en": "Buyer discovery and sample coordination",
+      "sort": 20
+    },
+    {
+      "id": "origin-trade",
+      "sector": "crossborder",
+      "icon": "globe",
+      "title_ko": "FTA·도착원가 검토",
+      "title_en": "FTA & landed cost",
+      "description_ko": "원산지·관세·물류 원가 검토",
+      "description_en": "Origin, tariff and landed-cost review",
+      "sort": 30
+    },
+    {
+      "id": "franchise-bd",
+      "sector": "franchise",
+      "icon": "store",
+      "title_ko": "프랜차이즈 해외진출",
+      "title_en": "Franchise expansion",
+      "description_ko": "현지 운영사·사업 파트너 발굴",
+      "description_en": "Local operating partner development",
+      "sort": 40
+    },
+    {
+      "id": "logistics",
+      "sector": "crossborder",
+      "icon": "truck",
+      "title_ko": "물류·유통 연결",
+      "title_en": "Logistics partnerships",
+      "description_ko": "수입사·3PL·유통망 발굴",
+      "description_en": "Importer, 3PL and distribution matching",
+      "sort": 50
+    },
+    {
+      "id": "export-programs",
+      "sector": "advisory",
+      "icon": "file",
+      "title_ko": "수출지원 안내",
+      "title_en": "Export support guidance",
+      "description_ko": "공식 공고 및 적격성 안내",
+      "description_en": "Official notices and eligibility guidance",
+      "sort": 60
+    }
+  ],
+  "products": [
+    {
+      "sku": "AUTO-001",
+      "category": "Interior",
+      "market": "CA/US",
+      "name_ko": "프리미엄 TPE 발매트",
+      "name_en": "Precision-fit TPE Floor Liners",
+      "description_ko": "차종별 적합성·안전성 검증 대상",
+      "description_en": "Vehicle fit and safety review required",
+      "tariff_ko": "캐나다 관세표 예시: 일반 8.5% → CKFTA 0% 가능",
+      "tariff_en": "Canada example: 8.5% MFN → potentially 0% CKFTA",
+      "hs_candidate": "8708.29.60",
+      "verification": "품목분류·원산지 미확정",
+      "source_url": "https://www.cbsa-asfc.gc.ca/trade-commerce/tariff-tarif/menu-eng.html",
+      "sort": 10
+    },
+    {
+      "sku": "AUTO-002",
+      "category": "Care",
+      "market": "CA/US",
+      "name_ko": "극세사 디테일링 타월",
+      "name_en": "Premium Detailing Microfiber",
+      "description_ko": "PDI·서비스센터용 반복 구매 후보",
+      "description_en": "Repeat-order candidate for PDI and service teams",
+      "tariff_ko": "캐나다 일부 분류 예시: 일반 17% → CKFTA 0% 가능",
+      "tariff_en": "Canada example for some classifications: 17% MFN → potentially 0% CKFTA",
+      "hs_candidate": "6307.10.90",
+      "verification": "품목분류·원산지 미확정",
+      "source_url": "https://www.cbsa-asfc.gc.ca/trade-commerce/tariff-tarif/menu-eng.html",
+      "sort": 20
+    },
+    {
+      "sku": "AUTO-003",
+      "category": "Interior",
+      "market": "CA/US",
+      "name_ko": "프리미엄 차량용 방향제",
+      "name_en": "Premium Cabin Fragrance",
+      "description_ko": "성분·VOC·운송 요건 검토 필요",
+      "description_en": "VOC, ingredients and freight review required",
+      "tariff_ko": "캐나다 관세표 예시: 일반 6.5% → CKFTA 0% 가능",
+      "tariff_en": "Canada example: 6.5% MFN → potentially 0% CKFTA",
+      "hs_candidate": "3307.49.00",
+      "verification": "품목분류·원산지 미확정",
+      "source_url": "https://www.cbsa-asfc.gc.ca/trade-commerce/tariff-tarif/menu-eng.html",
+      "sort": 30
+    },
+    {
+      "sku": "AUTO-004",
+      "category": "Interior",
+      "market": "CA/US",
+      "name_ko": "차종별 트렁크 라이너",
+      "name_en": "Custom Cargo Liners",
+      "description_ko": "발매트와 연계할 트렁크 보호용품",
+      "description_en": "Cargo protection alongside floor liners",
+      "tariff_ko": "개별 제품의 세번·세율 확인 필요",
+      "tariff_en": "Product-specific HS classification and rates required",
+      "hs_candidate": "",
+      "verification": "미검증",
+      "source_url": "https://www.cbsa-asfc.gc.ca/trade-commerce/tariff-tarif/menu-eng.html",
+      "sort": 40
+    },
+    {
+      "sku": "AUTO-005",
+      "category": "Film",
+      "market": "CA/US",
+      "name_ko": "프리미엄 자동차용 필름",
+      "name_en": "Specialty Automotive Films",
+      "description_ko": "지역별 시공·규정 검증 필요",
+      "description_en": "Installation and local compliance review required",
+      "tariff_ko": "캐나다 일부 점착필름은 기본관세 0%; FTA 이점 제한적",
+      "tariff_en": "Some Canadian adhesive films already have 0% MFN; limited FTA edge",
+      "hs_candidate": "3919.90.00",
+      "verification": "품목분류·규제 미검증",
+      "source_url": "https://www.cbsa-asfc.gc.ca/trade-commerce/tariff-tarif/menu-eng.html",
+      "sort": 50
+    }
+  ],
+  "partners": [
+    {
+      "id": "manufacturer",
+      "symbol": "01",
+      "title_ko": "한국 제조사",
+      "title_en": "Korean Manufacturers",
+      "description_ko": "해외시장 개척을 위한 제품 제안, 생산 역량, 원산지 자료를 검토합니다.",
+      "description_en": "Submit sourcing proposals, manufacturing capabilities and origin documentation.",
+      "sort": 10
+    },
+    {
+      "id": "dealership",
+      "symbol": "02",
+      "title_ko": "북미 딜러십·바이어",
+      "title_en": "Dealerships & Buyers",
+      "description_ko": "희망 상품, 차종, 구매량, 납기 조건을 바탕으로 공급 가능성을 검토합니다.",
+      "description_en": "Share your product, vehicle fit, volume and delivery requirements.",
+      "sort": 20
+    },
+    {
+      "id": "franchise",
+      "symbol": "03",
+      "title_ko": "프랜차이즈·브랜드",
+      "title_en": "Franchise Brands",
+      "description_ko": "해외 사업 파트너 조사 및 현지 진출 준비 지원을 논의합니다.",
+      "description_en": "Discuss local partner discovery and international market readiness.",
+      "sort": 30
+    },
+    {
+      "id": "logistics",
+      "symbol": "04",
+      "title_ko": "물류·수입·유통사",
+      "title_en": "Logistics & Distributors",
+      "description_ko": "수입자, 통관사, 3PL, 유통사의 서비스 범위를 확인합니다.",
+      "description_en": "Share importer, brokerage, 3PL and distribution capabilities.",
+      "sort": 40
+    }
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "title_ko": "요구사항 접수",
+      "title_en": "Discovery",
+      "description_ko": "희망 국가·제품·구매 조건·사업목표를 파악합니다.",
+      "description_en": "Understand markets, product specifications and commercial goals."
+    },
+    {
+      "step": 2,
+      "title_ko": "거래 가능성 확인",
+      "title_en": "Qualification",
+      "description_ko": "공급 역량, 구매 권한, 제품 적합성과 필수 자료를 검토합니다.",
+      "description_en": "Review supply capability, buying authority and required documentation."
+    },
+    {
+      "step": 3,
+      "title_ko": "견적·샘플 조율",
+      "title_en": "Commercial Review",
+      "description_ko": "품목별 조건과 통관·배송비를 확인하고 필요시 샘플 평가를 지원합니다.",
+      "description_en": "Coordinate quotations, import-cost inputs and sample evaluation where appropriate."
+    },
+    {
+      "step": 4,
+      "title_ko": "계약·납품 연결",
+      "title_en": "Execution",
+      "description_ko": "실제 계약 주체와 운송·품질 책임을 구분해 거래 실행을 지원합니다.",
+      "description_en": "Coordinate contracting parties, logistics roles and quality responsibilities."
+    }
+  ],
+  "faq": [
+    {
+      "id": "fee",
+      "question_ko": "파트너 등록은 유료인가요?",
+      "question_en": "Is partner registration paid?",
+      "answer_ko": "초기 제휴 문의·검토 신청은 무료입니다. 별도 조사·영업개발·공급망 프로젝트는 서면 견적과 계약에 따라 과금됩니다.",
+      "answer_en": "Initial inquiries are free. Paid market development and sourcing projects require a written proposal and agreement.",
+      "sort": 10
+    },
+    {
+      "id": "inventory",
+      "question_ko": "현재 상품을 직접 보유하고 있나요?",
+      "question_en": "Do you stock the listed products?",
+      "answer_ko": "사이트의 품목은 한국 제조사의 제품을 소싱하기 위한 후보군이며, 재고·공급권·납품 가능성을 보장하지 않습니다.",
+      "answer_en": "Listings are sourcing categories, not confirmed inventory, exclusivity or guaranteed supply.",
+      "sort": 20
+    },
+    {
+      "id": "fta",
+      "question_ko": "FTA로 모든 상품이 무관세인가요?",
+      "question_en": "Are all products duty-free under an FTA?",
+      "answer_ko": "아닙니다. 실제 제품의 HS 분류, 생산원산지, 협정별 요건 및 미국의 추가관세 적용 여부를 확인해야 합니다.",
+      "answer_en": "No. Preferential origin, classification and additional US duties must be verified at SKU level.",
+      "sort": 30
+    },
+    {
+      "id": "official",
+      "question_ko": "Y2C는 정부지원 공식 수행기관인가요?",
+      "question_en": "Is Y2C an approved government voucher provider?",
+      "answer_ko": "현재 공식 수행기관 자격을 주장하지 않습니다. 프로그램별 모집과 자격은 운영기관 공고에서 확인해야 합니다.",
+      "answer_en": "We do not currently claim approved voucher-provider status. Confirm eligibility and application status with official operators.",
+      "sort": 40
+    },
+    {
+      "id": "franchise",
+      "question_ko": "가맹계약을 직접 체결하거나 가맹비를 받나요?",
+      "question_en": "Do you sign franchise agreements or collect franchise fees?",
+      "answer_ko": "기본 서비스는 시장 조사, 현지 사업자 발굴 및 협의 지원입니다. 가맹계약 체결과 자금 수수는 원칙적으로 당사자 간 진행합니다.",
+      "answer_en": "Our standard scope is research and business development coordination; franchise agreements and fees remain with the contracting parties.",
+      "sort": 50
+    },
+    {
+      "id": "territory",
+      "question_ko": "미국과 캐나다 모두 대응하나요?",
+      "question_en": "Do you cover the United States and Canada?",
+      "answer_ko": "양국을 목표시장으로 검토하며, 실제 수행범위는 제품·국가·현지 파트너 및 계약 조건에 따라 결정됩니다.",
+      "answer_en": "Both are target markets; actual scope depends on product, local partners and signed terms.",
+      "sort": 60
+    }
+  ],
+  "programs": [
+    {
+      "id": "exportvoucher",
+      "title_ko": "수출바우처",
+      "title_en": "Korea Export Voucher",
+      "description_ko": "기업별 수출역량과 공고 트랙에 따른 해외 진출 서비스 지원 검토.",
+      "description_en": "Export assistance subject to eligible company, program track and official selection.",
+      "official_url": "https://www.exportvoucher.com/",
+      "status_ko": "공고별 확인",
+      "status_en": "Check official notice",
+      "sort": 10
+    },
+    {
+      "id": "kotra",
+      "title_ko": "KOTRA 해외진출 지원",
+      "title_en": "KOTRA Export & Market Entry Support",
+      "description_ko": "해외시장 조사, 해외지사화, 파트너 발굴 등 공식 프로그램 정보 확인.",
+      "description_en": "Official export research, overseas business development and partner discovery resources.",
+      "official_url": "https://www.kotra.or.kr/",
+      "status_ko": "공고별 확인",
+      "status_en": "Check official notice",
+      "sort": 20
+    },
+    {
+      "id": "at",
+      "title_ko": "aT 농식품 수출지원",
+      "title_en": "aT Agri-food Export Support",
+      "description_ko": "농식품 제조·수출기업을 위한 해외진출 및 인증·유통 관련 공고 검토.",
+      "description_en": "Support opportunities for eligible agri-food exporters and brands.",
+      "official_url": "https://www.at.or.kr/",
+      "status_ko": "공고별 확인",
+      "status_en": "Check official notice",
+      "sort": 30
+    },
+    {
+      "id": "bepa",
+      "title_ko": "부산경제진흥원 사업공고",
+      "title_en": "Busan Business Support Programs",
+      "description_ko": "부산 소재 기업을 위한 해외마케팅·수출 바우처 사업별 요건 확인.",
+      "description_en": "Programs for eligible Busan businesses; individual deadlines and terms vary.",
+      "official_url": "https://www.bepa.kr/",
+      "status_ko": "공고별 확인",
+      "status_en": "Check official notice",
+      "sort": 40
+    }
+  ],
+  "insights": [
+    {
+      "id": "origin",
+      "label_ko": "CROSS-BORDER",
+      "label_en": "CROSS-BORDER",
+      "title_ko": "관세율보다 중요한 실제 도착원가",
+      "title_en": "Landed cost over headline duty rates",
+      "description_ko": "FTA 특혜관세는 개별 SKU의 원산지 충족과 품목분류가 확인된 경우에만 적용 가능합니다.",
+      "description_en": "FTA advantages depend on verified origin and product classification.",
+      "sort": 10
+    },
+    {
+      "id": "reorders",
+      "label_ko": "DEALERSHIPS",
+      "label_en": "DEALERSHIPS",
+      "title_ko": "일회성 소개보다 재주문 관리",
+      "title_en": "From introductions to repeat orders",
+      "description_ko": "딜러십의 실제 구매자·발주·납기·보증조건을 파악하고 지속 거래 가능성을 검토합니다.",
+      "description_en": "We focus on buyer qualification, delivery terms and potential repeat purchases.",
+      "sort": 20
+    },
+    {
+      "id": "franchise",
+      "label_ko": "FRANCHISE",
+      "label_en": "FRANCHISE",
+      "title_ko": "해외진출 준비부터 파트너 협의까지",
+      "title_en": "Franchise development with execution in mind",
+      "description_ko": "단순한 해외시장 홍보보다 운영 파트너·공급망·실행 능력을 함께 확인하는 접근을 제안합니다.",
+      "description_en": "Operational readiness and qualified partnerships matter more than visibility alone.",
+      "sort": 30
+    }
+  ]
+}
