@@ -1,1 +1,58 @@
+name: Publish Y2C Excel Website
 
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Verify repository layout
+        run: |
+          test -f data/website_content.xlsx || (echo 'ERROR: data/website_content.xlsx must be in repository root' && exit 1)
+          test -f scripts/build_site_data.py || (echo 'ERROR: scripts/build_site_data.py must be in repository root' && exit 1)
+          test -f site/index.html || (echo 'ERROR: site/index.html must be in repository root' && exit 1)
+
+      - name: Check Excel and rebuild public website data
+        run: |
+          python -m unittest discover -s tests -v
+          python scripts/build_site_data.py --excel data/website_content.xlsx --output site/data/site-data.json
+          test -f site/assets/app.js || (echo 'ERROR: missing site/assets/app.js' && exit 1)
+          test -f site/assets/styles.css || (echo 'ERROR: missing site/assets/styles.css' && exit 1)
+          test -f site/assets/y2c-logo.png || (echo 'ERROR: missing site/assets/y2c-logo.png' && exit 1)
+          python -c "import json; p='site/data/site-data.json'; o=json.load(open(p, encoding='utf-8')); assert o['schema_version']==1 and len(o['products'])>=3 and len(o['services'])>=2; print('OK: verified public site data')"
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload static site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
