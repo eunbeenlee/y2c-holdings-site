@@ -16,6 +16,8 @@ class ExcelDrivenSiteTests(unittest.TestCase):
         self.assertEqual(data['schema_version'],1)
         self.assertEqual(data['settings']['company']['ko'],'Y2C HOLDINGS')
         self.assertGreaterEqual(len(data['products']),4)
+        self.assertIn('industry_auto_title', data['settings'])
+        self.assertIn('network_title', data['settings'])
         self.assertTrue(any('TPE' in p['name_ko'] for p in data['products']))
     def test_allowlist_ignores_extra_columns(self):
         fields=MAP['상품']

@@ -1,17 +1,50 @@
-# Y2C 홈페이지 GitHub 배포 가이드 (V4)
+# Y2C HOLDINGS V8 — GitHub 교체 / Excel 수정
 
-1. ZIP을 압축 해제한 뒤 폴더 안 파일 **전부**를 GitHub 저장소 루트에 업로드합니다. `.github/workflows/deploy.yml` 숨김 폴더도 반드시 포함합니다.
-2. 저장소 `Settings → Pages → Source`에서 **GitHub Actions**를 선택합니다.
-3. `main` 브랜치에 업로드 후 Actions의 `Publish Y2C Excel Website` 실행 결과가 성공인지 확인합니다.
-4. 사이트 문구나 상품을 고치려면 `data/website_content.xlsx`를 열어 한국어·영어 값을 수정한 뒤 **같은 경로와 파일명으로 GitHub에 업로드/Commit**합니다.
-5. GitHub Actions가 데이터 변환·검증·배포를 수행합니다. 로컬 PC에서 파일을 저장만 해서는 사이트가 업데이트되지 않습니다.
+저장소: https://github.com/eunbeenlee/y2c-holdings-site
 
-## 편집 범위
-- 엑셀: 메인 문구, 메뉴, 사업영역 서비스, 상품 후보, 관세 참고 문구, 파트너 유형, FAQ, 정부지원 안내
-- HTML/CSS: 레이아웃, 이미지·로고 위치, 애니메이션, 디자인의 고정 장식 문구
+## 1. 기존 GitHub 저장소에 올리기 (추천: GitHub Desktop)
 
-## 외부 공개 전 필수 확인
-- `data/website_content.xlsx`만 공개용으로 사용합니다. 내부 사업관리 V3 엑셀을 **공개 GitHub에 올리지 마세요**.
-- 기본 문의 폼은 실제 이메일이나 서버로 전송되지 않습니다. 수신 시스템 연결 후 개인정보 처리방침을 확정해야 합니다.
-- 정부 수행기관·제품 공식 공급업체라고 표시하지 마세요. FTA/관세 자료는 실제 품목과 원산지별 검증이 필요합니다.
-- Google Fonts를 불러오지 못하는 환경에서는 시스템 폰트로 표시됩니다. 폰트 파일은 ZIP에 포함되지 않습니다.
+1. GitHub Desktop에서 `eunbeenlee/y2c-holdings-site`를 **Clone**합니다.
+2. 이 ZIP 파일을 별도 폴더에 압축 해제합니다.
+3. ZIP의 **내부 폴더·파일 전체**를 로컬 저장소의 **최상위 폴더**에 덮어씁니다. `.git` 폴더는 삭제하지 마세요.
+4. `.github/workflows/main.yml`, `site/index.html`, `data/website_content.xlsx`, `scripts/build_site_data.py`, `tests/test_pipeline.py`가 저장소 최상위에서 확인되어야 합니다.
+5. 이전 버전의 `.github/workflows/deploy.yml`이 있다면 **삭제**해 중복 실행을 막습니다. 현재 패키지는 `main.yml` 하나를 사용합니다.
+6. GitHub Desktop에서 변경사항을 확인하고 `Y2C corporate website V8`로 Commit → Push origin 합니다.
+7. GitHub `Settings → Pages → Build and deployment → Source = GitHub Actions`를 확인합니다.
+8. `Actions → Publish Y2C Excel Website`의 최신 실행 결과가 초록색인지 확인합니다.
+
+> 압축파일 자체를 GitHub에 업로드하지 마세요. ZIP 속 **파일**을 업로드해야 합니다. 웹 업로드를 사용하면 숨김 폴더 `.github`의 누락에 주의하세요.
+
+## 2. 홈페이지 수정 (Excel만)
+
+`data/website_content.xlsx`를 열고 `설정`(메인/회사/산업/섹션 문구), `서비스`(4개 사업영역), `진행절차`, `파트너`를 수정합니다.
+
+- `설정`의 `ko`·`en`은 각각 홈페이지 언어 토글에 대응합니다.
+- `<br>`은 제목의 줄바꿈으로 쓸 수 있습니다.
+- 행 숨기기는 `visible` 열에서 `N`, 공개는 `Y`로 설정합니다.
+- **시트명과 1행 열 제목은 변경하지 마세요.**
+- 수정한 파일을 같은 위치에 Commit/Push하면 GitHub Actions가 JSON을 재생성하고 사이트를 배포합니다.
+- 산업 카드의 개수/그래픽이나 화면 레이아웃을 변경할 때는 HTML/CSS 작업이 필요합니다.
+
+## 3. 홈페이지 주소
+
+https://eunbeenlee.github.io/y2c-holdings-site/
+
+URL은 배포 완료 후에 작동합니다. 기존 Pages가 404인 경우 먼저 Actions 오류를 확인하세요.
+
+## 4. 광고 시작 전 필수
+
+- 법인 공식 이메일 또는 보안된 문의 접수 API 연결
+- 실제 수신·보유·파기 절차에 맞는 개인정보처리방침 확정
+- 국가별 개인정보 규정과 광고·수신거부 정책 점검
+- 실제 계약이나 검증되지 않은 공급품에 대해 확정 납품·파트너십 표현 금지
+
+**현재는 문의 내용 복사 기능만 정상 동작하며 자동 접수되지 않습니다.**
+
+## 5. 에러 시 확인
+
+- Actions의 빨간 X → 실행 클릭 → 실패 단계 로그
+- `main.yml`과 `deploy.yml` 중복 여부 확인
+- 파일이 루트가 아니라 추가 하위 폴더에 업로드되지 않았는지 확인
+- 수정한 공개 Excel에 개인정보·내부 단가 포함 여부 확인
+- 브라우저 캐시: `Ctrl + Shift + R`
