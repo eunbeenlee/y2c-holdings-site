@@ -22,3 +22,11 @@ print('OK: site content and expected assets present, public data valid.')
 
 assert len(obj.get("pricing",[]))>=8
 assert {x["id"] for x in obj["pricing"] if x["group"]=="report"}=={"essential","business","strategic","enterprise"}
+
+for name in ['global-business','market-intelligence','automotive-dealership','franchise-development','supply-chain','advisory-report']:
+    for suffix in ['', '-960']:
+        path=root/'site/assets/images'/f'{name}{suffix}.webp'
+        assert path.exists() and path.stat().st_size > 12_000, f'Missing brand image: {path}'
+assert 'assets/visuals.css' in html, 'Home photo CSS missing'
+assert 'hero-visual' in html and 'photo-directory' in html, 'Home imagery not integrated'
+print('OK: V18 local imagery and homepage visual integration')

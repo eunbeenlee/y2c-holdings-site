@@ -18,7 +18,23 @@ def bullet_items(value): return [s.strip() for s in str(value).split('|') if s.s
 def url(slug, lang): return f'{DOMAIN}/{slug}{"-en" if lang == "en" else ""}.html'
 def li(value): return ''.join(f'<li>{h(item)}</li>' for item in bullet_items(value))
 
-def make_head(title, meta, canonical, alternate, locale, schema, desc_short):
+SEO_VISUALS = {
+    'overseas-sales':'global-business',
+    'market-research':'market-intelligence',
+    'buyer-development':'advisory-report',
+    'export-consulting':'market-intelligence',
+    'supply-chain':'supply-chain',
+    'franchise-development':'franchise-development',
+}
+
+def photo_hero(photo, lang):
+    alt = '비즈니스 솔루션 소개 연출 이미지' if lang=='ko' else 'Illustrative business services photograph'
+    return (f'<figure class="seo-hero-photo">'
+            f'<picture><source media="(max-width:650px)" srcset="./assets/images/{photo}-960.webp" type="image/webp">'
+            f'<img src="./assets/images/{photo}.webp" alt="{alt}" width="1600" height="900" decoding="async"></picture>'
+            f'<figcaption class="seo-photo-caption">Y2C / BUSINESS SOLUTIONS</figcaption></figure>')
+
+def make_head(title, meta, canonical, alternate, locale, schema, desc_short, image='global-business'):
     return f'''<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <title>{h(title)} | Y2C HOLDINGS</title><meta name="description" content="{h(meta)}">
@@ -28,8 +44,9 @@ def make_head(title, meta, canonical, alternate, locale, schema, desc_short):
 <meta property="og:site_name" content="Y2C HOLDINGS"><meta property="og:type" content="website">
 <meta property="og:title" content="{h(title)} | Y2C HOLDINGS"><meta property="og:description" content="{h(meta)}">
 <meta property="og:url" content="{h(canonical)}"><meta property="og:locale" content="{'ko_KR' if locale=='ko' else 'en_US'}">
+<meta property="og:image" content="{DOMAIN}/assets/images/{h(image)}.webp">
 <meta name="twitter:card" content="summary"><meta name="theme-color" content="#f7f6f2">
-<link rel="icon" href="./assets/favicon.png"><link rel="stylesheet" href="./assets/seo.css">
+<link rel="icon" href="./assets/favicon.png"><link rel="stylesheet" href="./assets/seo.css"><link rel="stylesheet" href="./assets/visuals.css">
 <script type="application/ld+json">{json.dumps(schema,ensure_ascii=False).replace('<','\\u003c')}</script>'''
 
 def nav(lang, slug='', home=False):
@@ -47,10 +64,10 @@ def service_page(row, records, lang):
     d=HEADINGS[lang]; slug=row['slug']; title=row[f'title_{lang}']; meta=row[f'meta_{lang}']
     alternate={x:url(slug,x) for x in ['ko','en']}; canonical=alternate[lang]
     schema={'@context':'https://schema.org','@type':'Service','name':title,'description':meta,'url':canonical,'provider':{'@type':'Organization','name':'Y2C HOLDINGS','url':DOMAIN}}
-    head=make_head(title,meta,canonical,alternate,lang,schema,meta)
+    head=make_head(title,meta,canonical,alternate,lang,schema,meta,image=SEO_VISUALS.get(slug,'global-business'))
     cross = ''.join(f'<a class="service-link" href="./{p["slug"]}{"-en" if lang=="en" else ""}.html"><small>{i+1:02d}</small><strong>{h(p[f"title_{lang}"])}</strong><span aria-hidden="true">↗</span></a>' for i,p in enumerate(records) if p['slug']!=slug)
     body=f'''<!doctype html><html lang="{lang}"><head>{head}</head><body><a class="skip" href="#main">Skip to content</a>{nav(lang,slug)}
-<main id="main"><section class="seo-hero"><div class="seo-wrap"><div class="seo-overline">Y2C / BUSINESS SOLUTIONS / {int(row['sort']):02d}</div><h1>{h(title)}</h1><p>{h(row[f'intro_{lang}'])}</p><div class="seo-actions"><a class="seo-btn" href="./index.html#contact">{h(d['cta'])} ↗</a><a class="seo-textlink" href="./services{('-en' if lang=='en' else '')}.html">{h(d['explore'])} ↗</a></div></div></section>
+<main id="main"><section class="seo-hero"><div class="seo-wrap seo-photo-layout"><div class="seo-hero-copy"><div class="seo-overline">Y2C / BUSINESS SOLUTIONS / {int(row['sort']):02d}</div><h1>{h(title)}</h1><p>{h(row[f'intro_{lang}'])}</p><div class="seo-actions"><a class="seo-btn" href="./index.html#contact">{h(d['cta'])} ↗</a><a class="seo-textlink" href="./services{('-en' if lang=='en' else '')}.html">{h(d['explore'])} ↗</a></div></div>{photo_hero(SEO_VISUALS.get(slug,'global-business'),lang)}</div></section>
 <section class="seo-section"><div class="seo-wrap two-col"><div class="seo-aside"><span>01 / SERVICE SCOPE</span><h2>{h(d['what'])}</h2><p>{h(meta)}</p></div><ul class="seo-list">{li(row[f'scope_{lang}'])}</ul></div></section>
 <section class="seo-section alternate"><div class="seo-wrap two-col"><div class="seo-aside"><span>02 / DELIVERABLES</span><h2>{h(d['outputs'])}</h2></div><ul class="seo-list">{li(row[f'deliverables_{lang}'])}</ul></div></section>
 <section class="seo-section"><div class="seo-wrap"><div class="section-label">03 / PROCESS</div><h2>{h(d['steps'])}</h2><ol class="seo-steps">{''.join(f'<li><span>{i:02d}</span>{h(item)}</li>' for i,item in enumerate(bullet_items(row[f'process_{lang}']),1))}</ol></div></section>
@@ -65,8 +82,8 @@ def hub_page(records,lang):
     meta='Y2C HOLDINGS의 해외영업 대행, 해외시장조사, 바이어 발굴, 수출 컨설팅, 공급망 구축, 해외 프랜차이즈 사업개발 서비스 안내.' if lang=='ko' else 'Explore overseas sales, market research, buyer discovery, export consulting, international sourcing and franchise development services at Y2C.'
     alternate={'ko':DOMAIN+'/services.html','en':DOMAIN+'/services-en.html'}; canonical=alternate[lang]
     schema={'@context':'https://schema.org','@type':'CollectionPage','name':title,'description':meta,'url':canonical,'publisher':{'@type':'Organization','name':'Y2C HOLDINGS','url':DOMAIN}}
-    cards=''.join(f'<a class="service-link" href="./{p["slug"]}{"-en" if lang=="en" else ""}.html"><small>{i:02d}</small><span><strong>{h(p[f"title_{lang}"])}</strong><em>{h(p[f"meta_{lang}"])}</em></span><span aria-hidden="true">↗</span></a>' for i,p in enumerate(records,1))
-    return f'''<!doctype html><html lang="{lang}"><head>{make_head(title,meta,canonical,alternate,lang,schema,meta)}</head><body><a class="skip" href="#main">Skip to content</a>{nav(lang)}<main id="main"><section class="seo-hero"><div class="seo-wrap"><div class="seo-overline">Y2C / BUSINESS DEVELOPMENT</div><h1>{h(title)}</h1><p>{h(meta)}</p><div class="seo-actions"><a class="seo-btn" href="./index.html#contact">{h(d['cta'])} ↗</a><a class="seo-textlink" href="./free-report.html">{h(d['free'])} ↗</a></div></div></section><section class="seo-section"><div class="seo-wrap"><div class="section-label">01 / OUR SERVICES</div><div class="service-links hub">{cards}</div></div></section><section class="seo-cta"><div class="seo-wrap"><strong>{h(d['bottom'])}</strong><a href="./pricing.html">{h(d['pricing'])} ↗</a></div></section></main>{footer(lang)}</body></html>'''
+    cards=''.join(f'<a class="service-link" href="./{p["slug"]}{"-en" if lang=="en" else ""}.html"><span class="service-tile-image"><img src="./assets/images/{SEO_VISUALS.get(p["slug"],"global-business")}.webp" alt="{h(p[f"title_{lang}"])} - {"연출 이미지" if lang=="ko" else "illustrative image"}" loading="lazy" width="1600" height="900"></span><span class="service-tile-copy"><small>{i:02d}</small><span><strong>{h(p[f"title_{lang}"])}</strong><em>{h(p[f"meta_{lang}"])}</em></span><span aria-hidden="true">↗</span></span></a>' for i,p in enumerate(records,1))
+    return f'''<!doctype html><html lang="{lang}"><head>{make_head(title,meta,canonical,alternate,lang,schema,meta,image='global-business')}</head><body><a class="skip" href="#main">Skip to content</a>{nav(lang)}<main id="main"><section class="seo-hero"><div class="seo-wrap seo-photo-layout"><div class="seo-hero-copy"><div class="seo-overline">Y2C / BUSINESS DEVELOPMENT</div><h1>{h(title)}</h1><p>{h(meta)}</p><div class="seo-actions"><a class="seo-btn" href="./index.html#contact">{h(d['cta'])} ↗</a><a class="seo-textlink" href="./free-report.html">{h(d['free'])} ↗</a></div></div>{photo_hero('global-business',lang)}</div></section><section class="seo-section"><div class="seo-wrap"><div class="section-label">01 / OUR SERVICES</div><div class="service-links hub photo-service-list">{cards}</div></div></section><section class="seo-cta"><div class="seo-wrap"><strong>{h(d['bottom'])}</strong><a href="./pricing.html">{h(d['pricing'])} ↗</a></div></section></main>{footer(lang)}</body></html>'''
 
 def create_sitemap(site,records):
     slugs=['','services.html','services-en.html','pricing.html','free-report.html','quick-report.html']

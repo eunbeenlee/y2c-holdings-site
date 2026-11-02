@@ -8,12 +8,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./assets/free-report.css"><script defer src="./assets/free-report.js"></script>
+<link rel="stylesheet" href="./assets/visuals.css">
 </head>
 <body>
 <header class="topbar"><a class="brand" href="./index.html"><img src="./assets/y2c-logo.png" alt="Y2C 로고"><span>Y2C HOLDINGS<small>GLOBAL BUSINESS PARTNERS</small></span></a>
 <nav><a href="./index.html" id="linkHome">홈페이지</a><a href="./pricing.html" id="linkPricing">유료 조사 서비스</a><button id="toggleLang" type="button" aria-label="Change language">EN</button></nav></header>
 <main class="sitewidth">
 <div class="intro"><div class="eyebrow">Y2C MARKET INTELLIGENCE / FREE</div><h1 id="pageTitle">시장진출, 먼저<br>준비부터 확인하세요.</h1><p id="pageIntro">5가지 조건을 선택하면 실무 체크리스트와 1차 실행안을 즉시 생성합니다. 회원가입 없이 무료로 이용할 수 있습니다.</p><div class="intro-badges"><span id="badge1">무료 · 로그인 불필요</span><span id="badge2">실시간 입력 반영</span><span id="badge3">PDF 저장 가능</span></div></div>
+<div class="free-media"><figure><picture class=""><source media="(max-width:650px)" srcset="./assets/images/market-intelligence-960.webp" type="image/webp"><img src="./assets/images/market-intelligence.webp" alt="시장진출 조사 보고서 상담 연출 이미지" loading="lazy" decoding="async" width="1600" height="900"></picture></figure></div>
 <div class="layout">
 <section class="formpanel" aria-label="Report form"><div class="eyebrow">01 / YOUR BUSINESS</div><h2 id="formTitle">조사 조건 선택</h2><div class="fields"><label><span id="lblCountry">진출 대상 국가</span><select id="country"></select></label><label><span id="lblIndustry">산업 분야</span><select id="industry"></select></label><label><span id="lblObjective">주요 목적</span><select id="objective"></select></label><label><span id="lblChannel">목표 고객·채널</span><select id="channel"></select></label><label><span id="lblStage">현재 진행 단계</span><select id="stage"></select></label><label><span id="lblProduct">제품·서비스 (선택)</span><input id="product" maxlength="80" placeholder="예: 프리미엄 차량용 발매트" autocomplete="off"></label></div>
 <div class="check-wrap"><div class="eyebrow">02 / SELF-CHECK</div><h2 id="checkTitle">현재 준비된 항목</h2><p id="checkIntro">확보한 자료만 표시하세요. 선택 결과는 준비도 점검에만 사용되며 시장성 점수가 아닙니다.</p><div id="readiness" class="checks"></div></div>

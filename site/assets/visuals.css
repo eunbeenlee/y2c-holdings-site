@@ -1,0 +1,110 @@
+/* V18 — photographic editorial design. All visual assets bundled locally. */
+:root { --photo-gold:#b39150; --photo-ink:#212624; }
+img { max-width:100%; }
+/* Main corporate homepage */
+.hero-layout { grid-template-columns:minmax(0, .95fr) minmax(0,1.05fr); min-height:630px; }
+.hero-copy { padding-right:4%; }
+.hero-visual { margin:34px 0 34px 20px; position:relative; align-self:stretch; min-height:555px; overflow:hidden; background:#ddd9d2; }
+.hero-visual picture, .hero-visual img {display:block;width:100%;height:100%;}
+.hero-visual img { object-fit:cover; object-position:79% 55%; filter:saturate(.93); }
+.hero-visual::after {content:''; position:absolute; inset:45% 0 0; background:linear-gradient(0deg,rgba(15,22,21,.74),rgba(15,22,21,0));pointer-events:none;}
+.hero-visual figcaption {position:absolute; z-index:1;bottom:27px;left:33px;right:30px;color:#fff;display:flex;gap:18px;align-items:center;justify-content:space-between;font:700 11px/1.4 var(--sans);letter-spacing:.13em;text-transform:uppercase;}
+.hero-visual figcaption span:last-child {color:#f0d7a7;border-top:1px solid #b39150;padding-top:9px;}
+.hero-copy .hero-deck {max-width:580px;}
+.business-card {padding:0;min-height:420px;display:flex;flex-direction:column;}
+.business-card .card-idx {padding:23px 28px 18px;}
+.business-card-image {overflow:hidden;height:180px;flex:none;background:#e8e6df;}
+.business-card-image img {width:100%;height:100%;display:block;object-fit:cover;object-position:76% 50%;filter:saturate(.92);transition:transform .55s ease;}
+.business-card:hover .business-card-image img{transform:scale(1.025);}
+.business-card .business-card-content{padding:25px 29px 28px;flex:1;}
+.business-card h3 {font-size:clamp(24px,2vw,31px);margin-bottom:9px;}
+.business-card p {font-size:13px;line-height:1.68;max-width:none;}
+.business-card .service-foot{margin-top:18px;}
+.industry-art{height:245px;margin:0;background:#dcdad5;}
+.industry-art img {width:100%;height:100%;display:block;object-fit:cover;object-position:74% 50%;filter:saturate(.87);transition:transform .45s ease;}
+.industry-card:hover .industry-art img{transform:scale(1.03);}
+.industry-art>span{display:none;}
+.industry-body {padding-top:26px;}
+.catalog-art {height:195px;display:block;background:#e7e5e1;}
+.catalog-art img {width:100%;height:100%;object-fit:cover;object-position:75% 57%;display:block;filter:saturate(.9);}
+.catalog-card:hover .catalog-art img{filter:saturate(1);}
+.photo-directory {background:#f9f8f5!important;}
+.photo-directory .service-directory-grid {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px;margin-top:32px;}
+.photo-directory .service-directory-card {display:flex;flex-direction:column;background:#fff;border:1px solid #e6e4df;transition:border-color .2s,transform .2s;color:#222;min-width:0;}
+.photo-directory .service-directory-card:hover{border-color:#b39150;transform:translateY(-2px);}
+.photo-directory .service-directory-card picture{display:block;aspect-ratio:1.75;overflow:hidden;background:#ddd;}
+.photo-directory .service-directory-card img{display:block;width:100%;height:100%;object-fit:cover;object-position:75% 50%;filter:saturate(.9);transition:transform .45s;}
+.photo-directory .service-directory-card:hover img{transform:scale(1.03);}
+.photo-directory .service-directory-card .service-card-footer{display:flex;justify-content:space-between;gap:18px;align-items:center;padding:18px 20px;font-size:15px;font-weight:700;}
+.photo-directory .service-directory-card .service-card-footer strong{font-weight:700;}
+.photo-directory .service-directory-card .service-card-footer span:last-child{color:#94703d;}
+.network-visual {margin:38px 0 38px 40px;min-height:430px;position:relative;overflow:hidden;background:#474a48;}
+.network-visual img {display:block;width:100%;height:100%;object-fit:cover;object-position:71% 49%;filter:saturate(.86) brightness(.89);}
+.network-visual:after {content:'';position:absolute;inset:42% 0 0;background:linear-gradient(0deg,rgba(17,21,20,.72),transparent);pointer-events:none;}
+.network-visual figcaption {position:absolute;bottom:24px;left:28px;right:25px;z-index:1;color:#fff;font-weight:700;font-size:11px;letter-spacing:.17em;display:flex;justify-content:space-between;}
+.visual-notice{font-size:11px;color:#858884;line-height:1.6;margin:18px 0 0;}
+.site-photo-band{display:block;margin-top:24px;position:relative;height:180px;overflow:hidden;background:#ddd8cf;}
+.site-photo-band img{display:block;width:100%;height:100%;object-fit:cover;object-position:70% 46%;filter:saturate(.86);}
+.site-photo-band span{position:absolute;left:24px;bottom:19px;background:#202623dc;color:#fff;padding:9px 15px;font-size:11px;font-weight:700;letter-spacing:.1em;}
+/* Page-specific photo ribbons: forms and tools remain unchanged */
+.free-media,.quick-media{max-width:1230px;margin:-14px auto 30px;padding:0 32px;}
+.free-media figure,.quick-media figure{margin:0;height:195px;overflow:hidden;position:relative;background:#e3e0d9;}
+.free-media img,.quick-media img{width:100%;height:100%;object-fit:cover;object-position:68% 51%;display:block;filter:saturate(.9);}
+.free-media figure::after,.quick-media figure::after{content:'';position:absolute;inset:30% 50% 0 0;background:linear-gradient(90deg,rgba(28,32,29,.2),transparent);}
+.price-photo-wide{margin:26px 0 0;height:250px;overflow:hidden;position:relative;background:#ded8ce;}
+.price-photo-wide img{display:block;width:100%;height:100%;object-fit:cover;object-position:70% 49%;filter:saturate(.91);}
+/* SEO service pages: images in real HTML, preserved on Excel rebuild */
+.seo-hero .seo-wrap.seo-photo-layout {display:grid;grid-template-columns:minmax(0,1.03fr) minmax(0,.97fr);gap:clamp(30px,4vw,72px);align-items:center;}
+.seo-hero .seo-photo-layout .seo-hero-copy{min-width:0;}
+.seo-photo-layout .seo-hero-photo {margin:0;height:390px;overflow:hidden;background:#dfdcd5;position:relative;}
+.seo-photo-layout .seo-hero-photo img {display:block;width:100%;height:100%;object-fit:cover;object-position:74% 50%;filter:saturate(.92);}
+.seo-photo-layout .seo-hero-photo:after{content:'';position:absolute;inset:60% 0 0;background:linear-gradient(0deg,rgba(24,28,26,.28),transparent);}
+.seo-hero .seo-photo-layout h1 {font-size:clamp(35px,3.7vw,55px);margin:25px 0;max-width:700px;}
+.seo-hero .seo-photo-layout p {font-size:15px;max-width:650px;}
+.seo-hero .seo-photo-layout .seo-actions{margin-top:30px;}
+.service-links.hub.photo-service-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px;}
+.service-links.hub.photo-service-list .service-link {display:block;padding:0;overflow:hidden;}
+.service-links.hub.photo-service-list .service-tile-image{height:175px;display:block;overflow:hidden;background:#ddd;}
+.service-links.hub.photo-service-list .service-tile-image img{display:block;width:100%;height:100%;object-fit:cover;object-position:74% 50%;filter:saturate(.89);transition:transform .4s;}
+.service-links.hub.photo-service-list .service-link:hover img{transform:scale(1.025);}
+.service-links.hub.photo-service-list .service-tile-copy{display:flex;gap:15px;align-items:start;padding:20px;}
+.service-links.hub.photo-service-list .service-tile-copy span:last-child{margin-left:auto;color:#9a773c;}
+.service-links.hub.photo-service-list .service-tile-copy em{line-height:1.55;margin-top:6px;}
+.seo-photo-caption{position:absolute;left:15px;bottom:15px;color:#fff;font-size:10px;z-index:2;letter-spacing:.12em;text-shadow:0 1px 6px #0008;}
+@media(max-width:1100px){.photo-directory .service-directory-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
+@media(max-width:940px){
+ .hero-layout{grid-template-columns:1fr;}
+ .hero-visual{margin:0 0 30px;height:370px;min-height:0;}
+ .hero-copy{min-height:430px;}
+ .network-visual{margin:0 0 45px;height:350px;min-height:0;}
+ .seo-hero .seo-wrap.seo-photo-layout{grid-template-columns:1fr;gap:25px;}
+ .seo-photo-layout .seo-hero-photo{height:310px;}
+}
+@media(max-width:650px){
+ .hero-visual{height:260px;margin:0 0 18px;}
+ .hero-visual figcaption{left:17px;right:17px;bottom:16px;font-size:9px;}
+ .hero-copy{min-height:430px;}
+ .business-card{min-height:0;padding:0;}
+ .business-card .card-idx{padding:18px 19px 14px;}
+ .business-card-image{height:153px;}
+ .business-card .business-card-content{padding:20px 20px 23px;}
+ .industry-card{grid-template-columns:1fr 1fr;}
+ .industry-art{height:auto;min-height:178px;}
+ .catalog-art{height:165px;}
+ .photo-directory .service-directory-grid{grid-template-columns:1fr;gap:12px;}
+ .photo-directory .service-directory-card picture{aspect-ratio:2.1;}
+ .network-visual{height:250px;min-height:0;}
+ .free-media,.quick-media{padding:0 16px;margin:0 auto 27px;}
+ .free-media figure,.quick-media figure{height:145px;}
+ .price-photo-wide{height:165px;}
+ .seo-hero .seo-photo-layout h1{font-size:37px;}
+ .seo-photo-layout .seo-hero-photo{height:230px;}
+ .service-links.hub.photo-service-list{grid-template-columns:1fr;}
+ .service-links.hub.photo-service-list .service-tile-image{height:155px;}
+}
+@media(prefers-reduced-motion:reduce){.business-card-image img,.industry-art img,.service-directory-card img,.service-tile-image img{transition:none!important;}}
+@media print{.hero-visual,.service-directory-grid,.network-visual,.seo-hero-photo,.free-media,.quick-media{display:none!important;}}
+/* Picture containers stretch with their parent; required for responsive art direction. */
+.hero-visual picture,.industry-art picture,.network-visual picture,.seo-hero-photo picture,.service-directory-card picture,.price-photo-wide picture,.free-media picture,.quick-media picture { display:block;width:100%;height:100%; }
+
+.catalog-art-photo img {object-position:center 50%;}
