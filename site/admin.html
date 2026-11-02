@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#f7f6f2">
+  <title>Y2C HOLDINGS | Private Workspace</title>
+  <link rel="icon" href="./assets/favicon.png"><link rel="stylesheet" href="./assets/styles.css">
+  <link rel="stylesheet" href="./assets/admin.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js" defer></script>
+  <script src="./assets/supabase-config.js" defer></script>
+  <script src="./assets/admin.js" defer></script>
+</head>
+<body class="admin-body">
+  <header class="admin-header"><a class="admin-brand" href="./index.html"><img src="./assets/y2c-logo.png" alt="Y2C logo"> <span>Y2C HOLDINGS <small>PRIVATE WORKSPACE</small></span></a><div class="admin-head-right"><span class="admin-badge">AUTHORIZED USERS ONLY</span><button id="signOutBtn" class="link-button" hidden type="button">로그아웃 / Sign out</button><a href="./index.html" class="link-button">홈페이지 ↗</a></div></header>
+  <main class="admin-container">
+    <div class="admin-intro"><span class="admin-overline">MARKET INTELLIGENCE / INTERNAL ONLY</span><h1>시장조사 보고서 <em>Workspace</em></h1><p>고객별 시장분석을 작성·보관합니다. 문서는 공개 GitHub 저장소에 저장되지 않습니다.</p></div>
+    <div id="adminNotice" class="admin-notice" role="status" aria-live="polite" hidden></div>
+    <section id="setupPanel" class="admin-panel" hidden><h2>관리자 데이터베이스 연결 필요</h2><p>Supabase 인증 설정이 아직 입력되지 않았습니다. README의 설정 절차를 완료해야 보고서를 안전하게 저장할 수 있습니다.</p><a href="./index.html">사이트로 돌아가기 ↗</a></section>
+    <section id="loginPanel" class="admin-panel login-panel" hidden>
+      <div class="panel-overline">SIGN IN</div><h2>관리자 로그인</h2><p>승인된 계정만 사용할 수 있습니다. 로그인 정보는 GitHub Excel에 저장하지 않습니다.</p>
+      <form id="loginForm"><label>이메일 / Email<input type="email" id="loginEmail" autocomplete="username" required></label><label>비밀번호 / Password<input type="password" id="loginPassword" autocomplete="current-password" required></label><button class="admin-primary" id="loginBtn" type="submit">로그인 →</button></form>
+    </section>
+    <section id="deniedPanel" class="admin-panel" hidden><h2>관리 권한이 없습니다</h2><p>로그인은 되었지만 Y2C 관리자 목록에 등록된 계정이 아닙니다. 접근권한은 Supabase의 승인 사용자 목록에서만 부여합니다.</p></section>
+    <section id="workspace" class="workspace" hidden>
+      <div class="workspace-bar"><div><span class="admin-overline">REPORTS</span><h2>시장조사 보고서 관리</h2></div><button type="button" class="admin-primary" id="newBtn">+ 새 보고서</button></div>
+      <div class="workspace-grid">
+        <aside class="report-sidebar"><label class="sr-only" for="reportSearch">보고서 검색</label><input type="search" id="reportSearch" placeholder="보고서 검색 / Search"><div id="reportsList" class="reports-list" aria-live="polite"></div></aside>
+        <section class="report-editor" id="editorPanel" aria-label="Report editor" hidden>
+          <div class="report-editor-top"><div><span class="admin-overline">Y2C STANDARD REPORT</span><h3>보고서 편집</h3></div><span id="reportSavedTime" class="saved-time"></span></div>
+          <form id="reportForm">
+            <div class="report-metadata"><label>보고서 제목 *<input name="title" required maxlength="200" placeholder="예: 캐나다 자동차 액세서리 시장성 분석"></label><label>고객사 / Client<input name="client_name" maxlength="200"></label><label>대상 국가 / 지역<input name="target_market" maxlength="200" placeholder="Canada / USA"></label><label>산업·제품<input name="industry" maxlength="200" placeholder="Automotive Accessories"></label><label>진행 상태<select name="status"><option value="draft">초안 / Draft</option><option value="review">검토 / Review</option><option value="final">최종 / Final</option></select></label></div>
+            <div id="reportSections" class="report-sections"></div>
+            <div class="editor-actions"><button id="saveBtn" type="submit" class="admin-primary">보고서 저장</button><button type="button" id="printBtn" class="admin-secondary">인쇄 / PDF</button><button type="button" id="exportBtn" class="admin-secondary">JSON 백업</button><button type="button" id="deleteBtn" class="admin-danger" hidden>삭제</button></div>
+          </form>
+        </section>
+        <section id="emptyEditor" class="report-empty"><span class="empty-symbol">Y2C</span><h3>보고서를 선택하거나 새로 작성하세요.</h3><p>시장규모, 경쟁업체, FTA·관세, 공급망, 수익성 및 권고안을 항목별로 입력할 수 있습니다.</p></section>
+      </div>
+    </section>
+  </main>
+  <footer class="admin-footer">© Y2C HOLDINGS · CONFIDENTIAL BUSINESS DOCUMENTS · <a href="./index.html">Public site</a></footer>
+</body></html>

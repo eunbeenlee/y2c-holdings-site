@@ -1,50 +1,62 @@
-# Y2C HOLDINGS V8 — GitHub 교체 / Excel 수정
+# Y2C HOLDINGS V9 — GitHub + 보고서 관리자 연결
 
-저장소: https://github.com/eunbeenlee/y2c-holdings-site
+## 핵심 안내
 
-## 1. 기존 GitHub 저장소에 올리기 (추천: GitHub Desktop)
+- 사이트: `https://y2choldings.co.kr` (도메인 DNS와 GitHub Pages 배포 성공 시)
+- 저장소: `https://github.com/eunbeenlee/y2c-holdings-site`
+- 공개 상품 Excel: `data/website_content.xlsx` → 상품 시트
+- 관리자 주소: `https://y2choldings.co.kr/admin.html`
+- 관리자 DB: 별도 Supabase 프로젝트 (실제 연결 전에는 로그인 불가)
+- **GitHub의 공개 Excel에 ID, 비밀번호, 계약서, 고객 보고서를 업로드하면 안 됩니다.**
 
-1. GitHub Desktop에서 `eunbeenlee/y2c-holdings-site`를 **Clone**합니다.
-2. 이 ZIP 파일을 별도 폴더에 압축 해제합니다.
-3. ZIP의 **내부 폴더·파일 전체**를 로컬 저장소의 **최상위 폴더**에 덮어씁니다. `.git` 폴더는 삭제하지 마세요.
-4. `.github/workflows/main.yml`, `site/index.html`, `data/website_content.xlsx`, `scripts/build_site_data.py`, `tests/test_pipeline.py`가 저장소 최상위에서 확인되어야 합니다.
-5. 이전 버전의 `.github/workflows/deploy.yml`이 있다면 **삭제**해 중복 실행을 막습니다. 현재 패키지는 `main.yml` 하나를 사용합니다.
-6. GitHub Desktop에서 변경사항을 확인하고 `Y2C corporate website V8`로 Commit → Push origin 합니다.
-7. GitHub `Settings → Pages → Build and deployment → Source = GitHub Actions`를 확인합니다.
-8. `Actions → Publish Y2C Excel Website`의 최신 실행 결과가 초록색인지 확인합니다.
+## A. 공개 사이트 업로드
 
-> 압축파일 자체를 GitHub에 업로드하지 마세요. ZIP 속 **파일**을 업로드해야 합니다. 웹 업로드를 사용하면 숨김 폴더 `.github`의 누락에 주의하세요.
+1. ZIP을 풀어 저장소 **최상위에 있는 기존 파일 전체**를 교체합니다. `.github` 숨김 폴더도 포함합니다.
+2. `Settings → Pages → Source: GitHub Actions`를 선택합니다.
+3. `Actions`에서 `Publish Y2C Excel Website` 실행의 성공 여부를 확인합니다.
+4. 홈페이지에서 **상품 소싱 안내** 섹션을 열어 상품 5종이 보이는지 확인합니다.
+5. 나중에 `data/website_content.xlsx`의 `상품` 시트를 수정하고 commit 하면 상품 카탈로그가 자동 갱신됩니다.
 
-## 2. 홈페이지 수정 (Excel만)
+## B. 관리자 전용 보고서 저장 연결 — 직접 한 번 설정해야 합니다
 
-`data/website_content.xlsx`를 열고 `설정`(메인/회사/산업/섹션 문구), `서비스`(4개 사업영역), `진행절차`, `파트너`를 수정합니다.
+1. `https://supabase.com/dashboard`에서 신규 프로젝트를 생성합니다. **프로젝트 비밀번호와 secret/service_role 키를 GitHub에 넣지 마세요.**
+2. Supabase 대시보드 → `SQL Editor` → `supabase/01_schema.sql` 전체를 붙여 넣고 실행합니다.
+3. `Authentication → Users`에서 **관리자 이메일 계정을 직접 생성**합니다. 실제 로그인 비밀번호는 Supabase Auth만 관리합니다. 공유 로그인 계정 대신 관리자별 계정을 권장합니다.
+4. `supabase/02_approve_admin_example.sql` 파일에서 `REPLACE_WITH_ADMIN_EMAIL@example.com`을 실제 관리자 이메일로 바꾼 뒤 SQL Editor에서 실행합니다. 결과 행이 1개 나와야 합니다. 이를 생략하면 로그인해도 보고서 접근이 거부됩니다.
+5. `Project Settings → API` 또는 `Connect` 메뉴에서 `Project URL`과 **publishable/anon key**를 확인합니다. *service_role / secret key는 절대 사용하지 마세요.*
+6. `site/assets/supabase-config.js`의 빈 값에 다음과 같이 입력한 뒤 GitHub에 commit 합니다.
 
-- `설정`의 `ko`·`en`은 각각 홈페이지 언어 토글에 대응합니다.
-- `<br>`은 제목의 줄바꿈으로 쓸 수 있습니다.
-- 행 숨기기는 `visible` 열에서 `N`, 공개는 `Y`로 설정합니다.
-- **시트명과 1행 열 제목은 변경하지 마세요.**
-- 수정한 파일을 같은 위치에 Commit/Push하면 GitHub Actions가 JSON을 재생성하고 사이트를 배포합니다.
-- 산업 카드의 개수/그래픽이나 화면 레이아웃을 변경할 때는 HTML/CSS 작업이 필요합니다.
+   ```js
+   window.Y2C_ADMIN_CONFIG = {
+     url: 'https://YOUR_PROJECT_REF.supabase.co',
+     publishableKey: 'YOUR_PUBLISHABLE_OR_ANON_KEY'
+   };
+   ```
 
-## 3. 홈페이지 주소
+   URL과 publishable key는 **공개 가능한 프로젝트 식별 값**이며, 보고서 보호는 **Auth 로그인과 RLS 권한검증**에서 수행합니다.
+7. Supabase `Authentication → URL Configuration`의 Site URL을 `https://y2choldings.co.kr`로 설정하고 필요 시 Redirect URLs에 `https://y2choldings.co.kr/**`를 추가합니다.
+8. 브라우저에서 `https://y2choldings.co.kr/admin.html`에 접속해 만든 계정으로 로그인합니다. 새 보고서 → 작성 → 저장 → 목록 재조회로 DB 저장 여부를 검증합니다.
+9. 외부 사용자/비승인 계정으로 로그인했을 때 보고서 접근이 차단되는지 확인합니다.
 
-https://eunbeenlee.github.io/y2c-holdings-site/
+> 주의: 이 패키지는 **관리자 UI + SQL 설정 파일**까지 구성했습니다. 실제 Supabase 프로젝트 생성·관리자 초대·SQL 적용·키 입력은 사용자 계정에서 해야 하므로 배포 직후 자동으로 로그인되는 것은 아닙니다.
 
-URL은 배포 완료 후에 작동합니다. 기존 Pages가 404인 경우 먼저 Actions 오류를 확인하세요.
+## C. 관리자 기능
 
-## 4. 광고 시작 전 필수
+- 이메일/비밀번호 로그인, 승인 계정만 접근
+- 보고서 제목·고객사·국가·업종·초안/검토/최종 상태 관리
+- 시장조사 표준 13개 섹션을 웹에서 직접 작성 및 수정
+- DB 저장, 보고서 목록/검색, JSON 별도 백업, 브라우저 인쇄/PDF
+- 삭제는 `admin` 역할만 허용
 
-- 법인 공식 이메일 또는 보안된 문의 접수 API 연결
-- 실제 수신·보유·파기 절차에 맞는 개인정보처리방침 확정
-- 국가별 개인정보 규정과 광고·수신거부 정책 점검
-- 실제 계약이나 검증되지 않은 공급품에 대해 확정 납품·파트너십 표현 금지
+## D. 안전하게 운영하는 기준
 
-**현재는 문의 내용 복사 기능만 정상 동작하며 자동 접수되지 않습니다.**
+- 웹사이트 public repository에 Excel 비밀번호·내부 V3 관리파일·고객정보를 올리지 않습니다.
+- `service_role`, `sb_secret_*`, 데이터베이스 비밀번호, GitHub PAT 등을 HTML/JavaScript/Excel에 넣지 않습니다.
+- Supabase Table Editor에서 민감한 데이터가 들어 있는 테이블은 반드시 RLS 상태를 확인합니다.
+- DB 백업, 직원 퇴사 시 계정 비활성화, 관리자별 개별 계정, 다중요소 인증 제공 여부 검토가 필요합니다.
+- 현재 공개 제휴 문의 폼은 별도 접수 DB가 연결되지 않았습니다. 완료된 등록접수처럼 안내하면 안 됩니다.
+- GitHub Pages는 정적 호스팅이므로 서버의 엑셀 파일을 비공개 DB처럼 쓰는 구조를 지원하지 않습니다.
 
-## 5. 에러 시 확인
 
-- Actions의 빨간 X → 실행 클릭 → 실패 단계 로그
-- `main.yml`과 `deploy.yml` 중복 여부 확인
-- 파일이 루트가 아니라 추가 하위 폴더에 업로드되지 않았는지 확인
-- 수정한 공개 Excel에 개인정보·내부 단가 포함 여부 확인
-- 브라우저 캐시: `Ctrl + Shift + R`
+## E. 무료 이메일 자동백업
+자세한 설정은 `BACKUP_EMAIL_SETUP_KR.md`를 참고합니다. GitHub Actions Secrets 5개를 설정한 뒤 수동 실행으로 첫 메일 수신과 복호화를 검사하세요.

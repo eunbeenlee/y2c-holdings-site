@@ -42,3 +42,28 @@ class ExcelDrivenSiteTests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+class PortalSecurityAndCatalogTests(unittest.TestCase):
+    def test_catalog_is_rendered_from_excel_data(self):
+        html=(ROOT/'site/index.html').read_text(encoding='utf-8')
+        js=(ROOT/'site/assets/app.js').read_text(encoding='utf-8')
+        self.assertIn('id="productsGrid"',html)
+        self.assertIn("data.products",js)
+        self.assertIn('function products()',js)
+    def test_admin_requires_database_auth(self):
+        admin=(ROOT/'site/admin.html').read_text(encoding='utf-8')
+        script=(ROOT/'site/assets/admin.js').read_text(encoding='utf-8')
+        self.assertIn('signInWithPassword',script)
+        self.assertIn('y2c_admins',script)
+        self.assertIn('y2c_reports',script)
+        self.assertIn('id="loginForm"',admin)
+    def test_no_credential_excel_in_public_project(self):
+        self.assertFalse(list(ROOT.rglob('*password*.xlsx')))
+        self.assertFalse(list(ROOT.rglob('*login*.xlsx')))
+        self.assertFalse(list(ROOT.rglob('*계정*.xlsx')))
+        config=(ROOT/'site/assets/supabase-config.js').read_text(encoding='utf-8')
+        self.assertIn("url: ''",config)
+        self.assertIn("publishableKey: ''",config)
+        sql=(ROOT/'supabase/01_schema.sql').read_text(encoding='utf-8')
+        self.assertIn('row level security',sql.lower())
+        self.assertIn('revoke all',sql.lower())

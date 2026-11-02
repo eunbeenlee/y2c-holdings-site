@@ -1,71 +1,52 @@
-# Y2C HOLDINGS — Corporate Website V8
+# Y2C HOLDINGS — Corporate Website V9 + Private Report Workspace
 
-**Purpose:** A business-focused corporate website for Y2C HOLDINGS. This is a standalone, static GitHub Pages website with a public Excel content source.
+Y2C의 기존 V8 기업형 홈페이지를 계승한 GitHub Pages 배포 패키지입니다. 로고·한영 전환·엑셀 자동 배포 유지, 상품 소싱 카탈로그와 관리자 전용 시장조사 보고서 작성 화면을 추가했습니다.
 
-## Design V8
+## Architecture
 
-- **Smaller actual Y2C logo** in the 78px desktop header and 67px mobile header; no giant logo in the hero.
-- Corporate information hierarchy: Company → Business Portfolio → Industry Focus → Cross-border Business → How We Work → Partnerships → Business Inquiry.
-- Public-facing business capabilities, not a narrowly defined product storefront.
-- Original gold/white/charcoal logo palette with restrained typography and strong business labels.
-- Korean / English toggle on desktop and mobile.
-- No unverified customer logos, subsidiary claims, sales metrics, delivery commitments or public funding claims.
-- Lead form is currently **prepare/copy only**; no receiving system is configured.
+| Area | Source | Public? |
+|---|---|---|
+| Corporate site and product catalog | `site/` + `data/website_content.xlsx` | YES |
+| Excel build pipeline | `scripts/build_site_data.py` + GitHub Actions | YES |
+| Login credentials | Supabase Auth | NO — never enter into Excel/GitHub |
+| Market research reports | Supabase Postgres `y2c_reports` protected by RLS | NO |
+| Approved admin roster | Supabase Postgres `y2c_admins` editable via trusted SQL Editor only | NO |
 
-## Excel-controlled content
+### Live deployment limitations
 
-Edit `data/website_content.xlsx` and commit/push to `main`:
+Until the organization creates/configures its own Supabase project, `site/admin.html` displays a setup notice. It **does not** provide fake login or local-only fake saving. Existing public partner form is still copy/prepare unless an independently verified receiving endpoint is set.
 
-| Sheet | Editable public content |
-|---|---|
-| `설정` | Hero heading/subheading; company introduction; business and industry headings; industry titles/captions; network, process, partner and contact section copy; future contact email / approved submission endpoint |
-| `서비스` | Four core business-area headings/descriptions and their order/visibility |
-| `진행절차` | The three business execution stages |
-| `파트너` | Manufacturer, buyer, franchise/brand and logistics partnership types |
-| `상품`, `FAQ`, `지원프로그램`, `인사이트` | Public structured content retained for future secondary-page expansion; not featured on V8 homepage |
+### Contents
 
-The structural page layout, illustrations, industry card count and navigation anchors are HTML/CSS/JavaScript and require code changes. **Excel content update is not the same as full website layout editing.**
+- `site/index.html`: Corporate home with product sourcing section, KR/EN toggle
+- `site/admin.html`: administrator report editor, 13 sections; report list, draft/review/final, print and JSON backup
+- `site/assets/admin.js`/`admin.css`: authenticated UI
+- `site/assets/supabase-config.js`: empty PUBLIC config; paste only URL and publishable key
+- `supabase/01_schema.sql`: authenticated user table, admin allowlist and report RLS
+- `supabase/02_approve_admin_example.sql`: trusted admin enrollment example (no passwords)
+- `data/website_content.xlsx`: ONLY public product catalog & site data
+- `.github/workflows/main.yml`: workflow to publish `site/` after Excel validation
 
-Never put private Y2C CRM, actual pricing, personal contact lists, signed agreements, government IDs, or internal V3 workbooks into this public repository.
-
-## Technical architecture
-
-- `/site/` — deployed web root (HTML, CSS, JS and logo)
-- `/data/website_content.xlsx` — PUBLIC website content Excel
-- `/scripts/build_site_data.py` — Excel OOXML → allowlisted JSON, built with standard Python only
-- `/site/data/site-data.json` — generated public JSON
-- `/.github/workflows/main.yml` — GitHub Actions to test, transform and deploy
-- `/tests/` — content, privacy and schema tests
-
-### GitHub deploy
-
-See `QUICK_START_KR.md`. The workflow requires `Settings > Pages > Source = GitHub Actions` and a correctly arranged repository root.
-
-### Known limitation: no live inbound leads
-
-The inquiry form is not an email-sending or database-sending system until a real receiving endpoint or company-owned email is configured. Before launch, finalize the privacy policy and legal review for cross-border lead collection.
-
-### Testing
-
-Run from the repository root:
+### Local tests
 
 ```bash
 python -m unittest discover -s tests -v
 python scripts/build_site_data.py --excel data/website_content.xlsx --output site/data/site-data.json
 python scripts/check_site.py
+node --check site/assets/app.js
+node --check site/assets/admin.js
 ```
 
-The local test renders of V8 use the same HTML/CSS/JS with an in-memory copy of `site-data.json`, because the QA browser environment disallows navigation to local file URLs; production GitHub Pages uses ordinary `fetch` of the generated JSON.
+Refer to `QUICK_START_KR.md` for full instructions. Do not upload private workbooks or sensitive customer information to this public repository.
 
-## Corporate design references
 
-The concept is an original Y2C interpretation of a common business information hierarchy and does not copy third-party code, imagery, or logos:
+## V10: encrypted email backups
+See `BACKUP_EMAIL_SETUP_KR.md`. The new workflow `.github/workflows/backup-email.yml` is independently scheduled and does not change public site build. Private data and passwords must never be committed.
 
-- Samsung business areas: https://www.samsung.com/sec/ir/ir-resources/ourbusiness/
-- LOTTE business areas: https://recruit.lotte.co.kr/about/group
-- LG corporate information: https://www.lg.com/global/about-lg/corporate-information/
-- POSCO Holdings portfolio: https://www.posco-inc.com/hs91a1-front/app/company/business-area.html
-- HD Hyundai businesses: https://recruit.hd.com/kr/mainLayout/introduction
-- CJ corporate introduction: https://www.cj.net/cj-introduction
+## V11 Supabase Free 자동 활동 점검
 
-All references are for navigation patterns and content grouping, not claims of Y2C affiliation.
+- `SUPABASE_자동활동점검_설치안내.md` 참조
+- `.github/workflows/supabase-keepalive.yml` 별도 작업 하루 3회 DB 읽기·실패 알림
+- V10의 `backup-email.yml` 일일 암호화 이메일 백업 그대로 유지
+- Supabase 자동 일시 중지를 반드시 막는 기능은 아니며, GitHub 무료 예약 작업의 장기 비활성화에 주의
+- `.github/workflows/repo-activity.yml` 월별 봇 빈 커밋으로 GitHub 60일 예약 중지 위험 완화(비보장)
