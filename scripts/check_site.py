@@ -3,7 +3,7 @@
 import json
 from pathlib import Path
 root=Path(__file__).resolve().parents[1]
-for name in ['site/index.html','site/admin.html','site/assets/admin.js','site/assets/admin.css','site/assets/supabase-config.js','supabase/01_schema.sql','site/privacy.html','site/assets/styles.css','site/assets/app.js','site/data/site-data.json','data/website_content.xlsx','.github/workflows/main.yml']:
+for name in ['site/index.html','site/admin.html','site/assets/admin.js','site/assets/admin.css','site/assets/supabase-config.example.js','supabase/01_schema.sql','site/privacy.html','site/assets/styles.css','site/assets/app.js','site/data/site-data.json','data/website_content.xlsx','.github/workflows/main.yml']:
     path=root/name
     assert path.is_file() and path.stat().st_size>0, f'Missing or empty: {name}'
 obj=json.loads((root/'site/data/site-data.json').read_text(encoding='utf-8'))

@@ -1,62 +1,80 @@
-# Y2C HOLDINGS V9 — GitHub + 보고서 관리자 연결
+# Y2C V12 — GitHub에 전체 파일 교체하는 순서
 
-## 핵심 안내
+## 사전 상태
 
-- 사이트: `https://y2choldings.co.kr` (도메인 DNS와 GitHub Pages 배포 성공 시)
-- 저장소: `https://github.com/eunbeenlee/y2c-holdings-site`
-- 공개 상품 Excel: `data/website_content.xlsx` → 상품 시트
-- 관리자 주소: `https://y2choldings.co.kr/admin.html`
-- 관리자 DB: 별도 Supabase 프로젝트 (실제 연결 전에는 로그인 불가)
-- **GitHub의 공개 Excel에 ID, 비밀번호, 계약서, 고객 보고서를 업로드하면 안 됩니다.**
+- 저장소: https://github.com/eunbeenlee/y2c-holdings-site
+- 도메인: https://y2choldings.co.kr
+- Supabase Free 프로젝트는 생성됨
+- SQL `01_schema.sql` 실행 및 회사 관리자 계정 승인도 이미 완료됨
+- 지난번 GitHub에 `site/assets/supabase-config.js`를 직접 수정한 상태
 
-## A. 공개 사이트 업로드
+**이번 설치에서는 비밀번호·공개키를 새로 만들거나 SQL을 다시 실행할 필요가 없습니다.**
 
-1. ZIP을 풀어 저장소 **최상위에 있는 기존 파일 전체**를 교체합니다. `.github` 숨김 폴더도 포함합니다.
-2. `Settings → Pages → Source: GitHub Actions`를 선택합니다.
-3. `Actions`에서 `Publish Y2C Excel Website` 실행의 성공 여부를 확인합니다.
-4. 홈페이지에서 **상품 소싱 안내** 섹션을 열어 상품 5종이 보이는지 확인합니다.
-5. 나중에 `data/website_content.xlsx`의 `상품` 시트를 수정하고 commit 하면 상품 카탈로그가 자동 갱신됩니다.
+## 1. 기존 Supabase 설정 보호 (중요)
 
-## B. 관리자 전용 보고서 저장 연결 — 직접 한 번 설정해야 합니다
+GitHub 저장소에서 이 주소가 열리는지 먼저 확인합니다:
 
-1. `https://supabase.com/dashboard`에서 신규 프로젝트를 생성합니다. **프로젝트 비밀번호와 secret/service_role 키를 GitHub에 넣지 마세요.**
-2. Supabase 대시보드 → `SQL Editor` → `supabase/01_schema.sql` 전체를 붙여 넣고 실행합니다.
-3. `Authentication → Users`에서 **관리자 이메일 계정을 직접 생성**합니다. 실제 로그인 비밀번호는 Supabase Auth만 관리합니다. 공유 로그인 계정 대신 관리자별 계정을 권장합니다.
-4. `supabase/02_approve_admin_example.sql` 파일에서 `REPLACE_WITH_ADMIN_EMAIL@example.com`을 실제 관리자 이메일로 바꾼 뒤 SQL Editor에서 실행합니다. 결과 행이 1개 나와야 합니다. 이를 생략하면 로그인해도 보고서 접근이 거부됩니다.
-5. `Project Settings → API` 또는 `Connect` 메뉴에서 `Project URL`과 **publishable/anon key**를 확인합니다. *service_role / secret key는 절대 사용하지 마세요.*
-6. `site/assets/supabase-config.js`의 빈 값에 다음과 같이 입력한 뒤 GitHub에 commit 합니다.
+https://github.com/eunbeenlee/y2c-holdings-site/blob/main/site/assets/supabase-config.js
 
-   ```js
-   window.Y2C_ADMIN_CONFIG = {
-     url: 'https://YOUR_PROJECT_REF.supabase.co',
-     publishableKey: 'YOUR_PUBLISHABLE_OR_ANON_KEY'
-   };
-   ```
+이 파일은 이전에 직접 입력한 URL/Publishable key가 저장된 것으로 간주합니다. **이번 ZIP에는 해당 파일을 포함하지 않았으므로**, 새 파일을 업로드해도 기존 파일이 유지됩니다. 다른 경로로 저장소 전체를 삭제 후 재생성하면 로그인 설정을 잃습니다.
 
-   URL과 publishable key는 **공개 가능한 프로젝트 식별 값**이며, 보고서 보호는 **Auth 로그인과 RLS 권한검증**에서 수행합니다.
-7. Supabase `Authentication → URL Configuration`의 Site URL을 `https://y2choldings.co.kr`로 설정하고 필요 시 Redirect URLs에 `https://y2choldings.co.kr/**`를 추가합니다.
-8. 브라우저에서 `https://y2choldings.co.kr/admin.html`에 접속해 만든 계정으로 로그인합니다. 새 보고서 → 작성 → 저장 → 목록 재조회로 DB 저장 여부를 검증합니다.
-9. 외부 사용자/비승인 계정으로 로그인했을 때 보고서 접근이 차단되는지 확인합니다.
+## 2. ZIP 업로드
 
-> 주의: 이 패키지는 **관리자 UI + SQL 설정 파일**까지 구성했습니다. 실제 Supabase 프로젝트 생성·관리자 초대·SQL 적용·키 입력은 사용자 계정에서 해야 하므로 배포 직후 자동으로 로그인되는 것은 아닙니다.
+1. ZIP 압축을 풉니다.
+2. 내부의 `.github`, `data`, `scripts`, `site`, `supabase`, `tests`와 README 등 전체 내용을 저장소 루트에 올립니다. ZIP 자체를 업로드하지 않습니다.
+3. 변경사항을 `main`에 커밋합니다. 기존 `site/assets/supabase-config.js` 파일은 **삭제하지 않습니다**.
+4. 원격에 과거 `deploy.yml` 등 중복 배포 워크플로가 있다면 확인하여 `main.yml` 하나만 Pages 배포에 사용합니다. 백업/keepalive 워크플로는 별도 기능이므로 유지합니다.
+5. GitHub 웹 업로드가 중복 파일 교체에 실패하면 GitHub Desktop에서 저장소 Clone → 압축 해제 파일 덮어쓰기 → Commit → Push 방법을 사용하세요.
 
-## C. 관리자 기능
+## 3. GitHub Pages 확인
 
-- 이메일/비밀번호 로그인, 승인 계정만 접근
-- 보고서 제목·고객사·국가·업종·초안/검토/최종 상태 관리
-- 시장조사 표준 13개 섹션을 웹에서 직접 작성 및 수정
-- DB 저장, 보고서 목록/검색, JSON 별도 백업, 브라우저 인쇄/PDF
-- 삭제는 `admin` 역할만 허용
+- https://github.com/eunbeenlee/y2c-holdings-site/settings/pages
+- Source: `GitHub Actions`
+- Custom domain: `y2choldings.co.kr`
+- DNS 레코드는 가비아에 이미 등록되어 있으므로 다시 수정하지 않습니다.
+- https://github.com/eunbeenlee/y2c-holdings-site/actions 에서 `Publish Y2C Excel Website`의 최신 실행이 초록색인지 확인합니다.
+- 새 테스트는 공개 Supabase 키가 들어 있어도 실패하지 않도록 수정했습니다.
 
-## D. 안전하게 운영하는 기준
+## 4. 회사 관리자 로그인
 
-- 웹사이트 public repository에 Excel 비밀번호·내부 V3 관리파일·고객정보를 올리지 않습니다.
-- `service_role`, `sb_secret_*`, 데이터베이스 비밀번호, GitHub PAT 등을 HTML/JavaScript/Excel에 넣지 않습니다.
-- Supabase Table Editor에서 민감한 데이터가 들어 있는 테이블은 반드시 RLS 상태를 확인합니다.
-- DB 백업, 직원 퇴사 시 계정 비활성화, 관리자별 개별 계정, 다중요소 인증 제공 여부 검토가 필요합니다.
-- 현재 공개 제휴 문의 폼은 별도 접수 DB가 연결되지 않았습니다. 완료된 등록접수처럼 안내하면 안 됩니다.
-- GitHub Pages는 정적 호스팅이므로 서버의 엑셀 파일을 비공개 DB처럼 쓰는 구조를 지원하지 않습니다.
+1. `https://y2choldings.co.kr/admin.html`로 접속합니다.
+2. 회사 계정 `eunbeen.lee@y2choldings.co.kr`과 **Supabase에서 만든 비밀번호**로 로그인합니다.
+3. 로그인이 거부되면 Supabase `Authentication → Users`의 계정 이메일/확인 상태와 `Table Editor → y2c_admins`의 `active=true`, `role=admin`을 확인합니다. 계정 권한은 사용자 ID(UUID)로 연결됩니다.
+4. 새 사용자 공개 회원가입은 필요하지 않으며 기본 비활성화를 권장합니다.
+5. Supabase `Authentication → URL Configuration`: Site URL = `https://y2choldings.co.kr`, 추가 Redirect URL = `https://y2choldings.co.kr/**`.
 
+## 5. 보고서 저장 테스트
 
-## E. 무료 이메일 자동백업
-자세한 설정은 `BACKUP_EMAIL_SETUP_KR.md`를 참고합니다. GitHub Actions Secrets 5개를 설정한 뒤 수동 실행으로 첫 메일 수신과 복호화를 검사하세요.
+1. `새 보고서 작성`을 클릭합니다.
+2. 제목, 고객사, 국가, 산업 분야를 입력합니다.
+3. 01번 `요약 및 최종 판단`을 입력하고 `지금 저장`을 클릭합니다.
+4. 왼쪽 보고서 목록에 생성된 제목이 표시되고, `저장 완료`가 나타나는지 확인합니다.
+5. 새로고침하고 동일 보고서를 선택해 내용이 유지되는지 확인합니다.
+6. 항목을 수정하면 약 4.5초 뒤 자동 저장됩니다. 저장 실패 시 화면에 오류가 나타나므로 JSON으로 내보내 백업하세요.
+7. `PDF / 인쇄` 버튼을 클릭한 뒤 브라우저의 `PDF로 저장`을 선택합니다.
+
+## 6. SQL 참고
+
+이미 V11의 `supabase/01_schema.sql`을 실행했다면 **반복 실행할 필요가 없습니다**. 이 패키지에 SQL은 신규 설치 또는 복구 시 참고용으로 유지합니다.
+
+## 7. 자동 이메일 백업 및 DB 점검 (선택적으로 활성화)
+
+기존 V11의 3개 워크플로를 유지합니다:
+
+- `backup-email.yml`: 암호화된 public 스키마 백업을 회사 이메일로 전송
+- `supabase-keepalive.yml`: Supabase DB 상태 점검
+- `repo-activity.yml`: GitHub 예약 실행 비활성화 위험 완화
+
+설정은 `BACKUP_EMAIL_SETUP_KR.md` 및 `SUPABASE_자동활동점검_설치안내.md`를 따릅니다. 이 기능은 GitHub Secrets 없이는 실행되지 않으며, 로그인과 보고서 사용에는 **필수 조건이 아닙니다**.
+
+## 8. 공개용 Excel 수정
+
+`data/website_content.xlsx`를 수정하고 GitHub에 Commit하면 홈페이지 공개 콘텐츠가 자동 재생성됩니다. 보고서 원본과 로그인 정보는 **절대로** Excel이나 공개 GitHub에 저장하지 않습니다.
+
+## 실패 시 점검 경로
+
+- 빌드 실패: Actions → `Publish Y2C Excel Website` → `build-and-deploy` → 실패 단계 펼치기
+- 로그인 화면 대신 설정 필요: `site/assets/supabase-config.js` 보존 여부와 실제 Project URL/공개 키
+- 로그인 오류: 비밀번호, Supabase `auth.users` 이메일 확인, 회사 도메인
+- 로그인은 되는데 권한 없음: `y2c_admins` 승인/활성 상태 및 UID 일치 여부
+- 저장 오류: Supabase RLS 및 `y2c_reports` 테이블 존재 여부

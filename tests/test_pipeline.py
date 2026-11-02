@@ -61,9 +61,40 @@ class PortalSecurityAndCatalogTests(unittest.TestCase):
         self.assertFalse(list(ROOT.rglob('*password*.xlsx')))
         self.assertFalse(list(ROOT.rglob('*login*.xlsx')))
         self.assertFalse(list(ROOT.rglob('*계정*.xlsx')))
-        config=(ROOT/'site/assets/supabase-config.js').read_text(encoding='utf-8')
-        self.assertIn("url: ''",config)
-        self.assertIn("publishableKey: ''",config)
+        # The real deployed public Supabase configuration is intentionally preserved
+        # from the user's GitHub repository; NEVER assert that its legitimate values are blank.
+        existing=ROOT/'site/assets/supabase-config.js'
+        if existing.exists():
+            config=existing.read_text(encoding='utf-8')
+            self.assertIn('Y2C_ADMIN_CONFIG',config)
+            self.assertIn('publishableKey',config)
+            self.assertNotIn('sb_secret_',config)
+            self.assertNotIn("publishableKey: 'sb_secret_",config)
         sql=(ROOT/'supabase/01_schema.sql').read_text(encoding='utf-8')
         self.assertIn('row level security',sql.lower())
         self.assertIn('revoke all',sql.lower())
+
+
+class ReportStudioV12Tests(unittest.TestCase):
+    def test_report_template_sections_and_company_login(self):
+        js=(ROOT/'site/assets/admin.js').read_text(encoding='utf-8')
+        html=(ROOT/'site/admin.html').read_text(encoding='utf-8')
+        self.assertIn('eunbeen.lee@y2choldings.co.kr',html)
+        self.assertIn('signInWithPassword',js)
+        self.assertIn('y2c_admins',js)
+        self.assertIn('y2c_reports',js)
+        self.assertIn('autoSaveTimer',js)
+        self.assertIn('MARKET RESEARCH',html.upper())
+        for key in ['executive_summary','market_size','tariffs','supply_chain','economics','recommendation','sources']:
+            self.assertIn(key,js)
+    def test_no_private_api_keys_or_real_credentials(self):
+        for source in [ROOT/'site/assets/admin.js',ROOT/'site/admin.html',ROOT/'site/assets/supabase-config.example.js']:
+            body=source.read_text(encoding='utf-8')
+            self.assertNotIn("publishableKey: 'sb_secret_",body)
+            self.assertNotIn("publishableKey: \"sb_secret_",body)
+        self.assertFalse((ROOT/'data'/'credentials.xlsx').exists())
+    def test_site_structure(self):
+        self.assertTrue((ROOT/'site'/'admin.html').is_file())
+        self.assertTrue((ROOT/'site/assets/admin.css').is_file())
+        self.assertTrue((ROOT/'site/assets/admin.js').is_file())
+        self.assertTrue((ROOT/'supabase/01_schema.sql').is_file())
