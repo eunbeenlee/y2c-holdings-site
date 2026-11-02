@@ -132,3 +132,6 @@ body.admin-body [hidden] { display:none!important; }
   .print-field strong {display:block;font-size:11px;margin-bottom:4px;}
   .print-field p {margin:0;font-size:11px;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.75;}
 }
+
+/* V13 tiered report editor */
+.tier-scope{border-left:3px solid #b49257;background:#f5f1e7;color:#4c4b45;padding:13px 18px;line-height:1.65;margin:14px 0 20px;font-size:13px}.report-section[hidden]{display:none!important}.optional-modules[hidden]{display:none!important}

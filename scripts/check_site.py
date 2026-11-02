@@ -3,7 +3,7 @@
 import json
 from pathlib import Path
 root=Path(__file__).resolve().parents[1]
-for name in ['site/index.html','site/admin.html','site/assets/admin.js','site/assets/admin.css','site/assets/supabase-config.example.js','supabase/01_schema.sql','site/privacy.html','site/assets/styles.css','site/assets/app.js','site/data/site-data.json','data/website_content.xlsx','.github/workflows/main.yml']:
+for name in ['site/index.html','site/admin.html','site/pricing.html','site/assets/pricing.css','site/assets/pricing.js','site/assets/admin.js','site/assets/admin.css','site/assets/supabase-config.example.js','supabase/01_schema.sql','site/privacy.html','site/assets/styles.css','site/assets/app.js','site/data/site-data.json','data/website_content.xlsx','.github/workflows/main.yml']:
     path=root/name
     assert path.is_file() and path.stat().st_size>0, f'Missing or empty: {name}'
 obj=json.loads((root/'site/data/site-data.json').read_text(encoding='utf-8'))
@@ -19,3 +19,6 @@ for name in ['servicesGrid','stepsGrid','partnersGrid','productsGrid','contactFo
 assert 'data-lang="ko"' in html and 'data-lang="en"' in html
 assert (root/'site/assets/y2c-logo.png').exists()
 print('OK: site content and expected assets present, public data valid.')
+
+assert len(obj.get("pricing",[]))>=8
+assert {x["id"] for x in obj["pricing"] if x["group"]=="report"}=={"essential","business","strategic","enterprise"}

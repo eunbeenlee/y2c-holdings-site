@@ -1,0 +1,96 @@
+{
+  "base_krw": 199000,
+  "modules": [
+    {
+      "id": "market",
+      "ko": "시장 규모·성장 동향",
+      "en": "Market size & trend",
+      "price": 80000,
+      "scope_ko": "공개 통계의 규모·추세 요약"
+    },
+    {
+      "id": "competitors",
+      "ko": "주요 경쟁사 3곳",
+      "en": "Top 3 competitors",
+      "price": 90000,
+      "scope_ko": "공개 사이트 기반 상품·포지션 비교"
+    },
+    {
+      "id": "pricing",
+      "ko": "유사제품 가격 5건",
+      "en": "Comparable prices (5)",
+      "price": 70000,
+      "scope_ko": "공개 온라인 가격·수집일 기록"
+    },
+    {
+      "id": "channels",
+      "ko": "유통채널·판매 경로",
+      "en": "Distribution channels",
+      "price": 90000,
+      "scope_ko": "대표 채널과 접근경로 정리"
+    },
+    {
+      "id": "tariff",
+      "ko": "HS·FTA·관세 1차 확인",
+      "en": "Tariff & FTA screening",
+      "price": 120000,
+      "scope_ko": "가정 품목분류·공식 세율 확인, 확정 의견 제외"
+    },
+    {
+      "id": "compliance",
+      "ko": "인증·표시 규정 1차 점검",
+      "en": "Regulatory screening",
+      "price": 120000,
+      "scope_ko": "주요 적용 가능 규제·검증 필요항목"
+    },
+    {
+      "id": "buyers",
+      "ko": "잠재 B2B 업체 목록 5곳",
+      "en": "Five B2B leads",
+      "price": 120000,
+      "scope_ko": "공개 기업정보 기반, 연락·구매의향 검증 제외"
+    },
+    {
+      "id": "logistics",
+      "ko": "물류·통관 경로 검토",
+      "en": "Logistics overview",
+      "price": 100000,
+      "scope_ko": "운송방법과 비용 구성요소 개요"
+    },
+    {
+      "id": "risk",
+      "ko": "리스크 체크리스트",
+      "en": "Risk checklist",
+      "price": 70000,
+      "scope_ko": "시장·규제·환율·실행 리스크 요약"
+    },
+    {
+      "id": "entry",
+      "ko": "시장 진입 실행안",
+      "en": "Entry action plan",
+      "price": 100000,
+      "scope_ko": "30일 단기 실행 과제 제안"
+    }
+  ],
+  "countries": [
+    "미국",
+    "캐나다",
+    "일본",
+    "베트남",
+    "중국",
+    "독일",
+    "영국",
+    "호주",
+    "싱가포르",
+    "기타"
+  ],
+  "industries": [
+    "자동차용품",
+    "식품·외식",
+    "프랜차이즈",
+    "뷰티·소비재",
+    "제조·산업재",
+    "교육·서비스",
+    "기타"
+  ]
+}

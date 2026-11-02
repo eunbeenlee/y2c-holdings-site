@@ -98,3 +98,56 @@ class ReportStudioV12Tests(unittest.TestCase):
         self.assertTrue((ROOT/'site/assets/admin.css').is_file())
         self.assertTrue((ROOT/'site/assets/admin.js').is_file())
         self.assertTrue((ROOT/'supabase/01_schema.sql').is_file())
+
+
+class PricingV13Tests(unittest.TestCase):
+    def test_pricing_loaded_from_public_excel(self):
+        data=build(ROOT/'data/website_content.xlsx')
+        self.assertEqual(len(data['pricing']),11)
+        self.assertEqual([p['starting_price_krw'] for p in data['pricing'] if p['group']=='report'], [490000,1690000,4500000,9000000])
+    def test_price_page_and_admin_tiers(self):
+        html=(ROOT/'site/pricing.html').read_text(encoding='utf-8')
+        js=(ROOT/'site/assets/admin.js').read_text(encoding='utf-8')
+        self.assertIn('estimateTotal',html)
+        self.assertIn('TIER_SCOPE',js)
+        self.assertIn('contract_amount',js)
+        self.assertIn('activeSections()',js)
+        self.assertNotIn('service_role', (ROOT/'site/assets/supabase-config.js').read_text(encoding='utf-8').replace('service_role keys',''))
+
+class FreeSnapshotV16Tests(unittest.TestCase):
+    def test_excel_feeds_free_report_dropdowns(self):
+        data=build(ROOT/'data/website_content.xlsx')
+        opts=data['free_report_options']
+        self.assertGreaterEqual(len(opts), 25)
+        for group in ['country','industry','objective','channel','stage','readiness']:
+            self.assertTrue(any(x['group']==group for x in opts))
+    def test_free_report_is_public_and_free_without_credentials(self):
+        html=(ROOT/'site/free-report.html').read_text(encoding='utf-8')
+        js=(ROOT/'site/assets/free-report.js').read_text(encoding='utf-8')
+        self.assertIn('id="country"',html)
+        self.assertIn('id="report"',html)
+        self.assertIn('free_report_options',js)
+        self.assertIn('window.print',js)
+        self.assertNotIn('service_role',js)
+        self.assertNotIn('signInWithPassword',js)
+        self.assertNotIn('199000',js)
+    def test_free_report_linked_from_home_and_pricing(self):
+        for name in ['index.html','pricing.html','quick-report.html']:
+            self.assertIn('free-report.html',(ROOT/'site'/name).read_text(encoding='utf-8'))
+
+class OrganicSEOTests(unittest.TestCase):
+    def test_seo_excel_content_and_static_generation(self):
+        from build_seo_pages import build as seo_build
+        data=read_excel(ROOT/'data/website_content.xlsx')
+        self.assertIn('검색서비스',data)
+        self.assertGreaterEqual(len(data['검색서비스']),7)
+        seo_build(ROOT/'data/website_content.xlsx', ROOT/'site')
+        for slug in ['overseas-sales','market-research','buyer-development','export-consulting','supply-chain','franchise-development']:
+            p=ROOT/'site'/f'{slug}.html'
+            self.assertTrue(p.exists())
+            self.assertIn('rel="canonical"',p.read_text(encoding='utf-8'))
+            self.assertIn('hreflang="en"',p.read_text(encoding='utf-8'))
+    def test_no_paid_seo_services_and_private_crawl_protection(self):
+        self.assertNotIn('admin.html', (ROOT/'site/sitemap.xml').read_text(encoding='utf-8'))
+        self.assertIn('noindex',(ROOT/'site/admin.html').read_text(encoding='utf-8'))
+        self.assertIn('sitemap.xml',(ROOT/'site/robots.txt').read_text(encoding='utf-8'))

@@ -108,9 +108,12 @@
                   <label>고객사 / Client<input name="client_name" maxlength="200" placeholder="고객사 또는 내부 프로젝트"></label>
                   <label>국가·지역<input name="target_market" maxlength="200" placeholder="Canada · USA"></label>
                   <label>산업·제품<input name="industry" maxlength="200" placeholder="Automotive / Franchise"></label>
+                  <label>보고서 상품 등급<select name="report_tier" id="reportTier"><option value="essential">Essential · 기초</option><option value="business">Business · 실무</option><option value="strategic">Strategic · 심층</option><option value="enterprise">Enterprise · 맞춤</option></select></label>
+                  <label>계약 금액 (원, VAT 별도)<input name="report_contract_amount" type="number" min="0" step="10000" placeholder="계약 확정 후 입력"></label>
                   <label>보고서 상태<select name="status"><option value="draft">초안 · Draft</option><option value="review">검토 · Review</option><option value="final">최종 · Final</option></select></label>
                 </div>
               </div>
+              <div class="tier-scope no-print" id="tierScope" aria-live="polite">선택한 보고서 등급에 따라 조사 영역이 표시됩니다. 이미 작성한 다른 영역의 데이터는 보존됩니다.</div>
               <div class="progress-row no-print"><span id="progressText">0 / 13 조사영역 작성</span><span id="reportSavedTime">아직 저장되지 않았습니다</span></div>
               <div class="progress-rail no-print"><div id="progressBar"></div></div>
               <nav class="section-jump no-print" id="sectionJump" aria-label="보고서 섹션 바로가기"></nav>

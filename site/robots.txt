@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+Disallow: /admin.html
+Sitemap: https://y2choldings.co.kr/sitemap.xml

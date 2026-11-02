@@ -26,8 +26,11 @@ MAP = {
     'FAQ': ['id', 'question_ko', 'question_en', 'answer_ko', 'answer_en', 'sort', 'visible'],
     '지원프로그램': ['id', 'title_ko', 'title_en', 'description_ko', 'description_en', 'official_url', 'status_ko', 'status_en', 'sort', 'visible'],
     '인사이트': ['id', 'label_ko', 'label_en', 'title_ko', 'title_en', 'description_ko', 'description_en', 'sort', 'visible'],
+    '요금정책': ['id','group','title_ko','title_en','description_ko','description_en','unit_ko','unit_en','starting_price_krw','rate_min_pct','rate_max_pct','deliverables_ko','deliverables_en','notice_ko','notice_en','sort','visible'],
+    '무료진단옵션': ['group','id','label_ko','label_en','description_ko','description_en','sort','visible'],
+    '검색서비스': ['slug','title_ko','title_en','meta_ko','meta_en','intro_ko','intro_en','scope_ko','scope_en','deliverables_ko','deliverables_en','process_ko','process_en','question_ko','answer_ko','question_en','answer_en','sort','visible'],
 }
-COLLECTIONS = {'서비스': 'services', '상품': 'products', '파트너': 'partners', '진행절차': 'steps', 'FAQ': 'faq', '지원프로그램': 'programs', '인사이트': 'insights'}
+COLLECTIONS = {'서비스': 'services', '상품': 'products', '파트너': 'partners', '진행절차': 'steps', 'FAQ': 'faq', '지원프로그램': 'programs', '인사이트': 'insights', '요금정책': 'pricing', '무료진단옵션': 'free_report_options'}
 
 
 def col_index(ref):
@@ -125,6 +128,13 @@ def to_records(rows, fields):
         for key in ('source_url', 'official_url'):
             if key in rec:
                 rec[key] = safe_url(rec[key])
+        for key in ('starting_price_krw','rate_min_pct','rate_max_pct'):
+            if key in rec:
+                try: rec[key] = max(0, float(rec[key] or 0))
+                except (TypeError, ValueError): raise ValueError(f'Invalid numeric fee in {key} on row {rownum}')
+                if key in ('rate_min_pct','rate_max_pct') and rec[key] > 100: raise ValueError('Percentage cannot exceed 100')
+        if rec.get('group') == 'commission' and rec.get('rate_min_pct',0)>rec.get('rate_max_pct',0):
+            raise ValueError('Commission percentage range inverted')
         for key in ('sort', 'step'):
             if key in rec:
                 try: rec[key] = int(float(rec[key]))
@@ -156,6 +166,17 @@ def build(excel_file):
     data = {'schema_version': 1, 'settings': settings}
     for sheet, key in COLLECTIONS.items():
         data[key] = to_records(book[sheet], MAP[sheet])
+    if not data['free_report_options'] or len(data['free_report_options']) < 15:
+        raise ValueError('Free report selections are missing')
+    required_groups = {'country','industry','objective','channel','stage','readiness'}
+    free_groups = {x['group'] for x in data['free_report_options']}
+    if not required_groups.issubset(free_groups):
+        raise ValueError('Free report required dropdown groups missing')
+    for rec in data['free_report_options']:
+        if not re.fullmatch(r'[A-Z][A-Z0-9_]{1,23}', rec['id']):
+            raise ValueError('Invalid free report option ID')
+        if not rec['label_ko'] or not rec['label_en']:
+            raise ValueError('Free report option label required')
     if not data['services'] or not data['partners']:
         raise ValueError('At least one service and one partner type required')
     return data

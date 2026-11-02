@@ -40,6 +40,31 @@
     {key:'public_programs',n:'C',title:'정부지원사업 선택 검증',intro:'국비지원은 수혜 가능성·비용 적격성을 분리해 기록합니다.',fields:[['programs','지원사업 및 적격성','공고명, 운영기관, 자격, 기간, 지원비율, 자부담'],['constraints','신청·수행기관·정산','참여기업 자격, 수행기관 등록 여부, 증빙·정산조건']]}
   ];
   const ALL = [...SECTIONS,...EXTRA];
+  const TIER_SCOPE = {
+    essential:['executive_summary','research_scope','market_size','competition','recommendation','sources'],
+    business:['executive_summary','research_scope','market_size','customer','competition','products','tariffs','economics','entry_plan','recommendation','sources'],
+    strategic:SECTIONS.map(s=>s.key),
+    enterprise:SECTIONS.map(s=>s.key)
+  };
+  const TIER_FALLBACK={essential:490000,business:1900000,strategic:4500000,enterprise:9000000};
+  let priceIndex={...TIER_FALLBACK};
+  async function loadPricingForAdmin(){
+    try {const response=await fetch('./data/site-data.json',{cache:'no-store'});if(!response.ok)return;
+      const data=await response.json();for(const p of (data.pricing||[]))if(p.group==='report'&&Number.isFinite(Number(p.starting_price_krw)))priceIndex[p.id]=Number(p.starting_price_krw);
+    }catch(e){/* Public prices are optional in private editor. */}
+    showTierScope();
+  }
+  const currencyKR = n => Number(n||0).toLocaleString('ko-KR')+'원';
+  function activeSections(){return TIER_SCOPE[$('#reportTier')?.value]||TIER_SCOPE.strategic;}
+  function showTierScope(){
+    const tier=$('#reportTier')?.value||'essential',visible=activeSections();
+    for(const section of SECTIONS){const el=$('#section-'+section.key);if(el)el.hidden=!visible.includes(section.key);}
+    for(const link of document.querySelectorAll('#sectionJump [data-jump]'))link.hidden=!visible.includes(link.dataset.jump);
+    const optional=$('#optionalModules');if(optional)optional.hidden=!(tier==='strategic'||tier==='enterprise');
+    const note=$('#tierScope');if(note)note.textContent=`${tier.toUpperCase()} · 기준가 ${currencyKR(priceIndex[tier])}부터 (VAT 별도) · 현재 ${visible.length}개 조사영역 표시 / 감춘 영역의 기존 작성 내용은 삭제되지 않습니다. 계약금액은 개별 견적으로 확정합니다.`;
+    updateProgress();
+  }
+
   const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const statusLabels = {draft:'초안',review:'검토',final:'최종'};
   let client=null,user=null,role=null,selected=null,rows=[],record=null;
@@ -65,6 +90,7 @@
     for(const key of ['title','client_name','target_market','industry','status'])data[key]=String(f.elements[key].value??'').trim();
     const original=record?.sections && typeof record.sections==='object'?record.sections:{};
     data.sections={...original};
+    data.sections._pricing={...(original._pricing||{}),tier:f.elements.report_tier.value,contract_amount:Number(f.elements.report_contract_amount.value||0)};
     ALL.forEach(section=>{
       const old=original[section.key];
       const value=old&&typeof old==='object'&&!Array.isArray(old)?{...old}:{};
@@ -76,6 +102,8 @@
   function fillForm(row) {
     loading=true;
     const f=$('#reportForm'); const old=row?.sections||{};
+    f.elements.report_tier.value=old?._pricing?.tier||(row?'strategic':'essential');
+    f.elements.report_contract_amount.value=old?._pricing?.contract_amount||'';
     for(const key of ['title','client_name','target_market','industry','status'])f.elements[key].value=row?.[key]??(key==='status'?'draft':'');
     ALL.forEach(section=>{
       const previous=old[section.key];
@@ -88,17 +116,19 @@
     $('#editorHeading').textContent=row?.title||'새 시장조사 보고서';
     $('#cloneBtn').hidden=!row;
     $('#deleteBtn').hidden=!row||role!=='admin';
-    dirty=false;saveState(row?'저장 완료':'첫 저장 전');updateProgress();loading=false;
+    dirty=false;saveState(row?'저장 완료':'첫 저장 전');showTierScope();loading=false;
   }
   function updateProgress() {
     let complete=0;
+    const considered=activeSections();
     SECTIONS.forEach(section=>{
+      if(!considered.includes(section.key))return;
       const answered=section.fields.some(([key])=>String($('#reportForm').elements[fieldName(section.key,key)].value||'').trim());
       if(answered)complete++;
       const anchor=$(`[data-jump="${section.key}"]`);if(anchor)anchor.classList.toggle('done',answered);
     });
-    $('#progressText').textContent=`${complete} / ${SECTIONS.length} 조사영역 작성`;
-    $('#progressBar').style.width=`${Math.round(complete/SECTIONS.length*100)}%`;
+    $('#progressText').textContent=`${complete} / ${considered.length} 조사영역 작성`;
+    $('#progressBar').style.width=`${Math.round(complete/Math.max(1,considered.length)*100)}%`;
   }
   function renderList() {
     const term=$('#reportSearch').value.toLowerCase().trim(),status=$('#statusFilter').value;
@@ -192,10 +222,11 @@
   function printReport() {
     const data=getForm();
     $('#printTitle').textContent=data.title||'시장조사 보고서';
-    $('#printMeta').textContent=[data.client_name,data.target_market,data.industry,new Date().toLocaleDateString('ko-KR')].filter(Boolean).join('  |  ');
+    $('#printMeta').textContent=[data.client_name,data.target_market,data.industry,(data.sections._pricing?.tier||'strategic').toUpperCase(),new Date().toLocaleDateString('ko-KR')].filter(Boolean).join('  |  ');
     const old=$('#printReport');if(old)old.remove();
     const wrapper=document.createElement('div');wrapper.id='printReport';wrapper.className='print-report';
-    wrapper.innerHTML=ALL.filter(section=>section.fields.some(([key])=>String(data.sections[section.key]?.[key]||'').trim())).map(section=>`<section class="print-section"><div class="print-index">${esc(section.n)} / ${esc(section.title)}</div>${section.fields.filter(([key])=>String(data.sections[section.key]?.[key]||'').trim()).map(([key,label])=>`<div class="print-field"><strong>${esc(label)}</strong><p>${esc(data.sections[section.key][key])}</p></div>`).join('')}</section>`).join('');
+    const tierSections=new Set([...activeSections(),...((data.sections._pricing?.tier==='strategic'||data.sections._pricing?.tier==='enterprise')?EXTRA.map(s=>s.key):[])]);
+    wrapper.innerHTML=ALL.filter(section=>tierSections.has(section.key)&&section.fields.some(([key])=>String(data.sections[section.key]?.[key]||'').trim())).map(section=>`<section class="print-section"><div class="print-index">${esc(section.n)} / ${esc(section.title)}</div>${section.fields.filter(([key])=>String(data.sections[section.key]?.[key]||'').trim()).map(([key,label])=>`<div class="print-field"><strong>${esc(label)}</strong><p>${esc(data.sections[section.key][key])}</p></div>`).join('')}</section>`).join('');
     $('#reportForm').appendChild(wrapper);
     window.print();
   }
@@ -213,6 +244,7 @@
     $('#newBtn').addEventListener('click',newReport);$('#emptyNewBtn').addEventListener('click',newReport);
     $('#reportSearch').addEventListener('input',renderList);$('#statusFilter').addEventListener('change',renderList);
     $('#reportForm').addEventListener('submit',e=>{e.preventDefault();saveReport(false)});
+    $('#reportTier').addEventListener('change',()=>{showTierScope();markDirty();});
     $('#reportForm').addEventListener('input',markDirty);$('#reportForm').addEventListener('change',markDirty);
     $('#saveBtn').addEventListener('click',()=>saveReport(false));
     $('#cloneBtn').addEventListener('click',cloneReport);$('#deleteBtn').addEventListener('click',removeReport);
@@ -220,7 +252,7 @@
     window.addEventListener('beforeunload',e=>{if(dirty){e.preventDefault();e.returnValue='';}});
   }
   async function boot() {
-    initEditor();const config=window.Y2C_ADMIN_CONFIG||{};
+    initEditor();loadPricingForAdmin();const config=window.Y2C_ADMIN_CONFIG||{};
     if(!config.url?.startsWith('https://')||!/\.supabase\.co\/?$/.test(config.url)||!config.publishableKey?.startsWith('sb_publishable_')&&!config.publishableKey?.startsWith('eyJ')) {show('#setupPanel',true);return;}
     if(!window.supabase?.createClient){show('#setupPanel',true);tell('Supabase 로그인 라이브러리를 불러오지 못했습니다. 인터넷 연결이나 브라우저 차단 설정을 확인해주세요.',true);return;}
     client=window.supabase.createClient(config.url,config.publishableKey,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
