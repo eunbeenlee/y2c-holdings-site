@@ -1,0 +1,2 @@
+/* Language hand-off only; no analytics or collection. */
+(()=>{'use strict';let language='ko';try{const requested=new URLSearchParams(location.search).get('lang'),saved=localStorage.getItem('y2c_lang');language=requested==='en'||requested==='ko'?requested:saved==='en'?'en':'ko';if(/(?:services|overseas-sales|market-research|buyer-development|export-consulting|supply-chain|franchise-development)(?:-en)?\.html$/.test(location.pathname))language=document.documentElement.lang==='en'?'en':'ko';localStorage.setItem('y2c_lang',language)}catch(_){}window.Y2C_LOCALE=language;})();

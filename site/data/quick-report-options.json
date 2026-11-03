@@ -6,70 +6,80 @@
       "ko": "시장 규모·성장 동향",
       "en": "Market size & trend",
       "price": 80000,
-      "scope_ko": "공개 통계의 규모·추세 요약"
+      "scope_ko": "공개 통계의 규모·추세 요약",
+      "scope_en": "Summary of publicly available size and trend statistics"
     },
     {
       "id": "competitors",
       "ko": "주요 경쟁사 3곳",
       "en": "Top 3 competitors",
       "price": 90000,
-      "scope_ko": "공개 사이트 기반 상품·포지션 비교"
+      "scope_ko": "공개 사이트 기반 상품·포지션 비교",
+      "scope_en": "Product and positioning comparison from public websites"
     },
     {
       "id": "pricing",
       "ko": "유사제품 가격 5건",
       "en": "Comparable prices (5)",
       "price": 70000,
-      "scope_ko": "공개 온라인 가격·수집일 기록"
+      "scope_ko": "공개 온라인 가격·수집일 기록",
+      "scope_en": "Public online prices with collection dates"
     },
     {
       "id": "channels",
       "ko": "유통채널·판매 경로",
       "en": "Distribution channels",
       "price": 90000,
-      "scope_ko": "대표 채널과 접근경로 정리"
+      "scope_ko": "대표 채널과 접근경로 정리",
+      "scope_en": "Main sales channels and routes to market"
     },
     {
       "id": "tariff",
       "ko": "HS·FTA·관세 1차 확인",
       "en": "Tariff & FTA screening",
       "price": 120000,
-      "scope_ko": "가정 품목분류·공식 세율 확인, 확정 의견 제외"
+      "scope_ko": "가정 품목분류·공식 세율 확인, 확정 의견 제외",
+      "scope_en": "Indicative classification and official rates; no binding opinion"
     },
     {
       "id": "compliance",
       "ko": "인증·표시 규정 1차 점검",
       "en": "Regulatory screening",
       "price": 120000,
-      "scope_ko": "주요 적용 가능 규제·검증 필요항목"
+      "scope_ko": "주요 적용 가능 규제·검증 필요항목",
+      "scope_en": "Potential requirements and items requiring verification"
     },
     {
       "id": "buyers",
       "ko": "잠재 B2B 업체 목록 5곳",
       "en": "Five B2B leads",
       "price": 120000,
-      "scope_ko": "공개 기업정보 기반, 연락·구매의향 검증 제외"
+      "scope_ko": "공개 기업정보 기반, 연락·구매의향 검증 제외",
+      "scope_en": "Public company information only; no outreach or purchase-intent check"
     },
     {
       "id": "logistics",
       "ko": "물류·통관 경로 검토",
       "en": "Logistics overview",
       "price": 100000,
-      "scope_ko": "운송방법과 비용 구성요소 개요"
+      "scope_ko": "운송방법과 비용 구성요소 개요",
+      "scope_en": "Overview of transport modes and cost components"
     },
     {
       "id": "risk",
       "ko": "리스크 체크리스트",
       "en": "Risk checklist",
       "price": 70000,
-      "scope_ko": "시장·규제·환율·실행 리스크 요약"
+      "scope_ko": "시장·규제·환율·실행 리스크 요약",
+      "scope_en": "Summary of market, compliance, FX and execution risks"
     },
     {
       "id": "entry",
       "ko": "시장 진입 실행안",
       "en": "Entry action plan",
       "price": 100000,
-      "scope_ko": "30일 단기 실행 과제 제안"
+      "scope_ko": "30일 단기 실행 과제 제안",
+      "scope_en": "Proposed tasks for a 30-day initial action plan"
     }
   ],
   "countries": [
@@ -92,5 +102,23 @@
     "제조·산업재",
     "교육·서비스",
     "기타"
-  ]
+  ],
+  "option_labels_en": {
+    "미국": "United States",
+    "캐나다": "Canada",
+    "일본": "Japan",
+    "베트남": "Vietnam",
+    "중국": "China",
+    "독일": "Germany",
+    "영국": "United Kingdom",
+    "호주": "Australia",
+    "싱가포르": "Singapore",
+    "기타": "Other",
+    "자동차용품": "Automotive accessories",
+    "식품·외식": "Food & restaurants",
+    "프랜차이즈": "Franchise",
+    "뷰티·소비재": "Beauty & consumer goods",
+    "제조·산업재": "Manufacturing & industrial",
+    "교육·서비스": "Education & services"
+  }
 }

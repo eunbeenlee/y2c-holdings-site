@@ -30,6 +30,8 @@ MAP = {
     '무료진단옵션': ['group','id','label_ko','label_en','description_ko','description_en','sort','visible'],
     '검색서비스': ['slug','title_ko','title_en','meta_ko','meta_en','intro_ko','intro_en','scope_ko','scope_en','deliverables_ko','deliverables_en','process_ko','process_en','question_ko','answer_ko','question_en','answer_en','sort','visible'],
 }
+OPTIONAL_MAP = {'이미지맵': ['key','src','alt_ko','alt_en','position','kind','visible']}
+
 COLLECTIONS = {'서비스': 'services', '상품': 'products', '파트너': 'partners', '진행절차': 'steps', 'FAQ': 'faq', '지원프로그램': 'programs', '인사이트': 'insights', '요금정책': 'pricing', '무료진단옵션': 'free_report_options'}
 
 
@@ -59,7 +61,7 @@ def read_excel(path):
             strings = [get_strings(si) for si in ss.findall('x:si', N)]
         for sheet in workbook.findall('x:sheets/x:sheet', N):
             name = sheet.attrib['name']
-            if name not in MAP:
+            if name not in MAP and name not in OPTIONAL_MAP:
                 continue  # Strict allowlist. Never publish additional/sensitive sheets.
             id_ = sheet.attrib[f'{{{N["r"]}}}id']
             target = relationship_map[id_].lstrip('/')
@@ -99,6 +101,9 @@ def read_excel(path):
         actual = out[name][0]
         if actual[:len(fields)] != fields:
             raise ValueError(f'{name}: column headers changed. Expected {fields}; got {actual}')
+    for name, fields in OPTIONAL_MAP.items():
+        if name in out and out[name][0][:len(fields)] != fields:
+            raise ValueError(f'{name}: invalid image map columns')
     return out
 
 
@@ -179,6 +184,14 @@ def build(excel_file):
             raise ValueError('Free report option label required')
     if not data['services'] or not data['partners']:
         raise ValueError('At least one service and one partner type required')
+    data['visuals'] = {}
+    if '이미지맵' in book:
+        for img in to_records(book['이미지맵'], OPTIONAL_MAP['이미지맵']):
+            if not re.fullmatch(r'assets/images/[a-z0-9-]+\.(webp|jpg|png)',img['src']):
+                raise ValueError('Unsafe image path: '+img['src'])
+            if img['key'] in data['visuals']: raise ValueError('Duplicate image key: '+img['key'])
+            if not re.fullmatch(r'\d{1,3}% \d{1,3}%',img['position']): raise ValueError('Invalid focal position')
+            data['visuals'][img['key']] = img
     return data
 
 

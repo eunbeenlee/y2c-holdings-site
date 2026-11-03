@@ -37,7 +37,7 @@ class ExcelDrivenSiteTests(unittest.TestCase):
         self.assertFalse(list(ROOT.rglob('*사업전략_운영관리*.xlsx')))
     def test_no_claimed_contact(self):
         data=build(self.file)
-        self.assertEqual(data['settings']['contact_email']['ko'],'')
+        self.assertEqual(data['settings']['contact_email']['ko'],'eunbeen.lee@y2choldings.co.kr')
         self.assertEqual(data['settings']['form_endpoint']['ko'],'')
 
 if __name__ == '__main__':

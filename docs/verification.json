@@ -1,0 +1,582 @@
+{
+  "version": "V20",
+  "method": "Offline Chromium rendering; local asset data; mock Supabase for admin UI. No live deployment or production database writes.",
+  "python_tests": {
+    "website": 25,
+    "backup": 2,
+    "monitor": 4
+  },
+  "viewport_cases": [
+    {
+      "page": "admin.html",
+      "width": 390,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "admin.html",
+      "width": 768,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "admin.html",
+      "width": 1440,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "buyer-development-en.html",
+      "width": 390,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "buyer-development-en.html",
+      "width": 768,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "buyer-development-en.html",
+      "width": 1440,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "buyer-development.html",
+      "width": 390,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "buyer-development.html",
+      "width": 768,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "buyer-development.html",
+      "width": 1440,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "export-consulting-en.html",
+      "width": 390,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "export-consulting-en.html",
+      "width": 768,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "export-consulting-en.html",
+      "width": 1440,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "export-consulting.html",
+      "width": 390,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "export-consulting.html",
+      "width": 768,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "export-consulting.html",
+      "width": 1440,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "franchise-development-en.html",
+      "width": 390,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "franchise-development-en.html",
+      "width": 768,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "franchise-development-en.html",
+      "width": 1440,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "franchise-development.html",
+      "width": 390,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "franchise-development.html",
+      "width": 768,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "franchise-development.html",
+      "width": 1440,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "free-report.html",
+      "width": 390,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "free-report.html",
+      "width": 768,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "free-report.html",
+      "width": 1440,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "index-en.html",
+      "width": 390,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "index-en.html",
+      "width": 768,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "index-en.html",
+      "width": 1440,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "index.html",
+      "width": 390,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "index.html",
+      "width": 768,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "index.html",
+      "width": 1440,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "market-research-en.html",
+      "width": 390,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "market-research-en.html",
+      "width": 768,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "market-research-en.html",
+      "width": 1440,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "market-research.html",
+      "width": 390,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "market-research.html",
+      "width": 768,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "market-research.html",
+      "width": 1440,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "overseas-sales-en.html",
+      "width": 390,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "overseas-sales-en.html",
+      "width": 768,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "overseas-sales-en.html",
+      "width": 1440,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "overseas-sales.html",
+      "width": 390,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "overseas-sales.html",
+      "width": 768,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "overseas-sales.html",
+      "width": 1440,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "pricing.html",
+      "width": 390,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "pricing.html",
+      "width": 768,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "pricing.html",
+      "width": 1440,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "privacy.html",
+      "width": 390,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "privacy.html",
+      "width": 768,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "privacy.html",
+      "width": 1440,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "quick-report.html",
+      "width": 390,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "quick-report.html",
+      "width": 768,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "quick-report.html",
+      "width": 1440,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "services-en.html",
+      "width": 390,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "services-en.html",
+      "width": 768,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "services-en.html",
+      "width": 1440,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "services.html",
+      "width": 390,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "services.html",
+      "width": 768,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "services.html",
+      "width": 1440,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "supply-chain-en.html",
+      "width": 390,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "supply-chain-en.html",
+      "width": 768,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "supply-chain-en.html",
+      "width": 1440,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "supply-chain.html",
+      "width": 390,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "supply-chain.html",
+      "width": 768,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    },
+    {
+      "page": "supply-chain.html",
+      "width": 1440,
+      "js_errors": [],
+      "image_failures": 0,
+      "overflow": false
+    }
+  ],
+  "functional_checks": [
+    {
+      "test": "63 page/viewport cases: no JS errors",
+      "pass": true
+    },
+    {
+      "test": "63 page/viewport cases: all images decoded",
+      "pass": true
+    },
+    {
+      "test": "63 page/viewport cases: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "test": "Home catalog starts with four visible items",
+      "pass": true
+    },
+    {
+      "test": "Care filter shows exactly the towel",
+      "pass": true
+    },
+    {
+      "test": "All filter resets",
+      "pass": true
+    },
+    {
+      "test": "Mobile menu expands",
+      "pass": true
+    },
+    {
+      "test": "Escape closes mobile menu",
+      "pass": true
+    },
+    {
+      "test": "Partner button fills inquiry category",
+      "pass": true
+    },
+    {
+      "test": "Product inquiry keeps product name",
+      "pass": true
+    },
+    {
+      "test": "English points to independently generated static page",
+      "pass": true
+    },
+    {
+      "test": "Pricing loads eleven rates",
+      "pass": true
+    },
+    {
+      "test": "Pricing honors English preference",
+      "pass": true
+    },
+    {
+      "test": "Essential price calculation",
+      "pass": true
+    },
+    {
+      "test": "Pricing switches back to Korean",
+      "pass": true
+    },
+    {
+      "test": "Quick research options load",
+      "pass": true
+    },
+    {
+      "test": "Quick research English option labels",
+      "pass": true
+    },
+    {
+      "test": "Quick base fee",
+      "pass": true
+    },
+    {
+      "test": "Quick research module calculation",
+      "pass": true
+    },
+    {
+      "test": "Quick selection preserved across language switch",
+      "pass": true
+    },
+    {
+      "test": "Free research English preference",
+      "pass": true
+    },
+    {
+      "test": "Free report generated",
+      "pass": true
+    },
+    {
+      "test": "Readiness is not market-success prediction",
+      "pass": true
+    },
+    {
+      "test": "Free report bilingual output",
+      "pass": true
+    },
+    {
+      "test": "Admin login screen renders with valid public config",
+      "pass": true
+    },
+    {
+      "test": "Rejected credentials do not open workspace",
+      "pass": true
+    },
+    {
+      "test": "Company login and approval UI flow (mock only)",
+      "pass": true
+    },
+    {
+      "test": "Report save UI flow (mock only)",
+      "pass": true
+    },
+    {
+      "test": "Report values retained in mock",
+      "pass": true
+    },
+    {
+      "test": "Tier updated without dropping existing body",
+      "pass": true
+    },
+    {
+      "test": "Duplicate creates separate record (mock)",
+      "pass": true
+    },
+    {
+      "test": "Delete flow removes selected mock only",
+      "pass": true
+    }
+  ]
+}

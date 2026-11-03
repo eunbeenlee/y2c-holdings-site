@@ -1,48 +1,40 @@
+/* Y2C V20. Static content remains readable if JavaScript is unavailable. */
 (()=>{'use strict';
-const $=(s,p=document)=>p.querySelector(s),$$=(s,p=document)=>Array.from(p.querySelectorAll(s));
-const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const htmlText=v=>esc(v).replace(/&lt;br\s*\/?&gt;/gi,'<br>').replace(/\n/g,'<br>');
-const https=s=>typeof s==='string'&&/^https:\/\/[A-Za-z0-9.-]+(?::\d+)?(?:[/?#]|$)/.test(s)?s:'';
-let data=null,locale='ko';try{locale=localStorage.getItem('y2c_lang')==='en'?'en':'ko'}catch(_){}
-const val=(o,k)=>String(o?.[`${k}_${locale}`]||o?.[`${k}_ko`]||'');
-const setting=k=>String(data?.settings?.[k]?.[locale]||data?.settings?.[k]?.ko||'');
-const dict={ko:{pick:'선택하세요',send:'문의 전송',prepare:'문의 내용 준비하기',copy:'내용을 복사했습니다.',manual:'자동 복사가 되지 않습니다. 직접 복사해 주세요.',ready:'문의 내용이 준비되었습니다. 공식 연락처로 직접 전달해 주세요.',sent:'전송 요청을 완료했습니다. 접수 여부를 확인해 주세요.',failed:'전송에 실패했습니다. 내용을 복사해 주세요.',mail:'메일 앱이 열렸습니다. 전송 버튼을 눌러야 발송됩니다.'},en:{pick:'Choose an option',send:'Send inquiry',prepare:'Prepare inquiry',copy:'Copied to clipboard.',manual:'Please copy the text manually.',ready:'Your inquiry is ready. Please send it to the official channel.',sent:'Submission requested. Please confirm receipt.',failed:'Submission failed. Please copy your message.',mail:'Your email app opened. Press Send to deliver.'}};
-const visualService = {
-  'business-development':'global-business',
-  'trade-sourcing':'market-intelligence',
-  'supply-chain':'supply-chain',
-  'strategic-partnerships':'franchise-development'
-};
-const visualProduct = function(item){
-  const name = (String(item.sku||'')+' '+String(item.name_ko||'')+' '+String(item.name_en||'')).toLowerCase();
-  if(/mat|liner|트렁크|발매트|카매트|floor/.test(name)) return 'premium-floor-liners';
-  if(/fragrance|air freshener|방향제/.test(name)) return 'premium-fragrance';
-  if(/tint|film|필름|썬팅/.test(name)) return 'specialty-film';
-  if(/microfiber|towel|타월|세차|detail/.test(name)) return 'automotive-care';
-  return 'market-intelligence';
-};
-const chips={"business-development":[['시장조사','Market research'],['사업개발','Business development'],['현지 파트너','Local partners']],"trade-sourcing":[['제조사 발굴','Supplier discovery'],['견적·샘플','RFQ & samples'],['거래 조율','Trade coordination']],"supply-chain":[['물류 네트워크','Logistics partners'],['수출입 준비','Import / export'],['운영 지원','Operations']],"strategic-partnerships":[['사업제휴','Business partnerships'],['브랜드 진출','Brand expansion'],['프로젝트 관리','Project support']]};
-function translate(){document.documentElement.lang=locale;document.title=locale==='ko'?'Y2C HOLDINGS | 글로벌 사업개발':'Y2C HOLDINGS | Global Business Development';$$('[data-ko]').forEach(el=>{el.innerHTML=htmlText(el.dataset[locale]||el.dataset.ko||'')});$$('[data-i18n]').forEach(el=>{let t=setting(el.dataset.i18n);if(t)el.innerHTML=htmlText(t)});$$('[data-ko-placeholder]').forEach(el=>{el.setAttribute('placeholder',el.dataset[`${locale}Placeholder`]||el.dataset.koPlaceholder||'')});$$('[data-lang]').forEach(b=>{const active=b.dataset.lang===locale;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active))});$('#copyrightYear').textContent=new Date().getFullYear();const connected=!!https(setting('form_endpoint'))||/^\S+@\S+\.\S+$/.test(setting('contact_email'));$('#submitBtn').firstElementChild.textContent=connected?dict[locale].send:dict[locale].prepare;$('#formNote').textContent=connected?(locale==='ko'?'수신 채널 설정에 따라 실제 접수 여부가 달라집니다.':'Delivery depends on the configured receiving channel.'):(locale==='ko'?'현재 문의 수신 시스템은 연결되지 않았습니다. 작성한 내용을 복사할 수 있습니다.':'The inquiry receiver is not yet connected. You can copy your inquiry.');}
-function services(){const arr=data.services.slice(0,8);$('#servicesGrid').innerHTML=arr.map((r,i)=>{const tags=chips[r.id]||[];return `<article class="business-card"><div class="card-idx"><span>${String(i+1).padStart(2,'0')} / ${esc(r.sector||'BUSINESS').toUpperCase()}</span><span class="north-arrow" aria-hidden="true">↗</span></div><div class="business-card-image"><img src="./assets/images/${visualService[r.id]||'global-business'}.webp" alt="${locale==='ko'?'비즈니스 서비스 소개 연출 이미지':'Illustrative business service photo'}" width="1600" height="900" loading="lazy" decoding="async"></div><div class="business-card-content"><h3>${esc(val(r,'title'))}</h3><p>${esc(val(r,'description'))}</p><div class="service-foot">${tags.map(t=>`<span>${esc(t[locale==='ko'?0:1])}</span>`).join('')}</div></div></article>`}).join('')}
-function steps(){const arr=data.steps.slice(0,4);$('#stepsGrid').innerHTML=arr.map((r,i)=>`<article class="step-card"><span class="step-number">0${i+1} / 0${arr.length}</span><h3>${esc(val(r,'title'))}</h3><p>${esc(val(r,'description'))}</p></article>`).join('')}
-let selectedCategory='all';
+const $=s=>document.querySelector(s),$$=s=>Array.from(document.querySelectorAll(s));
+const locale=document.documentElement.lang==='en'?'en':'ko';
+const t=(ko,en)=>locale==='ko'?ko:en;
+let data=null; // data.products remains the source of public SKU visibility, not private CRM.
+function notice(message){$('#formStatus').textContent=message;}
 function products(){
-  const items=(data.products||[]).slice();
-  const cats=['all',...new Set(items.map(r=>r.category||'Other'))];
-  $('#productFilters').innerHTML=cats.map(c=>`<button type="button" class="filter-chip ${selectedCategory===c?'active':''}" data-category="${esc(c)}" aria-pressed="${selectedCategory===c}">${c==='all'?(locale==='ko'?'전체':'All'):esc(c)}</button>`).join('');
-  $$('#productFilters button').forEach(b=>b.addEventListener('click',()=>{selectedCategory=b.dataset.category;products()}));
-  const shown=items.filter(r=>selectedCategory==='all'||r.category===selectedCategory);
-  $('#productCount').textContent=`${shown.length} ${locale==='ko'?'개 항목':'items'}`;
-  $('#productsGrid').innerHTML=shown.map((r,i)=>`<article class="catalog-card"><div class="catalog-top"><span class="catalog-num">${esc(String(i+1).padStart(2,'0'))} / ${esc(r.category||'SOURCING')}</span><span class="catalog-market">${esc(r.market||'')}</span></div><div class="catalog-art catalog-art-photo"><img src="./assets/images/${visualProduct(r)}.webp" alt="${locale==='ko'?'자동차용품 및 소싱 업무를 보여주는 연출 이미지':'Illustrative product sourcing image'}" width="1600" height="900" loading="lazy" decoding="async"></div><div class="catalog-body"><h3>${esc(val(r,'name'))}</h3><p>${esc(val(r,'description'))}</p><span class="catalog-status">${locale==='ko'?'소싱 검토':'Sourcing under review'}</span><div class="catalog-actions"><a href="#contact">${locale==='ko'?'상담 문의':'Inquire'} ↗</a></div></div></article>`).join('');
+ const cards=$$('.catalog-card'),categories=[...new Set(cards.map(x=>x.dataset.productCategory))];
+ const labels={all:t('전체','All'),Interior:t('실내 용품','Interior'),Care:t('관리 용품','Care'),Film:t('필름','Film')};
+ const bar=$('#productFilters');bar.replaceChildren();
+ for(const key of ['all',...categories]){const b=document.createElement('button');b.type='button';b.textContent=labels[key]||key;b.className='filter-chip'+(key==='all'?' active':'');b.dataset.category=key;b.setAttribute('aria-pressed',key==='all'?'true':'false');b.addEventListener('click',()=>{bar.querySelectorAll('button').forEach(x=>{x.classList.toggle('active',x===b);x.setAttribute('aria-pressed',String(x===b))});let n=0;cards.forEach(c=>{c.hidden=key!=='all'&&c.dataset.productCategory!==key;if(!c.hidden)n++});$('#productCount').textContent=n+' '+t('개 품목','items')});bar.append(b);}
 }
-
-function partners(){const selected=$('#partnerType').value;$('#partnersGrid').innerHTML=data.partners.map((r,i)=>`<button class="partner-card" type="button" data-partner="${esc(r.id)}"><span class="partner-num">${String(i+1).padStart(2,'0')} / PARTNER</span><h3>${esc(val(r,'title'))}</h3><div class="partner-end"><span>${locale==='ko'?'제휴 제안':'Get in touch'}</span><span aria-hidden="true">↗</span></div></button>`).join('');$('#partnerType').innerHTML=`<option value="">${dict[locale].pick}</option>`+data.partners.map(r=>`<option value="${esc(r.id)}">${esc(val(r,'title'))}</option>`).join('');if(selected)$('#partnerType').value=selected;$$('[data-partner]').forEach(b=>b.addEventListener('click',()=>{$('#partnerType').value=b.dataset.partner;$('#contact').scrollIntoView({behavior:'smooth'});setTimeout(()=>$('#contactForm input[name="company"]').focus({preventScroll:true}),150)}))}
-function render(){translate();services();steps();partners();products()}
-function state(msg,error=false){const el=$('#formStatus');el.textContent=msg;el.classList.toggle('error',error)}
-function fallback(s){$('#formFallback').hidden=false;$('#preparedText').value=s}
-function messageOf(o){return ['Y2C HOLDINGS — Business Inquiry',`Company: ${o.company}`,`Partnership type: ${o.partner_type}`,`Name: ${o.name}`,`Email: ${o.email}`,`Country / region: ${o.region}`,`Interest: ${o.interest}`,'','Project:',o.message].join('\n')}
-async function send(e){e.preventDefault();const form=$('#contactForm');if(!form.reportValidity())return;const o={};for(const k of ['company','partner_type','name','email','region','interest','message'])o[k]=String(form.elements[k].value||'').trim();const msg=messageOf(o),endpoint=https(setting('form_endpoint')),email=setting('contact_email');state('');if(endpoint){$('#submitBtn').disabled=true;try{const res=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(o)});if(!res.ok)throw new Error('HTTP '+res.status);state(dict[locale].sent);form.reset();$('#formFallback').hidden=true}catch(err){fallback(msg);state(dict[locale].failed,true)}finally{$('#submitBtn').disabled=false}}else if(/^\S+@\S+\.\S+$/.test(email)){fallback(msg);location.href=`mailto:${encodeURIComponent(email)}?subject=${encodeURIComponent('Y2C Business Inquiry — '+o.company)}&body=${encodeURIComponent(msg)}`;state(dict[locale].mail)}else{fallback(msg);state(dict[locale].ready)}}
-function init(){$$('[data-lang]').forEach(b=>b.addEventListener('click',()=>{locale=b.dataset.lang;try{localStorage.setItem('y2c_lang',locale)}catch(_){}if(data)render()}));$('#menuBtn').addEventListener('click',()=>{const n=$('#mobileNav');n.hidden=!n.hidden;$('#menuBtn').setAttribute('aria-expanded',String(!n.hidden))});$$('#mobileNav a').forEach(a=>a.addEventListener('click',()=>{$('#mobileNav').hidden=true;$('#menuBtn').setAttribute('aria-expanded','false')}));$('#contactForm').addEventListener('submit',send);$('#copyBtn').addEventListener('click',async()=>{try{await navigator.clipboard.writeText($('#preparedText').value);state(dict[locale].copy)}catch(err){$('#preparedText').focus();$('#preparedText').select();state(dict[locale].manual,true)}})}
-async function boot(){init();try{const r=await fetch('./data/site-data.json',{cache:'no-store'});if(!r.ok)throw new Error('Data HTTP '+r.status);data=await r.json();if(!data.settings||!Array.isArray(data.services)||!Array.isArray(data.partners))throw new Error('Invalid JSON');render()}catch(err){console.error(err);$('#loadError').hidden=false}}
-boot();
+function init(){
+ try{localStorage.setItem('y2c_lang',locale)}catch(_){}
+ $$('[data-lang]').forEach(el=>el.addEventListener('click',()=>{try{localStorage.setItem('y2c_lang',el.dataset.lang)}catch(_){}}));
+ $('#copyrightYear').textContent=new Date().getFullYear();
+ const menu=$('#mobileNav'),btn=$('#menuBtn');
+ const close=()=>{menu.hidden=true;btn.setAttribute('aria-expanded','false');btn.setAttribute('aria-label',t('메뉴 열기','Open menu'))};
+ btn.addEventListener('click',()=>{menu.hidden=!menu.hidden;btn.setAttribute('aria-expanded',String(!menu.hidden));btn.setAttribute('aria-label',menu.hidden?t('메뉴 열기','Open menu'):t('메뉴 닫기','Close menu'))});
+ menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',close));
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!menu.hidden){close();btn.focus()}});
+ window.matchMedia('(min-width: 1081px)').addEventListener('change',e=>{if(e.matches)close()});
+ $$('[data-partner]').forEach(b=>b.addEventListener('click',()=>{$('#partnerType').value=b.dataset.partner;$('#contact').scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});$('#contactForm input[name="company"]').focus({preventScroll:true})}));
+ $$('[data-product]').forEach(a=>a.addEventListener('click',()=>{$('#contactForm input[name="interest"]').value=a.dataset.product;}));
+ $('#contactForm').addEventListener('submit',e=>{e.preventDefault();const form=e.currentTarget;if(!form.reportValidity())return;
+  const o=Object.fromEntries(new FormData(form));
+  const msg=['Y2C HOLDINGS — Business Inquiry',`Company: ${o.company}`,`Contact: ${o.name}`,`Email: ${o.email}`,`Target market: ${o.region}`,`Partnership: ${o.partner_type}`,`Interest: ${o.interest}`,'',o.message].join('\n');
+  $('#preparedText').value=msg;$('#formFallback').hidden=false;
+  const email=data?.settings?.contact_email?.ko||'eunbeen.lee@y2choldings.co.kr';
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){notice(t('내용을 복사해 회사 이메일로 보내주세요.','Copy your inquiry and send it by email.'));return;}
+  location.href=`mailto:${email}?subject=${encodeURIComponent('Y2C Inquiry — '+o.company)}&body=${encodeURIComponent(msg)}`;
+  notice(t('메일 앱에서 전송을 눌러주세요. 앱이 열리지 않으면 아래 내용을 복사해 회사 이메일로 보내주세요.','Press Send in your mail app. If it did not open, copy the message below and email it to us.'));
+ });
+ $('#copyBtn').addEventListener('click',async()=>{try{await navigator.clipboard.writeText($('#preparedText').value);notice(t('내용을 복사했습니다.','Message copied.'))}catch(_){$('#preparedText').select();notice(t('선택된 내용을 Ctrl+C로 복사해주세요.','Copy the selected text.'))}});
+ products();
+ fetch('./data/site-data.json').then(r=>{if(!r.ok)throw new Error('Content HTTP '+r.status);return r.json()}).then(o=>{data=o}).catch(()=>{/* Built HTML already contains the same content. */});
+}
+init();
 })();

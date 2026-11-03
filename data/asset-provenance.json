@@ -1,0 +1,240 @@
+[
+  {
+    "key": "hero",
+    "file": "hero-operations.webp",
+    "source": "물류_창고에서의_재고_계획.png",
+    "source_type": "User-provided AI-generated illustrative image",
+    "crop": [
+      0.0,
+      0.0,
+      0.44,
+      1.0
+    ],
+    "width": 736,
+    "height": 941,
+    "alt_ko": "출고장과 적재 화물로 표현한 해외 공급 실행",
+    "alt_en": "Loading dock and packed goods illustrating delivery coordination",
+    "position": "50% 50%"
+  },
+  {
+    "key": "business-development",
+    "file": "service-development.webp",
+    "source": "글로벌_시장_전략_회의실.png",
+    "source_type": "User-provided AI-generated illustrative image",
+    "crop": [
+      0.4,
+      0.64,
+      0.98,
+      1
+    ],
+    "width": 970,
+    "height": 339,
+    "alt_ko": "사업 자료와 시장별 실행안을 검토하는 업무 장면",
+    "alt_en": "Review of business materials and market-entry plans",
+    "position": "50% 50%"
+  },
+  {
+    "key": "trade-sourcing",
+    "file": "service-sourcing.webp",
+    "source": "글로벌_시장을_분석하는_비즈니스_컨설팅_회의.png",
+    "source_type": "User-provided AI-generated illustrative image",
+    "crop": [
+      0.32,
+      0.63,
+      0.76,
+      1
+    ],
+    "width": 736,
+    "height": 348,
+    "alt_ko": "제품 샘플과 검토 자료를 비교하는 소싱 업무 장면",
+    "alt_en": "Product samples and review documents for sourcing",
+    "position": "50% 55%"
+  },
+  {
+    "key": "supply-chain",
+    "file": "service-logistics.webp",
+    "source": "물류_창고에서의_재고_계획.png",
+    "source_type": "User-provided AI-generated illustrative image",
+    "crop": [
+      0.44,
+      0.14,
+      1.0,
+      1.0
+    ],
+    "width": 936,
+    "height": 809,
+    "alt_ko": "창고에서 입출고 자료를 확인하는 공급망 관리 장면",
+    "alt_en": "Warehouse team reviewing shipment information",
+    "position": "50% 50%"
+  },
+  {
+    "key": "strategic-partnerships",
+    "file": "service-partnership.webp",
+    "source": "도시_전망_속_비즈니스_협상_악수.png",
+    "source_type": "User-provided AI-generated illustrative image",
+    "crop": [
+      0.13,
+      0.2,
+      0.9,
+      0.96
+    ],
+    "width": 1288,
+    "height": 715,
+    "alt_ko": "서로 사업 조건을 협의하는 파트너 미팅 장면",
+    "alt_en": "Partner meeting to discuss commercial terms",
+    "position": "50% 55%"
+  },
+  {
+    "key": "overseas-sales",
+    "file": "service-sales.webp",
+    "source": "화상회의_속_비즈니스_협상_악수.png",
+    "source_type": "User-provided AI-generated illustrative image",
+    "crop": [
+      0.03,
+      0.1,
+      0.98,
+      0.96
+    ],
+    "width": 1500,
+    "height": 764,
+    "alt_ko": "상품 자료와 화상회의를 활용한 해외영업 협의 장면",
+    "alt_en": "International sales discussion with product materials and video call",
+    "position": "50% 50%"
+  },
+  {
+    "key": "market-research",
+    "file": "service-analysis.webp",
+    "source": "글로벌_전략_회의와_데이터_분석.png",
+    "source_type": "User-provided AI-generated illustrative image",
+    "crop": [
+      0.19,
+      0.53,
+      0.98,
+      0.98
+    ],
+    "width": 1321,
+    "height": 423,
+    "alt_ko": "시장별 차트와 조사 자료를 비교하는 분석 장면",
+    "alt_en": "Market charts and research documents under review",
+    "position": "50% 50%"
+  },
+  {
+    "key": "buyer-development",
+    "file": "service-buyer.webp",
+    "source": "글로벌_비즈니스_전략_회의.png",
+    "source_type": "User-provided AI-generated illustrative image",
+    "crop": [
+      0.43,
+      0.24,
+      1.0,
+      0.99
+    ],
+    "width": 953,
+    "height": 706,
+    "alt_ko": "해외 거래 후보와 사업 조건을 논의하는 장면",
+    "alt_en": "Business discussion with a prospective overseas partner",
+    "position": "50% 50%"
+  },
+  {
+    "key": "export-consulting",
+    "file": "service-export.webp",
+    "source": "글로벌_물류_무역_상담_회의.png",
+    "source_type": "User-provided AI-generated illustrative image",
+    "crop": [
+      0.14,
+      0.48,
+      0.87,
+      0.98
+    ],
+    "width": 1221,
+    "height": 470,
+    "alt_ko": "선적 서류와 확인 목록을 검토하는 수출 준비 장면",
+    "alt_en": "Export preparation through document and checklist review",
+    "position": "50% 50%"
+  },
+  {
+    "key": "franchise-development",
+    "file": "service-franchise-field.webp",
+    "source": "프리미엄_현장_운영_컨설팅_협업.png",
+    "source_type": "User-provided AI-generated illustrative image",
+    "crop": [
+      0.36,
+      0.17,
+      1.0,
+      0.96
+    ],
+    "width": 1070,
+    "height": 743,
+    "alt_ko": "매장 운영 담당자와 현장 업무를 검토하는 장면",
+    "alt_en": "On-site review with store operations staff",
+    "position": "55% 50%"
+  },
+  {
+    "key": "AUTO-001",
+    "file": "product-floor.webp",
+    "source": "럭셔리_suv_올웨더_매트_히어로_샷.png",
+    "source_type": "User-provided AI-generated illustrative image",
+    "crop": [
+      0.0,
+      0.48,
+      0.49,
+      0.98
+    ],
+    "width": 819,
+    "height": 470,
+    "alt_ko": "고정 부위와 표면 패턴이 보이는 운전석 발매트 연출 예시",
+    "alt_en": "Illustrative driver-side floor mat with fixing points and surface pattern",
+    "position": "50% 50%"
+  },
+  {
+    "key": "AUTO-002",
+    "file": "product-towel.webp",
+    "source": "자동차_액세서리_상담이_열리는_쇼룸.png",
+    "source_type": "User-provided AI-generated illustrative image",
+    "crop": [
+      0.42,
+      0.73,
+      0.69,
+      0.98
+    ],
+    "width": 452,
+    "height": 235,
+    "alt_ko": "자동차 관리용 극세사 타월의 조직과 두께 연출 예시",
+    "alt_en": "Illustrative texture and thickness of a detailing microfiber towel",
+    "position": "50% 55%"
+  },
+  {
+    "key": "AUTO-003",
+    "file": "product-fragrance.webp",
+    "source": "럭셔리_카_프래그런스_컬렉션.png",
+    "source_type": "User-provided AI-generated illustrative image",
+    "crop": [
+      0.22,
+      0.53,
+      0.48,
+      0.96
+    ],
+    "width": 435,
+    "height": 404,
+    "alt_ko": "송풍구 장착형 차량용 방향제 연출 예시",
+    "alt_en": "Illustrative vent-clip cabin fragrance accessory",
+    "position": "50% 50%"
+  },
+  {
+    "key": "AUTO-005",
+    "file": "product-film.webp",
+    "source": "프리미엄_suv_틴팅_상담.png",
+    "source_type": "User-provided AI-generated illustrative image",
+    "crop": [
+      0.36,
+      0.43,
+      0.64,
+      0.7
+    ],
+    "width": 468,
+    "height": 254,
+    "alt_ko": "투과 색상을 비교하는 차량용 필름 샘플 연출 예시",
+    "alt_en": "Illustrative window-film samples for comparing visible tint",
+    "position": "50% 50%"
+  }
+]
