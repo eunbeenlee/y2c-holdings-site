@@ -3,7 +3,8 @@
 from pathlib import Path
 from html.parser import HTMLParser
 from urllib.parse import urlsplit,unquote
-import json,re,sys
+import json,re,sys,os
+from photo_library import by_key,resolved_url
 ROOT=Path(__file__).resolve().parents[1]
 SITE=ROOT/'site'
 class Page(HTMLParser):
@@ -39,7 +40,8 @@ data=json.loads((SITE/'data/site-data.json').read_text())
 visuals=data.get('visuals',{})
 for key,v in visuals.items():
  p=SITE/v['src']
- if not p.is_file():errors.append(f'Image map {key}: file not found {p}')
+ if key not in by_key():errors.append(f'Image map {key}: source not registered')
+ if os.environ.get('Y2C_REQUIRE_LOCAL_PHOTOS')=='1' and not resolved_url(key)[1]:errors.append(f'Image map {key}: local photograph not acquired')
  if not all(v.get(x) for x in ('alt_ko','alt_en')):errors.append(f'Image map {key}: missing bilingual alt')
 photos=[x['src'] for x in visuals.values()]
 if len(photos)!=len(set(photos)):errors.append('Image map contains duplicate asset assignment')
@@ -50,4 +52,4 @@ if re.search(r'sb_secret_[A-Za-z0-9_]{10,}',config):errors.append('Secret key fo
 if '/rest/v1' in config:errors.append('Config must use Supabase base URL, not REST endpoint')
 if errors:
  print('\n'.join(errors));sys.exit(1)
-print(f'OK: {len(pages)} HTML pages, {links} local references, {len(visuals)} unique photo assignments; no missing files or anchors.')
+print(f'OK: {len(pages)} HTML pages, {links} local references, {len(visuals)} unique photo assignments; no missing code files or anchors. Local image verification is enforced when Y2C_REQUIRE_LOCAL_PHOTOS=1.')

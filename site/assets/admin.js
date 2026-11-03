@@ -46,7 +46,7 @@
     strategic:SECTIONS.map(s=>s.key),
     enterprise:SECTIONS.map(s=>s.key)
   };
-  const TIER_FALLBACK={essential:490000,business:1900000,strategic:4500000,enterprise:9000000};
+  const TIER_FALLBACK={essential:490000,business:1690000,strategic:4500000,enterprise:9000000};
   let priceIndex={...TIER_FALLBACK};
   async function loadPricingForAdmin(){
     try {const response=await fetch('./data/site-data.json',{cache:'no-store'});if(!response.ok)return;

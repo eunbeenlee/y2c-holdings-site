@@ -95,12 +95,11 @@
     "기타"
   ],
   "industries": [
-    "자동차용품",
-    "식품·외식",
+    "자동차·액세서리",
     "프랜차이즈",
-    "뷰티·소비재",
-    "제조·산업재",
-    "교육·서비스",
+    "식품·외식",
+    "산업재·제조",
+    "소비재·라이프스타일",
     "기타"
   ],
   "option_labels_en": {
@@ -115,10 +114,13 @@
     "싱가포르": "Singapore",
     "기타": "Other",
     "자동차용품": "Automotive accessories",
-    "식품·외식": "Food & restaurants",
+    "식품·외식": "Food & beverage",
     "프랜차이즈": "Franchise",
     "뷰티·소비재": "Beauty & consumer goods",
     "제조·산업재": "Manufacturing & industrial",
-    "교육·서비스": "Education & services"
+    "교육·서비스": "Education & services",
+    "자동차·액세서리": "Automotive & accessories",
+    "산업재·제조": "Industrial / manufacturing",
+    "소비재·라이프스타일": "Consumer goods"
   }
 }

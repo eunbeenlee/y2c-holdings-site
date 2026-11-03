@@ -13,8 +13,8 @@
 <script defer="" src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script defer="" src="./assets/supabase-config.js"></script>
 <script defer="" src="./assets/admin.js"></script>
-<link href="./assets/brand.css" rel="stylesheet"/></head>
-<body class="admin-body">
+<link rel="stylesheet" href="./assets/theme.css?v=22"><script defer src="./assets/site-shell.js?v=22"></script><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Noto+Sans+KR:wght@400;500;600;700&amp;display=swap"></head>
+<body class="admin-body" data-page="admin">
 <header class="admin-header no-print">
 <a aria-label="Y2C HOLDINGS 홈으로" class="admin-brand" href="./index.html">
 <img alt="Y2C HOLDINGS 로고" src="./assets/y2c-logo.png"/>
@@ -102,7 +102,7 @@
 <label class="span-2">보고서 제목 <span class="req">*</span><input maxlength="200" name="title" placeholder="예: 캐나다 자동차 액세서리 시장성 분석" required=""/></label>
 <label>고객사 / Client<input maxlength="200" name="client_name" placeholder="고객사 또는 내부 프로젝트"/></label>
 <label>국가·지역<input maxlength="200" name="target_market" placeholder="Canada · USA"/></label>
-<label>산업·제품<input maxlength="200" name="industry" placeholder="Automotive / Franchise"/></label>
+<label>산업·제품<input maxlength="200" name="industry" placeholder="산업 분야 선택 또는 직접 입력" list="industrySuggestions"></label>
 <label>보고서 상품 등급<select id="reportTier" name="report_tier"><option value="essential">Essential · 기초</option><option value="business">Business · 실무</option><option value="strategic">Strategic · 심층</option><option value="enterprise">Enterprise · 맞춤</option></select></label>
 <label>계약 금액 (원, VAT 별도)<input min="0" name="report_contract_amount" placeholder="계약 확정 후 입력" step="10000" type="number"/></label>
 <label>보고서 상태<select name="status"><option value="draft">초안 · Draft</option><option value="review">검토 · Review</option><option value="final">최종 · Final</option></select></label>
@@ -126,5 +126,5 @@
 </section>
 </main>
 <footer class="admin-footer no-print">© Y2C HOLDINGS INC. · INTERNAL BUSINESS DOCUMENTS · <a href="./index.html">Corporate website</a></footer>
-</body>
+<datalist id="industrySuggestions"><option value="자동차·액세서리">Automotive &amp; accessories</option><option value="프랜차이즈">Franchise</option><option value="식품·외식">Food &amp; beverage</option><option value="산업재·제조">Industrial / manufacturing</option><option value="소비재·라이프스타일">Consumer goods</option><option value="기타">Other</option></datalist></body>
 </html>

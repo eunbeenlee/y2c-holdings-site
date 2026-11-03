@@ -14,8 +14,8 @@
       "en": "From market insight<br>to business execution."
     },
     "hero_description": {
-      "ko": "해외영업 · 시장조사 · 소싱 · 공급망.<br>필요한 업무를 하나의 흐름으로 연결합니다.",
-      "en": "Overseas sales, research, sourcing and supply chains.<br>One connected approach to your next market."
+      "ko": "해외시장조사 · 해외영업 · 바이어 발굴.<br>수출 준비부터 공급망과 현지 협력까지.",
+      "en": "Research. Sales. Buyer development.<br>From export readiness to supply coordination."
     },
     "hero_primary": {
       "ko": "제휴 문의",
@@ -26,12 +26,12 @@
       "en": "Explore business"
     },
     "nav_services": {
-      "ko": "사업영역",
-      "en": "Business"
+      "ko": "서비스",
+      "en": "Services"
     },
     "nav_products": {
-      "ko": "주요 사업",
-      "en": "Business"
+      "ko": "소싱 품목",
+      "en": "Sourcing"
     },
     "nav_partners": {
       "ko": "파트너십",
@@ -54,8 +54,8 @@
       "en": "WHAT WE DO"
     },
     "section_services_title": {
-      "ko": "사업영역",
-      "en": "Our Business"
+      "ko": "해외사업의 여섯 가지 업무",
+      "en": "Six services. One clear scope."
     },
     "section_services_intro": {
       "ko": "실제 업무를 중심으로 사업을 연결합니다.",
@@ -66,12 +66,12 @@
       "en": "AUTOMOTIVE SOURCING"
     },
     "section_products_title": {
-      "ko": "북미 시장을 위한 소싱",
-      "en": "Sourcing for North America"
+      "ko": "제품을 기준으로,<br>공급을 설계합니다.",
+      "en": "The right product.<br>The right supply."
     },
     "section_products_intro": {
-      "ko": "검토 중인 한국 제조 상품.",
-      "en": "Curated Korean product candidates."
+      "ko": "자동차용품 소싱 검토 분야. 확정 판매목록이 아닙니다.",
+      "en": "Automotive sourcing categories, not a confirmed inventory."
     },
     "section_partners_label": {
       "ko": "PARTNER NETWORK",
@@ -130,8 +130,8 @@
       "en": "Your inquiry details are used for evaluating business partnership opportunities."
     },
     "form_ready_note": {
-      "ko": "현재 공식 문의 채널이 연결되지 않아 내용 복사 기능만 제공합니다.",
-      "en": "The official receiving channel is not connected yet; you can copy your inquiry."
+      "ko": "문의 내용을 작성하면 메일 앱으로 연결됩니다. 직접 전송을 눌러주세요.",
+      "en": "Prepare your inquiry and send it from your mail app."
     },
     "contact_email": {
       "ko": "eunbeen.lee@y2choldings.co.kr",
@@ -146,8 +146,8 @@
       "en": "https://y2choldings.co.kr"
     },
     "updated_date": {
-      "ko": "2026-11-01",
-      "en": "2026-11-01"
+      "ko": "2026-11-03",
+      "en": "2026-11-03"
     },
     "about_title": {
       "ko": "업무는 명확하게.<br>협업은 유연하게.",
@@ -158,12 +158,12 @@
       "en": "Y2C is an independent business-development partner for market research, account development, sourcing and supply coordination. Start with the work you need."
     },
     "business_title": {
-      "ko": "사업을 움직이는 네 가지 업무",
-      "en": "Four connected capabilities"
+      "ko": "필요한 업무를 선택하세요.",
+      "en": "Choose the work you need."
     },
     "business_intro": {
-      "ko": "조사·발굴·협의·실행을 연결합니다.",
-      "en": "Research, discovery, coordination and execution."
+      "ko": "조사부터 거래·운영 준비까지. 업무 범위로 구분합니다.",
+      "en": "From research to trade and operations, organised by scope."
     },
     "industry_title": {
       "ko": "산업을 넘어서, 필요한 업무로.",
@@ -224,44 +224,64 @@
   },
   "services": [
     {
-      "id": "business-development",
-      "sector": "strategy",
-      "icon": "arrow",
-      "title_ko": "글로벌 사업개발",
-      "title_en": "Global Business Development",
-      "description_ko": "해외시장 검토, 진출 전략 수립, 현지 사업 파트너 발굴",
-      "description_en": "Market research, market-entry planning and local partner identification",
+      "id": "market-research",
+      "sector": "research",
+      "icon": "file",
+      "title_ko": "해외시장조사",
+      "title_en": "Market Research",
+      "description_ko": "시장·경쟁·유통 자료를 검토해 진출 판단의 근거를 정리합니다.",
+      "description_en": "Market, competitor and channel research for market-entry decisions.",
       "sort": 10
     },
     {
-      "id": "trade-sourcing",
-      "sector": "trade",
-      "icon": "layers",
-      "title_ko": "무역·소싱",
-      "title_en": "Trade & Sourcing",
-      "description_ko": "제조사·바이어 발굴, 견적·샘플·거래조건 협의 지원",
-      "description_en": "Supplier and buyer discovery, RFQs, sampling and commercial coordination",
+      "id": "overseas-sales",
+      "sector": "sales",
+      "icon": "arrow",
+      "title_ko": "해외영업 대행",
+      "title_en": "Overseas Sales",
+      "description_ko": "제품 제안, 거래조건 협의, 후속 교신과 진행상황을 관리합니다.",
+      "description_en": "Product proposals, commercial coordination and sales follow-up.",
       "sort": 20
     },
     {
-      "id": "supply-chain",
-      "sector": "operations",
-      "icon": "flow",
-      "title_ko": "공급망 솔루션",
-      "title_en": "Supply Chain Solutions",
-      "description_ko": "통관·물류·유통 파트너 선정 및 납기·공급 흐름 조율",
-      "description_en": "Importer, logistics and distribution partner selection; supply coordination",
+      "id": "buyer-development",
+      "sector": "partners",
+      "icon": "link",
+      "title_ko": "바이어 발굴",
+      "title_en": "Buyer Development",
+      "description_ko": "후보 거래처를 조사하고 구매 적합성과 접촉 가능성을 검토합니다.",
+      "description_en": "Prospect research, buyer-fit review and outreach preparation.",
       "sort": 30
     },
     {
-      "id": "strategic-partnerships",
-      "sector": "advisory",
-      "icon": "link",
-      "title_ko": "전략적 파트너십",
-      "title_en": "Strategic Partnerships",
-      "description_ko": "브랜드·프랜차이즈 해외사업 협력과 공동 프로젝트 개발",
-      "description_en": "International brand and franchise partnerships, cross-industry projects",
+      "id": "export-consulting",
+      "sector": "trade",
+      "icon": "file",
+      "title_ko": "수출 컨설팅",
+      "title_en": "Export Consulting",
+      "description_ko": "수출 준비자료, 거래 구조와 전문가 검토가 필요한 항목을 정리합니다.",
+      "description_en": "Export readiness, trade structure and specialist-review requirements.",
       "sort": 40
+    },
+    {
+      "id": "supply-chain",
+      "sector": "supply",
+      "icon": "layers",
+      "title_ko": "소싱·공급망",
+      "title_en": "Sourcing & Supply Chain",
+      "description_ko": "공급사 비교부터 샘플, 수입·물류 파트너와 납기까지 조율합니다.",
+      "description_en": "Supplier comparison, samples, import partners and delivery coordination.",
+      "sort": 50
+    },
+    {
+      "id": "franchise-development",
+      "sector": "franchise",
+      "icon": "store",
+      "title_ko": "프랜차이즈 사업개발",
+      "title_en": "Franchise Development",
+      "description_ko": "매장 콘셉트와 운영 조건을 바탕으로 해외 협력사를 발굴합니다.",
+      "description_en": "Overseas partner development around store concepts and operations.",
+      "sort": 60
     }
   ],
   "products": [
@@ -269,10 +289,10 @@
       "sku": "AUTO-001",
       "category": "Interior",
       "market": "CA/US",
-      "name_ko": "프리미엄 TPE 발매트",
-      "name_en": "Precision-fit TPE Floor Liners",
-      "description_ko": "차종별 적합성·안전성 검증 대상",
-      "description_en": "Vehicle fit and safety review required",
+      "name_ko": "차량용 발매트",
+      "name_en": "Automotive Floor Mats",
+      "description_ko": "재질·차종별 고정 방식·페달 간섭을 확인해 소싱합니다.",
+      "description_en": "Source by material, retention system and vehicle fitment.",
       "tariff_ko": "세번·원산지·수입국 조치 확인 후 개별 검토",
       "tariff_en": "Reviewed per SKU after classification, origin and destination checks",
       "hs_candidate": "8708.29.60",
@@ -285,9 +305,9 @@
       "category": "Care",
       "market": "CA/US",
       "name_ko": "극세사 디테일링 타월",
-      "name_en": "Premium Detailing Microfiber",
-      "description_ko": "PDI·서비스센터용 반복 구매 후보",
-      "description_en": "Repeat-order candidate for PDI and service teams",
+      "name_en": "Microfiber Detailing Towels",
+      "description_ko": "중량·직조·보풀·흡수성을 기준으로 규격을 검토합니다.",
+      "description_en": "Review weight, weave, linting and absorbency requirements.",
       "tariff_ko": "세번·원산지·수입국 조치 확인 후 개별 검토",
       "tariff_en": "Reviewed per SKU after classification, origin and destination checks",
       "hs_candidate": "6307.10.90",
@@ -297,12 +317,12 @@
     },
     {
       "sku": "AUTO-003",
-      "category": "Interior",
+      "category": "Fragrance",
       "market": "CA/US",
-      "name_ko": "프리미엄 차량용 방향제",
-      "name_en": "Premium Cabin Fragrance",
-      "description_ko": "성분·VOC·운송 요건 검토 필요",
-      "description_en": "VOC, ingredients and freight review required",
+      "name_ko": "차량용 방향제",
+      "name_en": "Car Fragrance",
+      "description_ko": "사용 형태·성분·누액·운송 조건을 검토합니다.",
+      "description_en": "Review form factor, ingredients, leakage and freight requirements.",
       "tariff_ko": "세번·원산지·수입국 조치 확인 후 개별 검토",
       "tariff_en": "Reviewed per SKU after classification, origin and destination checks",
       "hs_candidate": "3307.49.00",
@@ -314,10 +334,10 @@
       "sku": "AUTO-005",
       "category": "Film",
       "market": "CA/US",
-      "name_ko": "프리미엄 자동차용 필름",
-      "name_en": "Specialty Automotive Films",
-      "description_ko": "지역별 시공·규정 검증 필요",
-      "description_en": "Installation and local compliance review required",
+      "name_ko": "자동차용 틴팅 필름",
+      "name_en": "Automotive Window Tint Film",
+      "description_ko": "차량 유리에 적용할 필름의 규격·투과율·시공 조건을 검토합니다.",
+      "description_en": "Review film specifications, transmittance and installation conditions.",
       "tariff_ko": "세번·원산지·수입국 조치 확인 후 개별 검토",
       "tariff_en": "Reviewed per SKU after classification, origin and destination checks",
       "hs_candidate": "3919.90.00",
@@ -996,118 +1016,298 @@
       "sort": 31
     }
   ],
+  "seo_services": [
+    {
+      "slug": "market-research",
+      "title_ko": "해외시장조사",
+      "title_en": "Market Research",
+      "meta_ko": "해외시장조사 보고서: 시장규모, 경쟁사, 가격, 진출규제, FTA·관세 및 시장진입 전략. 무료 사전진단부터 심층 조사까지.",
+      "meta_en": "Market research reports covering market size, competitors, pricing, trade rules and entry planning, with clearly scoped research tiers.",
+      "intro_ko": "시장조사는 조사 대상국·제품·정보의 검증 수준에 따라 결과가 달라집니다. Y2C는 무료 사전진단, 모듈형 조사, 실무 보고서와 심층 전략보고서를 구분하여 필요한 깊이만 선택하도록 구성합니다.",
+      "intro_en": "Research depth matters. Y2C separates free readiness checklists, modular desk research, practical reports and detailed market-entry studies so buyers can choose an appropriate scope.",
+      "scope_ko": "시장규모·성장추이와 통계 출처 확인|주요 경쟁사·대체상품·공개 판매가격 비교|타깃 고객과 유통채널 구조 분석|규제·인증·HS 분류·FTA 원산지 확인이 필요한 항목 분류",
+      "scope_en": "Identify market size, trends and underlying sources|Compare relevant competitors, substitutes and public prices|Map buyer segments and distribution channels|Flag regulations, certification, HS classification and origin verification needs",
+      "deliverables_ko": "조사 범위와 자료 기준일|시장·경쟁·고객 분석표|출처 URL 및 확인 상태|사업화 판단과 추가 검증과제",
+      "deliverables_en": "Scope and data cut-off date|Market, competition and customer analysis|Source links and confidence labels|Go/no-go considerations and follow-up verification needs",
+      "process_ko": "고객 목표·제품·국가 확정|조사 항목 및 정보 신뢰도 수준 선택|공식·공개자료 조사와 교차 검증|결과보고서·한계·후속 조치 정리",
+      "process_en": "Define objectives, product and geography|Select research modules and validation depth|Research authoritative public data and cross-check sources|Deliver findings, caveats and next-step plan",
+      "question_ko": "무료 사전진단과 유료 시장조사는 무엇이 다른가요?",
+      "answer_ko": "무료 진단은 준비사항을 구조화한 체크리스트입니다. 실제 시장자료 수집, 경쟁사 비교, 관세 분석 및 수익성 판단은 계약된 유료 조사에서 별도로 수행합니다.",
+      "question_en": "What is the difference between the free tool and paid research?",
+      "answer_en": "The free tool provides a readiness checklist. Verified market data, competitor comparisons, tariff analysis and economics require a scoped paid study.",
+      "sort": 10
+    },
+    {
+      "slug": "overseas-sales",
+      "title_ko": "해외영업 대행",
+      "title_en": "Overseas Sales",
+      "meta_ko": "해외영업 대행을 위한 바이어 발굴, 제안·미팅 조율, 영업 파이프라인 관리. Y2C의 단계별 B2B 사업개발 업무를 확인하세요.",
+      "meta_en": "International sales development, buyer qualification, meeting coordination and B2B pipeline support for Korean suppliers.",
+      "intro_ko": "해외영업 전담 인력이 부족한 기업을 위해 해외 거래 기회 조사부터 잠재 고객 접촉, 제안과 후속 업무까지 단계적으로 지원합니다. 단순 명단 제공이 아닌 실무 수행 범위와 결과물을 계약 전에 정합니다.",
+      "intro_en": "For companies without a dedicated international sales team, Y2C scopes market outreach, qualified buyer conversations, proposals and practical follow-up. Each project defines deliverables before engagement.",
+      "scope_ko": "해외 판매 대상국·유통채널 우선순위 선정|잠재 바이어·딜러십·유통업체 조사와 적격성 1차 확인|제품 소개자료·영문 제안서 검토 및 미팅 일정 조율|협의 이력·견적 요청·후속 일정 파이프라인 정리",
+      "scope_en": "Prioritize target markets and channels|Identify and preliminarily qualify prospective importers, distributors and dealers|Support English proposals and meeting coordination|Track RFQs, discussions, follow-ups and pipeline stages",
+      "deliverables_ko": "목표 시장·고객군 정의서|후보업체 목록과 확인 수준 표시|미팅·협상 진행 현황표|후속 액션과 담당자별 업무 정리",
+      "deliverables_en": "Target market and customer profile|Prospect list with verification status|Meeting and commercial pipeline tracker|Follow-up action plan",
+      "process_ko": "제품·가격·공급가능 범위 파악|진출 대상과 고객 발굴 범위 협의|후보 업체 조사 및 연락 절차 합의|진행 결과와 후속 계획 보고",
+      "process_en": "Review product, pricing and supply readiness|Agree countries and outreach boundaries|Research prospects and authorize outreach|Report activity and next steps",
+      "question_ko": "해외 계약을 반드시 성사시켜 주나요?",
+      "answer_ko": "아닙니다. 구매 의사와 거래 성사 여부는 상대 업체의 판단과 협상 조건에 따라 달라집니다. 실제 연락·협상·납품 실행의 범위를 별도 계약으로 정합니다.",
+      "question_en": "Do you guarantee a signed export order?",
+      "answer_en": "No. Buyer decisions depend on qualifications, demand and negotiated terms. Outreach and execution responsibilities are agreed in writing.",
+      "sort": 20
+    },
+    {
+      "slug": "buyer-development",
+      "title_ko": "바이어 발굴",
+      "title_en": "Buyer Development",
+      "meta_ko": "미국·캐나다 등 해외 바이어 발굴과 적격성 검토. 제조사·유통사·딜러십 후보 조사, 구매 담당자 접근 및 미팅 지원.",
+      "meta_en": "Discover and qualify overseas buyers, distributors and dealerships with clear evidence and meeting support, without overstated guarantees.",
+      "intro_ko": "바이어 수보다 실제로 해당 상품을 구매하거나 유통할 권한이 있는지 확인하는 것이 중요합니다. Y2C는 공개 업체정보를 검토하고 거래 적합성·접촉 가능성·후속 업무를 분리하여 관리합니다.",
+      "intro_en": "A long contact list is not the same as a qualified buyer. Y2C distinguishes company discovery, commercial fit, decision-maker access and verified follow-up status.",
+      "scope_ko": "구매 가능 기업 유형과 구매 조건 정의|업종·지역·상품군별 후보 업체 리서치|회사·유통망·사업자 정보의 기초 확인|적법한 연락 절차와 제안·상담 일정 조율",
+      "scope_en": "Define buyer profile and procurement criteria|Research prospects by geography and industry|Check public company, channel and business information|Coordinate lawful outreach, introductions and buyer conversations",
+      "deliverables_ko": "후보 업체별 기본정보와 출처|검증 상태 및 잠재 적합성 표시|접촉·상담·응답 현황|후속 제안 및 샘플 검토 체크리스트",
+      "deliverables_en": "Source-linked prospect records|Verification and fit status|Outreach and response tracker|Follow-up proposal and sample checklist",
+      "process_ko": "상품과 원하는 바이어 유형 확인|후보군 조사·제외기준 적용|적격성 검증과 접촉 승인|진행 현황 공유 및 후속 협의",
+      "process_en": "Confirm product and target buyer profile|Compile and screen prospects|Validate suitability and authorize outreach|Share pipeline status and next-step coordination",
+      "question_ko": "바이어 발굴과 구매 확약은 같은 의미인가요?",
+      "answer_ko": "아닙니다. 후보 확인·관심도·구매 권한 확인·거래 성사는 각각 별개의 단계로 관리합니다. 구매 확약이 없는 업체를 계약 확정처럼 표시하지 않습니다.",
+      "question_en": "Does an identified buyer mean a confirmed purchase?",
+      "answer_en": "No. Discovery, interest, purchasing authority and completed orders are separate stages. We do not represent unconfirmed interest as a signed sale.",
+      "sort": 30
+    },
+    {
+      "slug": "export-consulting",
+      "title_ko": "수출 컨설팅",
+      "title_en": "Export Consulting",
+      "meta_ko": "수출 컨설팅과 해외진출 전략 수립. 진출 방식, 수입·통관 구조, FTA 검토, 리스크 및 실무 실행 순서를 체계화합니다.",
+      "meta_en": "Export consulting and market-entry planning for trade structure, partners, import processes, origin reviews and implementation milestones.",
+      "intro_ko": "해외 진출을 준비하는 기업은 바이어 확보뿐 아니라 판매주체, 통관·인증, 대금 회수, A/S까지 정해야 합니다. Y2C는 고객과 업무별 담당자를 구분하고 진출 전략을 실행 가능한 순서로 정리합니다.",
+      "intro_en": "Export plans must connect buyers with import responsibilities, customs, compliance, payment collection and after-sales obligations. Y2C organizes those dependencies into a practical action plan.",
+      "scope_ko": "직접수출·현지 유통·판매대리 등 진출 방식 비교|역할별 수출입 책임과 계약상 확인사항 정리|FTA·원산지 증빙 및 품목별 관세 검토 과제 설정|현지 법률·통관·세무 전문가 검토 필요사항 구분",
+      "scope_en": "Compare direct export, distribution and agency entry modes|Map contractual obligations and importer responsibilities|Identify FTA origin and tariff review tasks|Separate commercial advice from regulated legal, customs and tax opinions",
+      "deliverables_ko": "국가별 진출 방식 비교표|거래 구조·업무 분장 도식|컴플라이언스 체크리스트|우선 실행 일정과 리스크 대응안",
+      "deliverables_en": "Market-entry comparison|Commercial responsibility matrix|Compliance review checklist|Prioritized milestones and risk actions",
+      "process_ko": "목표·수출 품목·사업자 역할 확인|진출대안의 비용과 책임 비교|현지 전문가 확인 대상 분류|권장 진행순서·추가 의사결정 정리",
+      "process_en": "Confirm product, objective and seller role|Compare entry options and operational burden|Identify qualified specialist reviews|Prepare milestones and decisions",
+      "question_ko": "관세율과 인증을 법적으로 확정해 주나요?",
+      "answer_ko": "본 서비스의 일반 검토는 사전 점검입니다. 구체적인 HS 분류, 원산지 판정, 통관·인증의 법적 확정은 관할 기관 또는 자격 있는 전문가의 확인이 필요합니다.",
+      "question_en": "Does the service certify tariffs or regulatory eligibility?",
+      "answer_en": "General reviews identify issues; binding classification, origin rulings and regulatory decisions require authorized authorities or qualified professionals.",
+      "sort": 40
+    },
+    {
+      "slug": "supply-chain",
+      "title_ko": "소싱·공급망",
+      "title_en": "Sourcing & Supply Chain",
+      "meta_ko": "한국 제조사 소싱과 해외 공급망 구축 지원. 제조사 검증, 가격·MOQ 협상, 수입사·물류사 연결, 납기·샘플 조율.",
+      "meta_en": "Source manufacturers, compare MOQ and landed costs, coordinate importers and logistics partners, and plan supply chain execution.",
+      "intro_ko": "공급업체를 찾는 것만으로는 안정적인 공급이 이뤄지지 않습니다. Y2C는 생산 가능여부, MOQ, 품질자료, 운송·통관 및 발주 이후 대응을 함께 검토해 고객이 거래구조를 비교하도록 지원합니다.",
+      "intro_en": "Finding a supplier is only the first step. Y2C brings together manufacturing capacity, MOQ, quality documentation, logistics arrangements and fulfillment responsibilities.",
+      "scope_ko": "제조사 후보 및 기본 공급능력 조사|샘플·제품 규격·MOQ·납기 조건 비교|FCA/FOB 등 견적 기준과 도착원가 항목 정리|수입사·포워더·3PL 역할과 업무분장 지원",
+      "scope_en": "Screen prospective manufacturers and production capacity|Compare samples, specifications, MOQ and lead times|Organize FCA/FOB terms and landed-cost assumptions|Coordinate importer, forwarder and 3PL responsibilities",
+      "deliverables_ko": "공급업체 비교표·검증 체크리스트|품질·원산지 증빙 요청 목록|견적·물류비 비교 및 리스크표|초도 발주 준비사항",
+      "deliverables_en": "Supplier shortlist and due diligence list|Quality and origin document requests|Quotation and logistics comparison|First-order readiness checklist",
+      "process_ko": "품목과 품질기준 확정|제조사·물류사 후보 조사|샘플·비용·조건 비교|거래 전 위험과 실행 계획 정리",
+      "process_en": "Define specifications and quality thresholds|Identify manufacturers and logistics partners|Compare samples, costs and terms|Document pre-contract risks and actions",
+      "question_ko": "Y2C가 직접 수입·판매하는 회사인가요?",
+      "answer_ko": "프로젝트에 따라 중개·소싱 대행과 직접 유통을 구분합니다. 현재는 각 거래의 실제 판매자·수입자·보증 책임을 개별 계약으로 확정합니다.",
+      "question_en": "Does Y2C always act as importer or seller of record?",
+      "answer_en": "No. Sourcing coordination and direct resale are different structures. Contracting parties and import, warranty and product responsibilities are confirmed per transaction.",
+      "sort": 50
+    },
+    {
+      "slug": "franchise-development",
+      "title_ko": "프랜차이즈 사업개발",
+      "title_en": "Franchise Development",
+      "meta_ko": "국내 프랜차이즈 브랜드의 해외 진출 전략, 운영 파트너 발굴, 물류사·식자재 유통 연결, 사업 협상 지원.",
+      "meta_en": "Support international franchise market entry, qualified operating partners and food supply chain coordination for Korean brands.",
+      "intro_ko": "프랜차이즈 해외진출은 운영사 선정, 계약권한, 현지 물류·식자재 공급체계가 함께 검토되어야 합니다. Y2C는 가맹계약을 직접 판매하기보다는 독립적인 사업개발·현지 파트너 발굴·공급망 조율 서비스를 중심으로 지원합니다.",
+      "intro_en": "Franchise expansion requires operating partners, clear authority, brand terms and local food supply routes. Y2C focuses on independent business development, partner discovery and supply coordination.",
+      "scope_ko": "국가별 출점·마스터파트너 진출방식 비교|운영사·사업 파트너 후보 조사와 적합성 검토|식품 수입업체·냉장/냉동 물류·공급업체 연결 검토|가맹정보공개와 계약 관련 현지 전문가 검토 과제 안내",
+      "scope_en": "Compare single-unit and master partner entry approaches|Research and preliminarily qualify operators and strategic partners|Map importers, cold chain logistics and supply partners|Identify country-specific disclosure and franchise legal review requirements",
+      "deliverables_ko": "브랜드 해외 진출 준비도 점검|현지 운영 파트너 조건표|공급망 구축 체크리스트|협상·법적 검토·진출 단계 로드맵",
+      "deliverables_en": "Franchise readiness review|Operating partner criteria|Supply chain checklist|Commercial milestones and regulatory review actions",
+      "process_ko": "브랜드·메뉴·운영 기준 확인|해외 진출국·파트너 유형 선정|사업 파트너·물류망 조사|진출 제안과 협상 지원 범위 확정",
+      "process_en": "Review brand and operating model|Select country and partnership route|Research operators and supply infrastructure|Agree commercial coordination and negotiation scope",
+      "question_ko": "가맹계약 판매와 가맹비 수납도 진행하나요?",
+      "answer_ko": "초기 기본 서비스에는 포함하지 않습니다. 별도 위임과 국가별 가맹사업 규제 검토 없이 Y2C가 직접 가맹권을 판매하거나 가맹비를 수취하지 않습니다.",
+      "question_en": "Does Y2C sell franchises or collect franchise fees?",
+      "answer_en": "Not under the default development service. Franchise sales activities or fee collection require specific authority and local regulatory review.",
+      "sort": 60
+    }
+  ],
   "visuals": {
     "hero": {
       "key": "hero",
-      "src": "assets/images/hero-operations.webp",
-      "alt_ko": "출고장과 적재 화물로 표현한 해외 공급 실행",
-      "alt_en": "Loading dock and packed goods illustrating delivery coordination",
+      "src": "assets/images/hero-port.webp",
+      "alt_ko": "여러 색의 컨테이너가 정렬된 항만 터미널 전경",
+      "alt_en": "An elevated view of containers at a working port terminal",
       "position": "50% 50%",
-      "kind": "illustration"
+      "kind": "stock_reference"
     },
-    "business-development": {
-      "key": "business-development",
-      "src": "assets/images/service-development.webp",
-      "alt_ko": "사업 자료와 시장별 실행안을 검토하는 업무 장면",
-      "alt_en": "Review of business materials and market-entry plans",
+    "market-research": {
+      "key": "market-research",
+      "src": "assets/images/service-research.webp",
+      "alt_ko": "노트북 옆에 놓인 통계 차트와 조사 노트",
+      "alt_en": "Printed analytical charts and a notebook beside a laptop",
       "position": "50% 50%",
-      "kind": "illustration"
-    },
-    "trade-sourcing": {
-      "key": "trade-sourcing",
-      "src": "assets/images/service-sourcing.webp",
-      "alt_ko": "제품 샘플과 검토 자료를 비교하는 소싱 업무 장면",
-      "alt_en": "Product samples and review documents for sourcing",
-      "position": "50% 55%",
-      "kind": "illustration"
-    },
-    "supply-chain": {
-      "key": "supply-chain",
-      "src": "assets/images/service-logistics.webp",
-      "alt_ko": "창고에서 입출고 자료를 확인하는 공급망 관리 장면",
-      "alt_en": "Warehouse team reviewing shipment information",
-      "position": "50% 50%",
-      "kind": "illustration"
-    },
-    "strategic-partnerships": {
-      "key": "strategic-partnerships",
-      "src": "assets/images/service-partnership.webp",
-      "alt_ko": "서로 사업 조건을 협의하는 파트너 미팅 장면",
-      "alt_en": "Partner meeting to discuss commercial terms",
-      "position": "50% 55%",
-      "kind": "illustration"
+      "kind": "stock_reference"
     },
     "overseas-sales": {
       "key": "overseas-sales",
       "src": "assets/images/service-sales.webp",
-      "alt_ko": "상품 자료와 화상회의를 활용한 해외영업 협의 장면",
-      "alt_en": "International sales discussion with product materials and video call",
+      "alt_ko": "비대면 영업 교신을 위한 노트북과 헤드셋",
+      "alt_en": "A laptop and headset used for remote business communication",
       "position": "50% 50%",
-      "kind": "illustration"
-    },
-    "market-research": {
-      "key": "market-research",
-      "src": "assets/images/service-analysis.webp",
-      "alt_ko": "시장별 차트와 조사 자료를 비교하는 분석 장면",
-      "alt_en": "Market charts and research documents under review",
-      "position": "50% 50%",
-      "kind": "illustration"
+      "kind": "stock_reference"
     },
     "buyer-development": {
       "key": "buyer-development",
-      "src": "assets/images/service-buyer.webp",
-      "alt_ko": "해외 거래 후보와 사업 조건을 논의하는 장면",
-      "alt_en": "Business discussion with a prospective overseas partner",
-      "position": "50% 50%",
-      "kind": "illustration"
+      "src": "assets/images/service-buyers.webp",
+      "alt_ko": "기업 부스와 방문객이 보이는 전시회 전경",
+      "alt_en": "An overview of business exhibition booths and distant visitors",
+      "position": "50% 60%",
+      "kind": "stock_reference"
     },
     "export-consulting": {
       "key": "export-consulting",
       "src": "assets/images/service-export.webp",
-      "alt_ko": "선적 서류와 확인 목록을 검토하는 수출 준비 장면",
-      "alt_en": "Export preparation through document and checklist review",
+      "alt_ko": "화물 상자 위에서 확인하는 클립보드 문서",
+      "alt_en": "A clipboard checklist being reviewed over a shipment carton",
       "position": "50% 50%",
-      "kind": "illustration"
+      "kind": "stock_reference"
+    },
+    "supply-chain": {
+      "key": "supply-chain",
+      "src": "assets/images/service-supply.webp",
+      "alt_ko": "화물과 팔레트가 정돈된 창고 랙 통로",
+      "alt_en": "Warehouse racks holding packed goods and pallets",
+      "position": "50% 50%",
+      "kind": "stock_reference"
     },
     "franchise-development": {
       "key": "franchise-development",
-      "src": "assets/images/service-franchise-field.webp",
-      "alt_ko": "매장 운영 담당자와 현장 업무를 검토하는 장면",
-      "alt_en": "On-site review with store operations staff",
-      "position": "55% 50%",
-      "kind": "illustration"
+      "src": "assets/images/service-franchise.webp",
+      "alt_ko": "테이블과 좌석 배치가 보이는 레스토랑 실내",
+      "alt_en": "A restaurant interior showing its table and seating layout",
+      "position": "50% 50%",
+      "kind": "stock_reference"
     },
     "AUTO-001": {
       "key": "AUTO-001",
       "src": "assets/images/product-floor.webp",
-      "alt_ko": "고정 부위와 표면 패턴이 보이는 운전석 발매트 연출 예시",
-      "alt_en": "Illustrative driver-side floor mat with fixing points and surface pattern",
+      "alt_ko": "차량 발판에 설치된 검은색 매트의 표면과 홈",
+      "alt_en": "The textured surface and channels of a black car floor mat",
       "position": "50% 50%",
-      "kind": "illustration"
+      "kind": "stock_reference"
     },
     "AUTO-002": {
       "key": "AUTO-002",
       "src": "assets/images/product-towel.webp",
-      "alt_ko": "자동차 관리용 극세사 타월의 조직과 두께 연출 예시",
-      "alt_en": "Illustrative texture and thickness of a detailing microfiber towel",
-      "position": "50% 55%",
-      "kind": "illustration"
+      "alt_ko": "회색 극세사형 타월로 차량 표면을 닦는 장면",
+      "alt_en": "A grey detailing towel being used on a vehicle surface",
+      "position": "50% 50%",
+      "kind": "stock_reference"
     },
     "AUTO-003": {
       "key": "AUTO-003",
       "src": "assets/images/product-fragrance.webp",
-      "alt_ko": "송풍구 장착형 차량용 방향제 연출 예시",
-      "alt_en": "Illustrative vent-clip cabin fragrance accessory",
+      "alt_ko": "차량 실내에 놓인 나무 캡과 유리병으로 된 방향제",
+      "alt_en": "A glass-bottle car fragrance with a wooden cap inside a vehicle",
       "position": "50% 50%",
-      "kind": "illustration"
+      "kind": "stock_reference"
     },
     "AUTO-005": {
       "key": "AUTO-005",
       "src": "assets/images/product-film.webp",
-      "alt_ko": "투과 색상을 비교하는 차량용 필름 샘플 연출 예시",
-      "alt_en": "Illustrative window-film samples for comparing visible tint",
+      "alt_ko": "틴팅 필름의 적용 부위인 차량 측면 유리 참고 사진",
+      "alt_en": "Vehicle side glass illustrating the application area for window film",
       "position": "50% 50%",
-      "kind": "illustration"
+      "kind": "stock_reference"
     }
-  }
+  },
+  "product_categories": [
+    {
+      "id": "Interior",
+      "label_ko": "차량용 매트",
+      "label_en": "Floor Mats",
+      "sort": 10
+    },
+    {
+      "id": "Care",
+      "label_ko": "디테일링 용품",
+      "label_en": "Detailing Supplies",
+      "sort": 20
+    },
+    {
+      "id": "Fragrance",
+      "label_ko": "차량용 방향제",
+      "label_en": "Car Fragrance",
+      "sort": 30
+    },
+    {
+      "id": "Film",
+      "label_ko": "틴팅 필름",
+      "label_en": "Window Film",
+      "sort": 40
+    }
+  ],
+  "industries": [
+    {
+      "group": "industry",
+      "id": "AUTO",
+      "label_ko": "자동차·액세서리",
+      "label_en": "Automotive & accessories",
+      "description_ko": "차종 호환성·제조물책임·딜러 구매구조",
+      "description_en": "Fitment, product liability and procurement",
+      "sort": 6
+    },
+    {
+      "group": "industry",
+      "id": "FRANCHISE",
+      "label_ko": "프랜차이즈",
+      "label_en": "Franchise",
+      "description_ko": "가맹공시·상표·운영매뉴얼",
+      "description_en": "Disclosure, trademarks and manuals",
+      "sort": 7
+    },
+    {
+      "group": "industry",
+      "id": "FOOD",
+      "label_ko": "식품·외식",
+      "label_en": "Food & beverage",
+      "description_ko": "식품 수입·표시·위생 규정",
+      "description_en": "Import, labeling and food rules",
+      "sort": 8
+    },
+    {
+      "group": "industry",
+      "id": "INDUSTRIAL",
+      "label_ko": "산업재·제조",
+      "label_en": "Industrial / manufacturing",
+      "description_ko": "사양·인증·납기·품질",
+      "description_en": "Technical specs, compliance and lead time",
+      "sort": 9
+    },
+    {
+      "group": "industry",
+      "id": "CONSUMER",
+      "label_ko": "소비재·라이프스타일",
+      "label_en": "Consumer goods",
+      "description_ko": "현지 유통·표시·브랜드 차별화",
+      "description_en": "Distribution, labeling and positioning",
+      "sort": 10
+    },
+    {
+      "group": "industry",
+      "id": "OTHER",
+      "label_ko": "기타",
+      "label_en": "Other",
+      "description_ko": "맞춤형 분류",
+      "description_en": "Custom category",
+      "sort": 11
+    }
+  ]
 }

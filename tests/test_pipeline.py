@@ -18,7 +18,7 @@ class ExcelDrivenSiteTests(unittest.TestCase):
         self.assertGreaterEqual(len(data['products']),4)
         self.assertIn('industry_auto_title', data['settings'])
         self.assertIn('network_title', data['settings'])
-        self.assertTrue(any('TPE' in p['name_ko'] for p in data['products']))
+        self.assertEqual(next(p['name_ko'] for p in data['products'] if p['sku']=='AUTO-001'),'차량용 발매트')
     def test_allowlist_ignores_extra_columns(self):
         fields=MAP['상품']
         row=['X9','Care','CA','상품','Item','A','B','TARIFF','TARIFF','', '검토','https://example.org',1,'Y','PRIVATE_NOT_FOR_WEBSITE']

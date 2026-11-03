@@ -5,13 +5,15 @@ No registrations, API calls or paid dependencies required.
 import argparse, html, json, re
 from pathlib import Path
 from xml.etree import ElementTree as ET
+from site_shell import apply_page
+from photo_library import image_html,resolved_url,card_caption
 from build_site_data import read_excel, MAP, visible, build as load_public
 
 VISUALS = {}
 
 DOMAIN = 'https://y2choldings.co.kr'
 HEADINGS = {
- 'ko': {'home':'홈','services':'서비스','pricing':'요금 안내','free':'무료 진단','contact':'문의하기','what':'지원 업무','outputs':'산출물','steps':'진행 절차','faq':'자주 묻는 질문','caution':'안내사항','disclaimer':'사업·인증·수출 성과를 보장하지 않습니다. 확정 견적과 실행 범위는 개별 계약에 따라 정해지며, 법률·통관·세무 판단은 해당 전문가 확인이 필요할 수 있습니다.','cta':'프로젝트 상담하기','explore':'다른 서비스 보기','all':'전체 서비스','bottom':'Y2C가 수행할 수 있는 업무 범위를 명확하게 협의합니다.'},
+ 'ko': {'home':'홈','services':'사업영역','pricing':'요금 안내','free':'무료 진단','contact':'문의하기','what':'지원 업무','outputs':'산출물','steps':'진행 절차','faq':'자주 묻는 질문','caution':'안내사항','disclaimer':'사업·인증·수출 성과를 보장하지 않습니다. 확정 견적과 실행 범위는 개별 계약에 따라 정해지며, 법률·통관·세무 판단은 해당 전문가 확인이 필요할 수 있습니다.','cta':'프로젝트 상담하기','explore':'다른 서비스 보기','all':'전체 사업영역','bottom':'Y2C가 수행할 수 있는 업무 범위를 명확하게 협의합니다.'},
  'en': {'home':'Home','services':'Services','pricing':'Pricing','free':'Free check','contact':'Contact','what':'Service scope','outputs':'Deliverables','steps':'Process','faq':'Frequently asked','caution':'Important note','disclaimer':'Outcomes, permits and export contracts are not guaranteed. Final scope and pricing depend on written agreements. Specialist advice may be needed for legal, customs and tax determinations.','cta':'Discuss your project','explore':'Explore other services','all':'All services','bottom':'Define the work clearly, then build a practical plan.'}
 }
 
@@ -22,7 +24,7 @@ def li(value): return ''.join(f'<li>{h(item)}</li>' for item in bullet_items(val
 
 def make_head(title, meta, canonical, alternate, locale, schema, desc_short):
     slug=canonical.rsplit('/',1)[-1].replace('-en.html','.html').removesuffix('.html') or 'hub'
-    photo=SERVICE_PHOTOS.get(slug,'hero-operations.webp')
+    photo=SERVICE_PHOTOS.get(slug,'hero-port.webp')
     return f'''<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <title>{h(title)} | Y2C HOLDINGS</title><meta name="description" content="{h(meta)}">
@@ -57,10 +59,8 @@ SERVICE_PHOTOS = {
 }
 
 def seo_photo(slug,lang):
-    v=VISUALS.get(slug) or VISUALS.get('hero', {})
-    filename=Path(v['src']).name if v else SERVICE_PHOTOS.get(slug,'hero-operations.webp')
-    alt=v.get('alt_'+lang,'Illustrative business scene')
-    return f'<img class="seo-hero-image" src="./assets/images/{filename}" alt="{alt}" width="1100" height="740" fetchpriority="high" decoding="async">'
+    key='hero' if slug=='hub' else slug
+    return image_html(key,lang,'seo-hero-image',True)
 
 def service_page(row, records, lang):
     d=HEADINGS[lang]; slug=row['slug']; title=row[f'title_{lang}']; meta=row[f'meta_{lang}']
@@ -69,7 +69,7 @@ def service_page(row, records, lang):
     head=make_head(title,meta,canonical,alternate,lang,schema,meta)
     cross = ''.join(f'<a class="service-link" href="./{p["slug"]}{"-en" if lang=="en" else ""}.html"><small>{i+1:02d}</small><strong>{h(p[f"title_{lang}"])}</strong><span aria-hidden="true">↗</span></a>' for i,p in enumerate(records) if p['slug']!=slug)
     body=f'''<!doctype html><html lang="{lang}"><head>{head}</head><body><a class="skip" href="#main">Skip to content</a>{nav(lang,slug)}
-<main id="main"><section class="seo-hero">{seo_photo(slug,lang)}<div class="seo-wrap"><div class="seo-overline">Y2C / BUSINESS SOLUTIONS / {int(row['sort']):02d}</div><h1>{h(title)}</h1><p>{h(row[f'intro_{lang}'])}</p><div class="seo-actions"><a class="seo-btn" href="./index{'-en' if lang=='en' else ''}.html#contact">{h(d['cta'])} ↗</a><a class="seo-textlink" href="./services{('-en' if lang=='en' else '')}.html">{h(d['explore'])} ↗</a></div></div></section>
+<main id="main"><section class="seo-hero">{seo_photo(slug,lang)}<div class="seo-wrap"><div class="seo-overline">Y2C / BUSINESS SOLUTIONS / {records.index(row)+1:02d}</div><h1>{h(title)}</h1><p>{h(row[f'intro_{lang}'])}</p><div class="seo-actions"><a class="seo-btn" href="./index{'-en' if lang=='en' else ''}.html#contact">{h(d['cta'])} ↗</a><a class="seo-textlink" href="./services{('-en' if lang=='en' else '')}.html">{h(d['explore'])} ↗</a></div></div></section>
 <section class="seo-section"><div class="seo-wrap two-col"><div class="seo-aside"><span>01 / SERVICE SCOPE</span><h2>{h(d['what'])}</h2><p>{h(meta)}</p></div><ul class="seo-list">{li(row[f'scope_{lang}'])}</ul></div></section>
 <section class="seo-section alternate"><div class="seo-wrap two-col"><div class="seo-aside"><span>02 / DELIVERABLES</span><h2>{h(d['outputs'])}</h2></div><ul class="seo-list">{li(row[f'deliverables_{lang}'])}</ul></div></section>
 <section class="seo-section"><div class="seo-wrap"><div class="section-label">03 / PROCESS</div><h2>{h(d['steps'])}</h2><ol class="seo-steps">{''.join(f'<li><span>{i:02d}</span>{h(item)}</li>' for i,item in enumerate(bullet_items(row[f'process_{lang}']),1))}</ol></div></section>
@@ -80,12 +80,20 @@ def service_page(row, records, lang):
 
 def hub_page(records,lang):
     d=HEADINGS[lang]
-    title='기업 해외영업·해외시장조사 서비스' if lang=='ko' else 'International Business Services'
+    title='사업영역 — 해외영업·해외시장조사' if lang=='ko' else 'International Business Services'
     meta='Y2C HOLDINGS의 해외영업 대행, 해외시장조사, 바이어 발굴, 수출 컨설팅, 공급망 구축, 해외 프랜차이즈 사업개발 서비스 안내.' if lang=='ko' else 'Explore overseas sales, market research, buyer discovery, export consulting, international sourcing and franchise development services at Y2C.'
     alternate={'ko':DOMAIN+'/services.html','en':DOMAIN+'/services-en.html'}; canonical=alternate[lang]
     schema={'@context':'https://schema.org','@type':'CollectionPage','name':title,'description':meta,'url':canonical,'publisher':{'@type':'Organization','name':'Y2C HOLDINGS','url':DOMAIN}}
-    cards=''.join(f'<a class="service-link" href="./{p["slug"]}{"-en" if lang=="en" else ""}.html"><small>{i:02d}</small><span><strong>{h(p[f"title_{lang}"])}</strong><em>{h(p[f"meta_{lang}"])}</em></span><span aria-hidden="true">↗</span></a>' for i,p in enumerate(records,1))
-    return f'''<!doctype html><html lang="{lang}"><head>{make_head(title,meta,canonical,alternate,lang,schema,meta)}</head><body><a class="skip" href="#main">Skip to content</a>{nav(lang)}<main id="main"><section class="seo-hero service-hub">{seo_photo("hub",lang)}<div class="seo-wrap"><div class="seo-overline">Y2C / BUSINESS DEVELOPMENT</div><h1>{h(title)}</h1><p>{h(meta)}</p><div class="seo-actions"><a class="seo-btn" href="./index{'-en' if lang=='en' else ''}.html#contact">{h(d['cta'])} ↗</a><a class="seo-textlink" href="./free-report.html{'?lang=en' if lang=='en' else ''}">{h(d['free'])} ↗</a></div></div></section><section class="seo-section"><div class="seo-wrap"><div class="section-label">01 / OUR SERVICES</div><div class="service-links hub">{cards}</div></div></section><section class="seo-cta"><div class="seo-wrap"><strong>{h(d['bottom'])}</strong><a href="./pricing.html{'?lang=en' if lang=='en' else ''}">{h(d['pricing'])} ↗</a></div></section></main>{footer(lang)}</body></html>'''
+    heading='업무를 기준으로, 명확하게.' if lang=='ko' else 'Clear work. Clear scope.'
+    lead='시장조사, 해외영업, 바이어 발굴부터 수출과 공급망, 프랜차이즈 사업개발까지.' if lang=='ko' else 'Research, sales and buyer development. Export readiness, supply chains and franchise expansion.'
+    cards=''.join(
+        f'<a class="business-card" data-service-id="{p["slug"]}" href="./{p["slug"]}{"-en" if lang=="en" else ""}.html">'
+        f'<div class="business-photo">{image_html(p["slug"],lang)}<span class="photo-num">{i:02d}</span></div>'
+        f'<div class="business-card-body"><div><span class="card-kicker">{h(card_caption(p["slug"],lang))}</span>'
+        f'<h2>{h(p[f"title_{lang}"])}</h2><p>{h(next(s[f"description_{lang}"] for s in load_public(Path(__file__).resolve().parents[1]/"data/website_content.xlsx")["services"] if s["id"]==p["slug"]))}</p>'
+        '</div><span class="card-arrow" aria-hidden="true">↗</span></div></a>'
+        for i,p in enumerate(records,1))
+    return f'''<!doctype html><html lang="{lang}"><head>{make_head(title,meta,canonical,alternate,lang,schema,meta)}</head><body><a class="skip" href="#main">Skip to content</a>{nav(lang)}<main id="main"><section class="seo-hero service-hub"><div class="seo-wrap"><div class="seo-overline">Y2C / BUSINESS DEVELOPMENT</div><h1>{h(heading)}</h1><p>{h(lead)}</p><div class="seo-actions"><a class="seo-btn" href="./index{'-en' if lang=='en' else ''}.html#contact">{h(d['cta'])} ↗</a><a class="seo-textlink" href="./free-report.html{'?lang=en' if lang=='en' else ''}">{h(d['free'])} ↗</a></div></div></section><section class="seo-section"><div class="seo-wrap"><div class="section-label">01 / OUR SERVICES</div><div class="service-list service-directory">{cards}</div></div></section><section class="seo-cta"><div class="seo-wrap"><strong>{h(d['bottom'])}</strong><a href="./pricing.html{'?lang=en' if lang=='en' else ''}">{h(d['pricing'])} ↗</a></div></section></main>{footer(lang)}</body></html>'''
 
 def create_sitemap(site,records):
     slugs=['','index-en.html','services.html','services-en.html','pricing.html','free-report.html','quick-report.html']
@@ -126,6 +134,7 @@ def build(excel, site):
     for lang in ['ko','en']:
         path=site/('services'+('-en' if lang=='en' else '')+'.html')
         path.write_text(hub_page(records,lang),encoding='utf8')
+    for path in site.glob('*.html'): apply_page(path)
     create_sitemap(site,records)
     print(f'Created {len(records)*2+2} indexable service pages and sitemap.xml (no external API)')
 

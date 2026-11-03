@@ -30,9 +30,9 @@ MAP = {
     '무료진단옵션': ['group','id','label_ko','label_en','description_ko','description_en','sort','visible'],
     '검색서비스': ['slug','title_ko','title_en','meta_ko','meta_en','intro_ko','intro_en','scope_ko','scope_en','deliverables_ko','deliverables_en','process_ko','process_en','question_ko','answer_ko','question_en','answer_en','sort','visible'],
 }
-OPTIONAL_MAP = {'이미지맵': ['key','src','alt_ko','alt_en','position','kind','visible']}
+OPTIONAL_MAP = {'상품분류': ['id','label_ko','label_en','sort','visible'], '이미지맵': ['key','src','alt_ko','alt_en','position','kind','visible']}
 
-COLLECTIONS = {'서비스': 'services', '상품': 'products', '파트너': 'partners', '진행절차': 'steps', 'FAQ': 'faq', '지원프로그램': 'programs', '인사이트': 'insights', '요금정책': 'pricing', '무료진단옵션': 'free_report_options'}
+COLLECTIONS = {'서비스': 'services', '상품': 'products', '파트너': 'partners', '진행절차': 'steps', 'FAQ': 'faq', '지원프로그램': 'programs', '인사이트': 'insights', '요금정책': 'pricing', '무료진단옵션': 'free_report_options', '검색서비스': 'seo_services'}
 
 
 def col_index(ref):
@@ -192,6 +192,30 @@ def build(excel_file):
             if img['key'] in data['visuals']: raise ValueError('Duplicate image key: '+img['key'])
             if not re.fullmatch(r'\d{1,3}% \d{1,3}%',img['position']): raise ValueError('Invalid focal position')
             data['visuals'][img['key']] = img
+    data['product_categories'] = to_records(book['상품분류'], OPTIONAL_MAP['상품분류']) if '상품분류' in book else []
+    seo = {str(r[0]):r for r in book['검색서비스'][1:] if len(r)>18 and visible(r[18])}
+    for svc in data['services']:
+        if svc['id'] not in seo: raise ValueError('Service detail page missing: '+svc['id'])
+        row=seo[svc['id']]
+        if svc['title_ko']!=row[1] or svc['title_en']!=row[2]: raise ValueError('Service names differ: '+svc['id'])
+        if svc['id'] not in data['visuals']: raise ValueError('Service image missing: '+svc['id'])
+    allowed={c['id'] for c in data['product_categories']}
+    for product in data['products']:
+        if product['category'] not in allowed: raise ValueError('Unknown product category: '+product['sku'])
+        if product['sku'] not in data['visuals']: raise ValueError('Product image missing: '+product['sku'])
+    from photo_library import by_key
+    photos=by_key()
+    for key,visual in data['visuals'].items():
+        photo=photos.get(key)
+        if not photo or visual['src']!='assets/images/'+photo['file']:
+            raise ValueError('Photo registry/Excel mismatch: '+key)
+        for language in ('ko','en'):
+            if visual['alt_'+language]!=photo['alt_'+language]:
+                raise ValueError('Photo description/Excel mismatch: '+key)
+    expected={'hero'}|{x['id'] for x in data['services']}|{x['sku'] for x in data['products']}
+    if set(data['visuals'])!=expected or set(photos)!=expected:
+        raise ValueError('Visible category/photo registry must match exactly')
+    data['industries']=[x for x in data['free_report_options'] if x['group']=='industry']
     return data
 
 
@@ -204,6 +228,13 @@ def main(argv=None):
     output = Path(args.output)
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+    quick=output.parent/'quick-report-options.json'
+    if quick.exists():
+        options=json.loads(quick.read_text(encoding='utf-8'))
+        options['industries']=[x['label_ko'] for x in data['industries']]
+        options.setdefault('option_labels_en',{}).update({x['label_ko']:x['label_en'] for x in data['industries']})
+        quick.write_text(json.dumps(options,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+
     print(f'Exported public website data: {output} ({len(data["products"])} products, {len(data["services"])} services, {len(data["programs"])} programs)')
 
 if __name__ == '__main__':

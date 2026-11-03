@@ -16,7 +16,10 @@ assert 'form_endpoint' in obj['settings']
 html=(root/'site/index.html').read_text(encoding='utf-8')
 for name in ['servicesGrid','stepsGrid','partnersGrid','productsGrid','contactForm','menuBtn']:
     assert f'id="{name}"' in html, f'Missing HTML mount point: {name}'
-assert 'data-lang="ko"' in html and 'data-lang="en"' in html
+assert 'data-shell-lang="ko"' in html and 'data-shell-lang="en"' in html
+assert 'assets/theme.css' in html and 'assets/site-shell.js' in html
+assert len(obj['services']) == len(obj['seo_services'])
+assert len(obj['product_categories'])==4
 assert (root/'site/assets/y2c-logo.png').exists()
 print('OK: site content and expected assets present, public data valid.')
 

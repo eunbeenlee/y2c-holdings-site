@@ -1,0 +1,681 @@
+{
+  "scope": "Local about:blank inlined source rendering; synthetic clearly labeled image fixtures. Auth/database mock. No network navigation, original-photo decoding/cropping, production login, DB or email verified.",
+  "layouts": [
+    {
+      "page": "admin.html",
+      "width": 360,
+      "scroll": 360,
+      "inner": 360,
+      "missing": [],
+      "h1": 5
+    },
+    {
+      "page": "buyer-development-en.html",
+      "width": 360,
+      "scroll": 360,
+      "inner": 360,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "buyer-development.html",
+      "width": 360,
+      "scroll": 360,
+      "inner": 360,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "export-consulting-en.html",
+      "width": 360,
+      "scroll": 360,
+      "inner": 360,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "export-consulting.html",
+      "width": 360,
+      "scroll": 360,
+      "inner": 360,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "franchise-development-en.html",
+      "width": 360,
+      "scroll": 360,
+      "inner": 360,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "franchise-development.html",
+      "width": 360,
+      "scroll": 360,
+      "inner": 360,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "free-report.html",
+      "width": 360,
+      "scroll": 360,
+      "inner": 360,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "index-en.html",
+      "width": 360,
+      "scroll": 360,
+      "inner": 360,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "index.html",
+      "width": 360,
+      "scroll": 360,
+      "inner": 360,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "market-research-en.html",
+      "width": 360,
+      "scroll": 360,
+      "inner": 360,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "market-research.html",
+      "width": 360,
+      "scroll": 360,
+      "inner": 360,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "overseas-sales-en.html",
+      "width": 360,
+      "scroll": 360,
+      "inner": 360,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "overseas-sales.html",
+      "width": 360,
+      "scroll": 360,
+      "inner": 360,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "photo-credits-en.html",
+      "width": 360,
+      "scroll": 360,
+      "inner": 360,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "photo-credits.html",
+      "width": 360,
+      "scroll": 360,
+      "inner": 360,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "pricing.html",
+      "width": 360,
+      "scroll": 360,
+      "inner": 360,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "privacy.html",
+      "width": 360,
+      "scroll": 360,
+      "inner": 360,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "quick-report.html",
+      "width": 360,
+      "scroll": 360,
+      "inner": 360,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "services-en.html",
+      "width": 360,
+      "scroll": 360,
+      "inner": 360,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "services.html",
+      "width": 360,
+      "scroll": 360,
+      "inner": 360,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "supply-chain-en.html",
+      "width": 360,
+      "scroll": 360,
+      "inner": 360,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "supply-chain.html",
+      "width": 360,
+      "scroll": 360,
+      "inner": 360,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "admin.html",
+      "width": 768,
+      "scroll": 768,
+      "inner": 768,
+      "missing": [],
+      "h1": 5
+    },
+    {
+      "page": "buyer-development-en.html",
+      "width": 768,
+      "scroll": 768,
+      "inner": 768,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "buyer-development.html",
+      "width": 768,
+      "scroll": 768,
+      "inner": 768,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "export-consulting-en.html",
+      "width": 768,
+      "scroll": 768,
+      "inner": 768,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "export-consulting.html",
+      "width": 768,
+      "scroll": 768,
+      "inner": 768,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "franchise-development-en.html",
+      "width": 768,
+      "scroll": 768,
+      "inner": 768,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "franchise-development.html",
+      "width": 768,
+      "scroll": 768,
+      "inner": 768,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "free-report.html",
+      "width": 768,
+      "scroll": 768,
+      "inner": 768,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "index-en.html",
+      "width": 768,
+      "scroll": 768,
+      "inner": 768,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "index.html",
+      "width": 768,
+      "scroll": 768,
+      "inner": 768,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "market-research-en.html",
+      "width": 768,
+      "scroll": 768,
+      "inner": 768,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "market-research.html",
+      "width": 768,
+      "scroll": 768,
+      "inner": 768,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "overseas-sales-en.html",
+      "width": 768,
+      "scroll": 768,
+      "inner": 768,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "overseas-sales.html",
+      "width": 768,
+      "scroll": 768,
+      "inner": 768,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "photo-credits-en.html",
+      "width": 768,
+      "scroll": 768,
+      "inner": 768,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "photo-credits.html",
+      "width": 768,
+      "scroll": 768,
+      "inner": 768,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "pricing.html",
+      "width": 768,
+      "scroll": 768,
+      "inner": 768,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "privacy.html",
+      "width": 768,
+      "scroll": 768,
+      "inner": 768,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "quick-report.html",
+      "width": 768,
+      "scroll": 768,
+      "inner": 768,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "services-en.html",
+      "width": 768,
+      "scroll": 768,
+      "inner": 768,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "services.html",
+      "width": 768,
+      "scroll": 768,
+      "inner": 768,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "supply-chain-en.html",
+      "width": 768,
+      "scroll": 768,
+      "inner": 768,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "supply-chain.html",
+      "width": 768,
+      "scroll": 768,
+      "inner": 768,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "admin.html",
+      "width": 1440,
+      "scroll": 1440,
+      "inner": 1440,
+      "missing": [],
+      "h1": 5
+    },
+    {
+      "page": "buyer-development-en.html",
+      "width": 1440,
+      "scroll": 1440,
+      "inner": 1440,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "buyer-development.html",
+      "width": 1440,
+      "scroll": 1440,
+      "inner": 1440,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "export-consulting-en.html",
+      "width": 1440,
+      "scroll": 1440,
+      "inner": 1440,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "export-consulting.html",
+      "width": 1440,
+      "scroll": 1440,
+      "inner": 1440,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "franchise-development-en.html",
+      "width": 1440,
+      "scroll": 1440,
+      "inner": 1440,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "franchise-development.html",
+      "width": 1440,
+      "scroll": 1440,
+      "inner": 1440,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "free-report.html",
+      "width": 1440,
+      "scroll": 1440,
+      "inner": 1440,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "index-en.html",
+      "width": 1440,
+      "scroll": 1440,
+      "inner": 1440,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "index.html",
+      "width": 1440,
+      "scroll": 1440,
+      "inner": 1440,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "market-research-en.html",
+      "width": 1440,
+      "scroll": 1440,
+      "inner": 1440,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "market-research.html",
+      "width": 1440,
+      "scroll": 1440,
+      "inner": 1440,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "overseas-sales-en.html",
+      "width": 1440,
+      "scroll": 1440,
+      "inner": 1440,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "overseas-sales.html",
+      "width": 1440,
+      "scroll": 1440,
+      "inner": 1440,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "photo-credits-en.html",
+      "width": 1440,
+      "scroll": 1440,
+      "inner": 1440,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "photo-credits.html",
+      "width": 1440,
+      "scroll": 1440,
+      "inner": 1440,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "pricing.html",
+      "width": 1440,
+      "scroll": 1440,
+      "inner": 1440,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "privacy.html",
+      "width": 1440,
+      "scroll": 1440,
+      "inner": 1440,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "quick-report.html",
+      "width": 1440,
+      "scroll": 1440,
+      "inner": 1440,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "services-en.html",
+      "width": 1440,
+      "scroll": 1440,
+      "inner": 1440,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "services.html",
+      "width": 1440,
+      "scroll": 1440,
+      "inner": 1440,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "supply-chain-en.html",
+      "width": 1440,
+      "scroll": 1440,
+      "inner": 1440,
+      "missing": [],
+      "h1": 1
+    },
+    {
+      "page": "supply-chain.html",
+      "width": 1440,
+      "scroll": 1440,
+      "inner": 1440,
+      "missing": [],
+      "h1": 1
+    }
+  ],
+  "interactions": [
+    {
+      "name": "home six service links",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "home four product cards",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "product filter Interior",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "product filter Care",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "product filter Fragrance",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "product filter Film",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "all product cards restored",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "English home target is static counterpart",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "English home language",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "mobile menu opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Escape closes menu",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "six service directory photographs",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "six sibling service cards",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "free report six industries",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "free report generates",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "quick report six industries",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "quick quote selection changes total",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "quick quote English toggle",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "business quote maintained",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "admin six industry suggestions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "admin datalist bound",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "mock company login UI",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "mock report save",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "mock saved industry preserved",
+      "pass": true,
+      "detail": ""
+    }
+  ],
+  "errors": [],
+  "passed": true
+}

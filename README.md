@@ -1,62 +1,51 @@
-# Y2C HOLDINGS · V20 Full Revision
+# Y2C HOLDINGS — V22
 
-기존 골드·차콜·오프화이트와 원본 로고를 유지한 전체 소스입니다. 파란색 시안이나 다른 로고를 사용하지 않습니다.
+골드·차콜·오프화이트의 기존 브랜드를 유지하면서 사업영역, 소싱 품목, 산업 선택지와 사진 연결을 통일한 전체 웹사이트 소스입니다.
 
-## 바로 적용하기
+## 먼저 확인하세요
 
-1. ZIP을 `C:\Y2C` 등 짧은 경로에 압축 해제합니다. ZIP 내부에는 긴 상위 폴더를 두지 않았습니다.
-2. 기존 저장소 `eunbeenlee/y2c-holdings-site`의 `main`에 **내부 파일과 폴더**를 같은 경로로 업로드합니다. `.github`도 포함합니다. 저장소 자체를 지우지 마세요.
-3. 최근에 Supabase URL/공개 키를 변경했다면 **현재 저장소의 `site/assets/supabase-config.js`를 먼저 보관**하고 해당 파일만 기존 최신 값을 유지합니다. 이번 소스는 이전 대화에서 제공된 공개 연결값을 사용합니다. 비밀번호·서비스 비밀키는 포함하지 않았습니다.
-4. `Settings → Pages → Source: GitHub Actions`, Custom domain: `y2choldings.co.kr`를 유지합니다.
-5. `Publish Y2C Excel Website`가 성공한 뒤 사이트를 강력 새로고침합니다. 브라우저 업로드가 한 번에 전부 안 되면 `.github`, `data`, `scripts`, `site`, `supabase`, `tests`, `docs` 순으로 폴더별 업로드한 뒤 마지막 배포 결과를 확인합니다.
+이 ZIP에는 **사진 원본의 선택·출처·프레임 설정과 자동 다운로드 프로그램**이 포함됩니다. 제작 환경의 외부 다운로드 제한으로 사진 바이너리 11개는 들어 있지 않습니다. 기존 생성 사진은 제거했습니다.
 
-**기존 SQL·관리자 계정은 다시 만들지 않습니다. 데이터베이스를 초기화하거나 기존 보고서를 지우는 마이그레이션은 없습니다.**
+GitHub에 업로드하면 `.github/workflows/main.yml`이 선정된 사진을 내려받아 WebP로 변환하고, **사이트 내부 파일로 포함한 다음 배포**합니다. 사진 서비스 회원가입/API 키는 요구하지 않습니다. 다운로드가 실패하면 잘못된 대체 사진을 표시하지 않고 새 배포를 중단합니다. 이전 배포는 유지됩니다. 실제 사진 다운로드 및 공개 운영 배포는 이 환경에서 검증하지 못했습니다.
 
-## 유지한 기능
+`PHOTO_REVIEW.html`을 인터넷이 연결된 브라우저로 열면 원본 사진과 카테고리의 대조표를 확인할 수 있습니다. 이는 완성 화면 캡처가 아닌 **선정 원본 확인용**입니다.
 
-- 회사 홈페이지 / 한국어·영어 정적 페이지 / 서비스별 상세페이지
-- 공개 Excel 콘텐츠 빌드 / 상품 필터 / 요금 안내 / 간편 견적
-- 무료 시장진출 사전진단 / 선택형 유료조사 견적
-- 회사 계정 로그인 / 보고서 작성·저장·등급·복제·삭제·인쇄
-- 기존 백업 이메일·DB 활동 점검 워크플로 및 Secrets 이름
-- 도메인, robots.txt, sitemap.xml, canonical/hreflang
+## 기존 저장소에 적용
 
-## 콘텐츠와 이미지 변경
+1. 기존 저장소의 `Code → Download ZIP`으로 현재 파일을 먼저 보관합니다.
+2. 이 ZIP을 `C:\Y2C`처럼 짧은 경로에 풉니다. 압축 안의 파일을 저장소 **최상위**에 덮어씁니다. `.github`를 포함하고 ZIP 자체나 상위 폴더를 올리지 마세요.
+3. `site/assets/supabase-config.js`의 값이 운영 중 최신 공개 URL·공개 키와 같음을 확인하세요. 운영 키가 변경됐다면 현재 저장소 값을 유지합니다. 비밀번호나 secret/service_role 키를 넣지 않습니다.
+4. `Settings → Pages → Source = GitHub Actions`, Custom domain = `y2choldings.co.kr`을 유지합니다.
+5. Actions의 **Acquire and verify category photographs**, **Check Excel and rebuild public website data**, **Deploy to GitHub Pages**가 모두 성공했는지 확인합니다.
+6. 홈페이지, 사업영역, 소싱 품목과 관리자 로그인을 새로고침하여 확인합니다. 기존 계정·DB는 바꾸지 않았으므로 **SQL을 다시 실행하지 않습니다**.
 
-`data/website_content.xlsx`는 공개 홈페이지용입니다. 민감한 고객·계약·계정 데이터를 넣지 않습니다.
+사진까지 포함된 소스가 필요하면 성공한 Actions 실행의 Artifacts에서 **Y2C-V22-source-with-photos**를 받으세요. 내부 `Y2C_V22_READY.zip`이 사진 포함본입니다. 현재 설정은 아티팩트 보관 3일입니다.
 
-- 회사 문구: `설정` 시트
-- 상품 이름·노출: `상품` 시트 (현재 4종 공개; 트렁크 라이너는 별도 이미지/사양 확인 전 비공개)
-- 서비스/요금/무료 진단 선택지/SEO: 기존 해당 시트
-- **사진 연결: `이미지맵` 시트** — `key`, `src`, `alt_ko`, `alt_en`, `position`, `kind`, `visible`
-- 사진 파일은 `site/assets/images/`에 추가하고 `src`는 `assets/images/파일명.webp`로 입력합니다.
-- 공개 상품이나 사업영역의 이미지 매핑이 없으면 빌드가 실패합니다. 무관한 기본 이미지를 임의로 대신 넣지 않습니다.
-- 드롭다운 유료조사 세부 옵션/추가금은 기존 `site/data/quick-report-options.json`에서 관리합니다. 기본금 199,000원은 이 파일과 메인 안내에 함께 맞춥니다.
+## 운영 기준
 
-수정한 Excel을 GitHub에 Commit해야 공개 사이트에 반영됩니다. PC에서 저장만 해서는 갱신되지 않습니다.
+- **사업영역 6개:** 해외시장조사 / 해외영업 대행 / 바이어 발굴 / 수출 컨설팅 / 소싱·공급망 / 프랜차이즈 사업개발.
+- **소싱 품목 4개:** 차량용 매트 / 디테일링 용품 / 차량용 방향제 / 틴팅 필름.
+- **산업 6개:** 자동차·액세서리 / 프랜차이즈 / 식품·외식 / 산업재·제조 / 소비재·라이프스타일 / 기타.
+- 같은 업무의 메인 카드·사업영역 목록·상세 페이지는 같은 사진·한영 제목·설명에 연결됩니다.
+- 보고서·가격·진단·로그인 화면에는 무관한 장식 사진을 추가하지 않았습니다.
+- 외부 사진을 실제 Y2C 현장·고객·확정 납품상품으로 표현하지 않습니다.
+- 틴팅 사진은 **차량 측면 유리의 적용 환경**이며, 실제 필름 원단이나 부착·성능 확인 자료가 아닙니다.
 
-## 검증 및 운영 범위
+## 주요 파일
 
-`docs/QA_V20.md`를 먼저 확인하세요. 소스·빌드·화면 검증과 실제 운영 시스템의 검증은 구분했습니다.
+| 파일 | 역할 |
+|---|---|
+| `data/website_content.xlsx` | 공개 콘텐츠·카테고리·가격 관리 |
+| `data/photo_sources.json` | 선정 사진 ID·출처·크롭·한영 설명의 기준 |
+| `scripts/prepare_photos.py` | 원본 취득·화질 검사·WebP 변환 |
+| `scripts/photo_library.py` | 모든 페이지가 공유하는 사진 연결 |
+| `site/photo-credits.html` | 공개 사진 출처·참고 범위 |
+| `docs/IMAGE_MAP.md` | 카테고리별 연결표 |
+| `docs/QA_V22.md` | 실행한 테스트와 미검증 범위 |
+| `docs/PHOTO_SETUP.md` | 사진 자동 포함 방식 및 오류 대응 |
 
-- 이 패키지는 GitHub에 자동 업로드하지 않습니다.
-- 실제 계정 로그인/DB 쓰기/백업 발송은 운영 계정 권한 없이 실행하지 않았습니다.
-- 문의 폼은 **메일 앱 열기 + 내용 복사**입니다. 메일 앱에서 직접 전송해야 하며 자동 접수·결제 기능이 아닙니다.
-- 무료 진단서는 선택 규칙 기반 사전점검이며 실시간 시장조사 결과나 관세 확정 의견이 아닙니다.
-- 사진은 기존 생성 이미지를 업무/제품에 맞게 재편집한 **설명용 연출 이미지**입니다. 실제 직원·고객·공장·납품 상품의 촬영 실적으로 표시하지 않습니다.
-- 별도 유료 플러그인을 추가하지 않았습니다. 기존 서비스 무료 한도와 도메인 비용은 별도이며 영구 무료·무중단을 보장하지 않습니다.
+공개 Excel에는 고객정보·로그인 비밀번호·계약정보를 넣지 마세요. 관리자 보고서·Supabase 인증·자동백업 및 점검 코드는 유지했습니다. 현재 문의 폼은 이메일 작성/내용 복사 방식이며 자동 접수 DB로 바꾸지 않았습니다.
 
-## 로컬 빌드
+## 비용과 제한
 
-```sh
-python scripts/build_site_data.py --excel data/website_content.xlsx --output site/data/site-data.json
-python scripts/build_seo_pages.py --excel data/website_content.xlsx --site site
-python scripts/build_home.py
-python -m unittest discover -s tests -v
-python scripts/check_site.py
-python scripts/check_assets.py
-python scripts/check_seo.py
-python -m http.server 8000 --directory site
-```
-
-Python 표준 라이브러리만으로 공개 Excel을 읽고 사이트를 빌드합니다. 관리자 로그인 라이브러리와 웹폰트는 기존 CDN 경로를 이용하며 네트워크가 필요합니다. 폰트 파일 자체는 포함하지 않았습니다.
+이 수정에는 유료 이미지 API·유료 폰트·새 서버를 추가하지 않았습니다. 기존 서비스의 무료 제공 조건·사용량 제한과 가비아 도메인 갱신비는 별개입니다. 외부 사진 출처 접근성은 영구 보장되지 않습니다. 실제 사진이 포함된 성공 배포본을 별도 보관하세요.
